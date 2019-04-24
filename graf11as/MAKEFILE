@@ -1,0 +1,46 @@
+# Makefile for the Borland C++ 3.1 Compiler
+#
+# GRAFFITI ProBoard PEX Version
+# Copyright (C) 1995 by Branislav L. Slantchev
+#
+# This file is part of the GRAFFITI.
+#
+# GRAFFITI is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; version 2.
+#
+# GRAFFITI is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with GRAFFITI; see the file COPYING.  If not, write to
+# the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
+#
+
+LIBPATH = c:\dev\lib
+INCLUDEPATH = c:\dev\inc
+CC = bcc -c -ml -I$(INCLUDEPATH) -DPB_SDK
+LINK = tlink /C/n/x
+
+.c.obj:
+	$(CC) {$< }
+
+EXE_depend = \
+$(LIBPATH)\pb_sdk.obj \
+userd.obj             \
+effects.obj           \
+graffiti.obj
+
+graffiti.pex: $(EXE_depend)
+	$(LINK) $(EXE_depend), graffiti.pex,,,
+
+graffiti.obj: graffiti.c
+userd.obj: userd.c
+effects.obj: effects.c
+
+clean:
+	del graffiti.obj
+	del userd.obj
+	del effects.obj

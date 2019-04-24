@@ -1,0 +1,45 @@
+#
+# Copyright (c) 1995, 1996 Branislav L. Slantchev
+# A Product of Silicon Creations, Inc.
+#
+# This source is distributed under the terms and conditions of the
+# GNU General Library License. A copy of the license is included with
+# this distrbiution (see the file 'Copying.Pbl').
+#
+# Contact: 73023.262@compuserve.com
+#
+# Options:
+#           make           <- make both programs
+#           make all       <- same as the above
+#           make enterz	   <- make enterz only
+#           make morez	   <- make morez only
+#           make clean	   <- remove .obj and .cfg files
+#
+
+.AUTODEPEND
+
+CC      = bcc
+TLINK   = tlink
+LIBPATH = E:\SCI\PBL\LIB
+INCPATH = E:\SCI\PBL\H
+SDK     = E:\C\LIB\PB_SDK.OBJ
+PBLIB   = $(LIBPATH)\PBL_PEX.LIB
+CFLAGS  = -c -ml -v- -I$(INCPATH) -DPB_SDK -DNDEBUG -P
+
+.cpp.obj:
+	$(CC) $(CFLAGS) {$< }
+
+all: enterz morez
+
+enterz: makefile enterz.obj
+	$(TLINK) /C/n/x $(SDK) enterz.obj,enterz.pex,,$(PBLIB)
+
+morez: makefile morez.obj
+	$(TLINK) /C/n/x $(SDK) morez.obj,morez.pex,,$(PBLIB)
+
+enterz.obj: makefile enterz.cpp
+morez.obj : makefile morez.cpp
+
+clean:
+	if exist *.obj del *.obj
+

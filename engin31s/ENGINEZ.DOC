@@ -1,0 +1,341 @@
+
+ ŞÛÛÛÛÛÛÛÛÛİŞÛÛÛÛÛÛÛÛÛİŞÛÛÛÛÛÛÛÛÛİ ÛÛÛÛÛÛ ŞÛÛÛÛÛÛÛÛÛİŞÛÛÛÛÛÛÛÛÛİŞÛÛÛÛÛÛÛÛÛİ
+ ŞÛÛÛÛÛÛÛŞÛÛŞÛÛÛÛÛÛÛŞÛÛŞÛÛÛÛÛÛİÛÛÛ ßßßßßß ŞÛÛÛÛÛÛÛŞÛÛŞÛÛÛÛÛÛÛŞÛÛŞÛÛÛÛÛÛİÛÛÛ
+ ŞÛÛÛÛÛÛÛŞÛÛŞÛÛÛÛÛÛÛŞÛÛŞÛÛÛÛÛÛİÛÛÛ ÛÛÛÛÛÛÛŞÛÛÛÛÛÛÛŞÛÛŞÛÛÛÛÛÛÛŞÛÛŞÛÛÛÛÛÛİÛÛÛ
+ ŞÛÛÛÛÛÛÛÜÜ ŞÛÛÛÛÛÛÛŞÛÛŞÛÛÛÛÛÛİ   ŞÛÛÛÛÛÛÛŞÛÛÛÛÛÛÛŞÛÛŞÛÛÛÛÛÛÛÜÜ  ÜÜÜÜÜÜÜÛÛÛ
+ ŞÛÛÛÛÛÛÛßß ŞÛÛÛÛÛÛÛŞÛÛŞÛÛÛÛÛÛİÛÛÛŞÛÛÛÛÛÛÛŞÛÛÛÛÛÛÛŞÛÛŞÛÛÛÛÛÛÛßß ŞÛÛÛÛÛÛÛİÜÜ
+ ŞÛÛÛÛÛÛÛŞÛÛŞÛÛÛÛÛÛÛŞÛÛŞÛÛÛÛÛÛİ ÛÛŞÛÛÛÛÛÛÛŞÛÛÛÛÛÛÛŞÛÛŞÛÛÛÛÛÛÛŞÛÛŞÛÛÛÛÛÛÛİÛÛ
+ ŞÛÛÛÛÛÛÛÛÛÛŞÛÛÛÛÛÛÛŞÛÛŞÛÛÛÛÛÛÛÜÛÛŞÛÛÛÛÛÛÛŞÛÛÛÛÛÛÛŞÛÛŞÛÛÛÛÛÛÛÛÛÛŞÛÛÛÛÛÛÛÛÛÛ
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ[ Version 3.1 ]ÄÄÄÄÄÄ
+ßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßß
+
+                             Enuff iz Enuff!
+              Copyright (c) 1995-1997 Branislav L. Slantchev
+            A fine freeware product of Silicon Creations, Inc.
+
+
+          [Topic]                                      [Keyword]
+
+          Overview ................................... /OVERVIEW
+          Installation ............................... /INSTALL
+          SILICON.INI Reference ...................... /SILICON
+          Bugs! ...................................... /BUGS
+          Caveat Emptor .............................. /DISCLAIMER
+          Source Code ................................ /SOURCE
+          Packing Slip ............................... /PACKING
+          Registration ............................... /REGISTER
+          Getting in Touch ........................... /CONTACT
+          Greetings .................................. /GREETINGS
+          Copyrights, Trademarks, Etc. ............... /TRADEMARKS
+
+
+  o v e r v i e w                                                  /OVERVIEW
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+  Enuff iz enuff! Finally, the best rolling prompts for ProBoard are in one
+  easy to use package. After numerous suggestions from users, most of the
+  options have been moved to an external INI configuration file. Also, the
+  display engine has been improved and the file format has changed. This
+  means that you no longer will be able to use your KAF animations. Sorry.
+  The new format is a lot easier to access and a lot faster to process.
+  Programmers should appreciate this. I have included all the old Enter
+  prompts from the KAF archive (distributed with Enterz v1.0 and v2.0) as
+  well as a lot of new prompts. The package comes with 400+ enter prompts
+  and about 20 more prompts. Note that now the display engine can now use
+  ANSi sequences, as well as Avatar, PCBoard and Wildcat! style animations.
+  This functionality is due to the built-in interpreter from PB-Lib.
+
+  There are two pexen in this package. ENTERZ.PEX is the one responsible
+  for the animated 'Press Enter' prompts and MOREZ.PEX is the one that
+  makes the 'More?' prompts. Refer to the next section for installation
+  instructions. I have also included some humongous data files. You will
+  probably not need any additional prompts. The data files are coupled,
+  with the main one ENTERZ.ADT and MOREZ.ADT, and the two indices called
+  ENTERZ.AIX and MOREZ.AIX respectively. These are maintained by the ACL
+  program which is bundled with this package.
+
+  ACL is the program that is used to add, remove, edit or display the
+  animations in the datasets. You can also use this program to merge ACL
+  animation files (such as files distributed with other programs). There is
+  a separate user's manual for that program in the file ACL.DOC. Note that
+  this program is also available separately, in case you want to package it
+  with your own ACL files (which is permissible). If you want to do that,
+  please, obtain a copy of the stand-alone version for the purpose. It
+  should be available from the same place you got this program.
+
+
+  i n s t a l l a t i o n                                           /INSTALL
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+  Copy all *.PEX, *.ADT and *.AIX files (6 in all) to your PEX directory (as
+  defined in ProCFG~Options~Paths~Pex).
+
+  Copy the SILICON.INI file to your ProBoard system directory (if you have a
+  SILICON.INI already, copy the new entries into your existing file. DO NOT
+  DELETE the file you already have - it is shared by several applications!)
+  Also, remove the comments from the file to speed loading times.
+
+  Fire up the language editor (ProCFG~Language Editor) and for all language
+  files you have installed, replace the follwing:
+
+                    (1) prompt #4 becomes @pmorez@
+                    (2) prompt #7 becomes @penterz@
+
+  Note the keys you have defined in prompt #4 (usually YNC). You have to do
+  some special setup here. Most animated 'more' prompts display 'C'ontinue
+  for the 'Yes' (as well as the 'Y/N'). This means that if you keep the 'C'
+  hotkey for 'Continuous', your users will be baffled. I suggest you change
+  the hotkeys in the language file to YNS (the latter is for nonStop). Note
+  that you can define the way 'Morez' will react to certain hotkeys. Refer
+  to the section on 'Silicon.Ini' below for more information.
+
+  Fire up ProBoard and enjoy!
+
+
+  s i l i c o n . i n i   r e f e r e n c e                         /SILICON
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+  The file 'Silicon.Ini' is currently shared by several applications. This
+  is a simple text file which must reside in your ProBoard system directory.
+  The structure is absolutely the same as the Windows-style .INI files. Each
+  program has its own domain name and keywords with data. Domain names are
+  enclosed in brackets (like this: [Domain]). Keywords are specified one per
+  line and the data follows after the equal sign (like this: Keyword=Data).
+  Note that there may be whitespace around the equal sign. Note that domains
+  and keywords are not case-sensitive. The data, however, may be. The brief
+  reference below lists the applicable keywords and domain names. Each
+  keyword has a type. A brief type descriptions follows:
+
+      Boolean
+	  ----------------------------------------------------------------------
+	  This is a boolean value - i.e. a value that can be either True or
+	  False. For entries of this type you can specify the strings 'Yes',
+	  'True' or '1' to denote true and 'No', 'False' or '0' to denote false.
+
+      String
+      ----------------------------------------------------------------------
+      This is a simple string value. Anything is permitted there. Note that
+	  you can have embedded whitespace and you do not need quotation marks
+	  around the string. If this is a filename specification, MS-DOS
+	  naming restrictions apply (for Win95, do not use long file names)
+
+      Number
+      ----------------------------------------------------------------------
+	  This is a number value. You can specify a value in the range defined
+	  by the program (you will see a note in the manual about this). You
+	  can specify either positive or negative values, but there must be
+	  no whitespace between the sign and the digits.
+
+  What follow are the descriptions of all keywords applicable for Enterz and
+  Morez. You can also refer to the sample Silicon.Ini file included in the
+  archive.
+
+      ExtraCR - boolean (Enterz and Morez)
+      ---------------------------------------------------------------------
+      Because of cursor location problems when synchronizing the remote
+      and local displays, the pexen may behave strangely and show up on
+      unexpected rows. Setting this value to True (the default) will make
+      the programs issue an extra carriage return before they locate the
+      cursor on the screen. Aside from the visually pleasing effect of
+      having on empty row between the text and the prompt, this will also
+      ensure that the prompt appears on the correct line. The recommended
+      setting is True (and for Morez, I strongly suggest you don't change
+      this because listing messages will have some weird looks :-)
+
+      File - string (Enterz and Morez)
+      ---------------------------------------------------------------------
+      This defines the file names to use for the datasets. Usually, the
+      files will be named Enterz.Adt/Enterz.Aix and Morez.Adt/Morez.Aix
+      respectively and will reside in the pex directory with the pexen. In
+      that case, you only need to specify the filename here (e.g.: enterz)
+      If you want to put the data files somewhere else, you will need to
+      specify the full path to the files (e.g: d:\data\morez). Note that
+      you can omit the extension. The ACL protocol requires that the files
+      have '.ADT' and '.AiX' extensions respectively. If you name them
+      otherwise, the programs will not be able to find them.
+
+      FixedRow - number (Enterz and Morez)
+      ---------------------------------------------------------------------
+      You can have the prompts displayed on a fixed row (24, for example).
+      In this case, you should uncomment this variable and put the row
+      number there. The default is to display the prompt on the current
+      row. Note that even with this keyword, both programs will still look
+      at the 'ExtraCR' setting to determine whether to issue and extra
+      carriage return. The default setting is off (or -1 as data).
+
+      Default - character (Mores only)
+      ---------------------------------------------------------------------
+      This keyword is used to specify the character to pass to ProBoard
+      as response whenever the user presses enter (the default answer).
+      This should be set to be the same as the first character in your
+      language file's prompt #4 response (usually 'Y').
+
+      Yes - string (Morez only)
+      ---------------------------------------------------------------------
+      This specifies the characters that Morez will accept as a 'Yes' reply
+      to the 'More?' prompt. Because of the text of some existing prompts,
+      the program must be able to accept either 'Y' or 'C' here (for "Yes"
+      and "Continue", respectively). These two are the defaults, but you
+      can add more (up to 15). For example, French languages may want to
+      use 'O' (Oui) and Spanish languages 'S' (Si). The default is to use
+      YC here. Note that whenever one of the keys is detected, the first
+      one listed will be passed to ProBoard - this one must match the
+      first hotkey in the language prompt #4.
+
+      No - string (Morez only)
+      ---------------------------------------------------------------------
+      This is the same as the 'Yes' keyword except it lists the responses
+      to be accepted as 'No' answers. The usual setting is 'N' or 'A' (for
+      "No" and "Abort"). Make sure the keys do not conflict with others
+      listed in the other keywords. The default setting is "No = NA". Note
+      that whenever one of the keys is detected, the first one listed will
+      be passed to ProBoard - this one must match the second hotkey in the
+      language prompt #4.
+
+      Nonstop - string (Morez only)
+      ---------------------------------------------------------------------
+      This is the same as the above two keywords, but lists the acceptable
+      responses that will be interpreted as a 'NonStop Listing' reply. The
+      default setting is "Nonstop = S". Note that whenever one of the keys
+      is detected, the first one listed will be passed to ProBoard - this
+      one must match the third hotkey in the language prompt #4.
+
+
+  b u g s !                                                             /BUGS
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+  This section is not my favorite, but I think it would be only fair to
+  include it (besides, the bug is not my fault anyway). Apparently ProBoard
+  handles some situations by bypassing the normal input handling routines.
+  Unfortunately, that means that Enginez will not detect a keystroke when
+  one might be available (locally or remotely). For example, if you are
+  doing the User Hitparade function, the board will appear to stop responding
+  to input. This is not really true (it will eventually react), but the bug
+  is not within Enginez. Same applies to some other more prompts. There are
+  only a few of them, however. If you are not using any of those (and there
+  is no reason to, as I have my BBS setup just fine without them), you can
+  safely use Enginez. Otherwise, you might want to pass on using Morez.
+
+
+  c a v e a t   e m p t o r                                       /DISCLAIMER
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+  Enginez (all executables, documentation, source, and sample files) are
+  Copyright (c) 1985-1997 Branislav L. Slantchev. A fine production of
+  Silicon Creations, Inc.
+
+  This program is free software; you can redistribute it and/or modify it
+  under the terms of the GNU General Public License as published by the Free
+  Software Foundation; either version 2 of the License, or any later version.
+
+  This program is distributed in the hope that it will be useful, but WITHOUT
+  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+  FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+  more details.
+
+  You should have received a copy of the GNU General Public License along
+  with this program (the COPYING.DOC file); if not, write to the Free
+  Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+
+
+  s o u r c e   c o d e                                               /SOURCE
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+  The complete C++ source code for Enginez is freely available. It is
+  released in a separate archive in order to conserve space and to avoid
+  burdening people with things they do not necessarily want. The name of the
+  source code package is formed as ENGINnnS.RAR where 'nn' is the revision
+  number. For example, for version 3.1, the file will be named ENGIN31S.RAR.
+
+  Since the source code uses PB-Lib exclusively, you can compile it to a
+  regular MS-DOS(tm) executable (this is exactly how it was initially
+  developed). The code has been tested with Borland C++ 3.1 and might not
+  (although it should) work with different compilers. A makefile is
+  provided for compiling the PEX versions.
+
+  The source code is subject to the terms and conditions outlined in the
+  file Copying.Doc distributed with it. It is basically free for any use
+  but it remains copyrighted by Branislav L. Slantchev.
+
+
+  p a c k i n g   s l i p                                            /PACKING
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+  The files in this archive have been compressed with RAR Version 2.0 with
+  a security envelope. The reason for this format is quite simple - it
+  compresses far better than ZIP (not as fast, though). When you unpack the
+  files, you should see the following message at startup:
+
+      Verifying authenticity information ... Ok
+
+  and then (when the process is complete, you should see the following):
+
+      Archive ENGIN31X.RAR
+      created at hh:mm:ss	dd mmm yyyy
+      by Silicon Creations, Inc.
+
+  If you don't see these messages, the archive has most likely been tampered
+  with and you should obtain a fresh copy. Note that I have had problems with
+  people modifying the archives before and that is why I strongly suggest
+  you take every precaution possible to prevent malicious "hackers" from
+  wreaking havoc on your computer. For all those "hackers", I can feel
+  nothing but pity... maybe some day they will learn how to do something on
+  their own... something creative. Until that time, we must protect ourselves.
+
+
+  r e g i s t r a t i o n                                           /REGISTER
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+  Of course, no registration is necessary for this program. It is being
+  distributed as freeware (meaning that I retain the copyright but you
+  are allowed to use Enginez without paying me any money). Go figure. Since
+  some people have expressed desire to contribute to Silicon Creations,
+  I hereby officially notify everyone that donations are accepted. You can
+  also request custom programs for a nominal fee. I reserve the right to
+  refuse anything sent to me or any request made for programming. Priority
+  will be given to projects that bring $$$. Ah, if you strongly feel like
+  contributing but you are not able to afford sending money, it's ok. Send
+  me a post card of your home town, I would really appreciate it. If you
+  can't afford that... have a beer on my behalf :-)
+
+
+  g e t t i n g   i n   t o u c h                                    /CONTACT
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+  Due to the lengthy nature of the topic, it has been moved to a separate
+  file. Read Support.Doc for details on how to get in touch with me. Also,
+  read the file FAQ.Doc for some questions people frequently ask me and
+  the answers to them.
+
+
+  g r e e t i n g s                                                /GREETINGS
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+  Greetings go to the following: Philippe Leybaert (what a novel idea!),
+  Ruben Provoost (JMJ), Wim Jans, Olivier Debonne, Timothy Bryant,
+  Arthur Stark, Chuck King, Tiago Pascoal, and many others whose names
+  have slipped my mind while writing this document.
+
+  Of course, special thanks goes to the faithful support and distribution
+  sites all around the world. You have been great, guys and gals! We have
+  done it once again.
+
+  I would like to take the time to welcome a new addition to the beta
+  and support distribution team: Mattias Pettersson (yes, that's how it
+  is spelled, there is no local echo enabled <vbg>) from Sweden. The
+  information is available in the Support.Doc file.
+
+
+  c o p y r i g h t s ,   t r a d e m a r k s ,    e t c .       /TRADEMARKS
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+         Enginez and PB-Lib ................ Branislav L. Slantchev
+         ProBoard .......................... Philippe Leybaert
+         Borland C++ ....................... Borland International
+
+  All other programs and products mentioned above are property of their
+  respective owners. Mentioning them in this manual does not constitute
+  endorsement. If you like them, good. If not, good. I don't care.
+
+  eof
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ

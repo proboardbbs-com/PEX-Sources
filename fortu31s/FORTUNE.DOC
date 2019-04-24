@@ -1,0 +1,445 @@
+
+     ÜÛßÛÜ                Ü
+     ÛÛ ßß  ÜÜÜ  Ü ÜÜÜ   ÛÛ   ÜÜÜ ÜÜ Ü ÜÜÜ     ÜÜÜ
+    ßÛÛß   ÛÛ ÛÛ  ÛÛ ÛÛ ßÛÛß   ÛÛ Û   ÛÛ ÛÛ  ÜÛÛ ÛÛ
+     ÛÛ    ÛÛ ÛÛ  ÛÛ     ÛÛ    ÛÛ Û   ÛÛ ÛÛ  ÛÛßßßß
+    ÜÛÛÜ   ßÛÜÛß ÜÛÛ     ßÛÜß  ßÛÜßÜ ÜÛÛ ÛÛÜ  ßÛÜÜß	ßÛÛ       ÛÛ v3.01.R1
+                                   ÜÜÜ   ÜÜÜ   ÜÜÜ   ÛÛ  ÜÛ  ÜÜÜ    ÜÜÜ
+    "Your                        ÜÛÛ ßÛ ÛÛ ÛÛ ÛÛ ÛÛ  ÛÛÜÛß    ÛÛ  ÜÛÛ ÛÛ
+       best days                 ÛÛÛ    ÛÛ ÛÛ ÛÛ ÛÛ  ÛÛÛÛÜ    ÛÛ  ÛÛßßßß
+           are behind you!"       ßÛÜÜß ßÛÜÛß ßÛÜÛß ÜÛÛ ßÛÛÜ ÜÛÛÜ  ßÛÜÜß
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+  ßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßß
+
+              Copyright (c) 1995-1997 Branislav L. Slantchev
+                   A product of Silicon Creations, Inc.
+                         Fortune Cookie v3.01.R1
+
+
+          [Topic]                                      [Keyword]
+
+          Overview ................................... /OVERVIEW
+          Installation ............................... /INSTALL
+          Command Line Options ....................... /OPTIONS
+          Color Configuration ........................ /COLORS
+          Database Notes ............................. /DATABASE
+          Caveat Emptor .............................. /DISCLAIMER
+          Source Code ................................ /SOURCE
+          Packing Slip ............................... /PACKING
+          Registration ............................... /REGISTER
+          Getting in Touch ........................... /CONTACT
+          Greetings and Thank You's .................. /GREETINGS
+          Copyrights, Trademarks, Etc. ............... /TRADEMARKS
+
+
+  o v e r v i e w                                                   /OVERVIEW
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+  Fortune Cookie is a pex (ProBoard executable) which displays brief and
+  hopefully humorous quotes from a text database. The database consists of
+  a text file (in UNIX BSD format, explained later) and a special binary
+  index which is used for fast loading as well as keeping track of the last
+  displayed fortune.
+
+  This pex makes a fine addition to your login/logoff sequence and can also
+  be used as a standalone menu option. The regular MS-DOS executable that is
+  provided can be used as well.
+
+  The default behavior of the program is to choose a fortune cookie text,
+  clear the screen, display it, wait for the user to press enter, clear the
+  screen again, show some copyright text, and exit. All of these actions
+  can be modified with command-line switches. Even the colors are completely
+  configurable.
+
+  This program also supports UserDoes and Doing useron node managers. Note
+  that this does not constitute endorsement on the part of Silicon Creations
+  or Branislav L. Slantchev. I have simply provided this functionality in
+  order to facilitate the Sysops with multinode bulletin boards. This program
+  is fully multi-node aware and will perform all necessary file locking to
+  avoid corruption of its data files.
+
+
+  i n s t a l l a t i o n                                            /INSTALL
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+  For quick results, copy FORTUNE.PEX, FORTUNE.DAT, and FORTUNE.IDX to your
+  ProBoard PEX directory. Now install the PEX in one of your menus as
+  follows:
+
+        Function: 60 (Run SDK File)
+        Data    : fortune
+
+  That is all you need. The program is now ready for use. You will probably
+  want to change some of the defaults, however. This can be easily achieved
+  with the host of command-line switches and the color configuration file.
+
+  POWER TIP: add Fortune Cookie to your GLOBAL menu and put it with the
+             same hotkey as the logoff command (but before the menu item
+             with the actual Logoff function). That way, users can read
+             a fortune every time they disconnect from your BBS! You can
+             do a similar thing for your login sequence.
+
+
+  c o m m a n d   l i n e   o p t i o n s                            /OPTIONS
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+  All command-line options are case-sensitive and should be preceded by
+  the '-' character. Note that you can group options under one '-' switch,
+  except for the options that take additional arguments. The '-' should be
+  separated from the options by one or more runs of whitespace. The
+  whitespace is optional between the options and their parameters.
+
+  Here's a list of all options (in alphabetical order):
+
+    -!
+        Do not display the exit sequence messages. The default text
+        tells the user that this program has been developed for your
+        bbs and a 'returning...' text is shown. It does not display
+        a copyright notice or anything like that. So you may want to
+        use the default which is to show the text.
+
+    -a
+        Do not clear the screen when done. Default is to clear it. This
+        option will prevent the program from clearing the screen before
+        exiting. This can be useful in conjunction with the '-!' option
+        for logoff sequences if you want to keep the fortune on the
+        screen before and after hanging up.
+
+    -b
+        Do not clear the screen before displaying the fortune. The default
+        is to clear the screen before showing each fortune (even in multi-
+        pass mode). This keeps the output nice and avoids the unfortunate
+        mess created when using this option.
+
+    -d
+        Create a Doing-compatible drop information file. This option is
+        for multinode systems which use Doing from Fe-Line Software as
+        their node information manager. The default is not to create this
+        drop file.
+
+    -f <filename>
+        Use an alternative database set. The default behavior of the program
+        is to look for a dataset in the same directory as the PEX, with the
+        same name as the PEX. For example, if FORTUNE.PEX resides in the
+        D:\PB\PEX directory, the default dataset used will consist of the
+        two files D:\PB\PEX\FORTUNE.DAT and D:\PB\PEX\FORTUNE.IDX. If you
+        want to use another set of files, you need to specify the complete
+        path to the .DAT file (this is important). The .IDX file should be
+        in the same location as the main .DAT file. For example, if you
+        want to use the files COOKIE.DAT and COOKIE.IDX in the C:\DATA
+        directory, you would use the '-f' option like this:
+
+                          -f c:\data\cookie.dat
+
+        Note that the full path and extension are specified here. Also note
+        that you cannot change the default extention '.IDX' of the binary
+        index file. Keep this in mind. For more information about the data
+        files, refer to the section Database Notes.
+
+    -h
+        Hangup when done. This will cause the PEX to drop the carrier on
+        the caller when finished displaying the fortune cookies. This can
+        be used for Logoff sequences as well.
+
+    -i
+        Do not display the introductory text before the cookie. The default
+        action is to display the text "...and now some words of wisdom:\n\n"
+        (or the text in the IntroText variable of SILICON.INI). You can
+        use the standard ProBoard macros (e.g. @<HANDLE>@) in the text as
+        well as "\n" to force a new line in the string. See example in the
+        SILICON.INI provided - it uses both techniques.
+
+    -l
+        Log usage to PROBOARD.LOG. This option will cause the program to
+        write a line to the log file every time a user enters Fortune Cookie
+        (once per run only). The information logged includes the user name.
+
+    -m
+        Multi-pass option. Instead of displaying one fortune cookie text,
+        this option will cause the program to keep displaying fortunes
+        (with a prompt in between) until the user decides to stop. This
+        program uses your ProBoard language file to display the More? prompt
+        between the different cookies. Note that if '-b' is specified, the
+        screen will not be cleared between the cookies as well.
+
+    -n
+        No wait. Do not wait for the user to press enter. Note that this
+        option is ignored when '-m' is used. The default action is to
+        display the 'Press Enter' prompt from the language file. If you
+        wish an automatic go-ahead, use this option. It will cause the
+        program to quit after a period of time. The default is several
+        seconds, but you can change it with the '-p' option.
+
+    -p <milliseconds>
+        Set delay time. This option will enable you to choose the delay
+        used by the program when '-n' option is specified. The period
+        that the program must wait defaults to several seconds. You can
+        increase it by using larger values with the '-p' option. No delay
+        would be given as '-p0'. The default is '-p 1000.
+
+    -s
+        Suppress special effects. This function will suppress the fancy
+        screen effects in the exit sequence. If this option is specified,
+        the screen will be clear as usual (instead of bottom to top), and
+        the exit text will be shown without the fading animations. Note
+        that if you use '-a' and/or '-!', this option will have no effect.
+
+    -u
+        Create a UserDoes-compatible drop file. This option is simlar to
+        the '-d' command-line switch. It creates a drop information file
+        but this time it will be compatible with UserDoes by Eddie Van Loon
+        of DqP. The default is not to create any drop files.
+
+  Troubleshooting: if you experience problems with Fortune Cookie, please
+  check your PROBOARD.LOG file where all errors detected by the program
+  will be logged and explained. If you are still having problems, do not
+  hesitate to contact me at the addresses listed in SUPPORT.DOC
+
+
+  c o l o r   a n d   t e x t   c o n f i g u r a t i o n             /CONFIG
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+  You will need to use the SILICON.INI file in the ProBoard system directory.
+  If you already have this file (it is shared by several applications), do
+  not overwrite it, but simply add the section below (I have also provided
+  a sample SILICON.INI with the archive).
+
+  The introduction text can be specified with the IntroText keyword in
+  the Fortune domain of this file:
+
+       [Fortune]
+       IntroText = ...and now, @<HANDLE>@, some words of wisdom:\n\n\n
+
+  As you can see, there is no need to enclose the text in quotation marks.
+  You can also use any of the standard ProBoard text macros (as shown in
+  the example above) as well as the "\n" sequence to force a new line
+  character. If you wish to disable the introductory text feature, refer
+  to the '-i' command line parameter.
+
+  The default color scheme used by Fortune Cookie can be modified as well.
+
+                        [Fortune]
+                        UpperCase   = @X07
+                        LowerCase   = @X0F
+                        Numbers     = @X0B
+                        Punctuation = @X09
+                        IntroColor  = @X03
+
+  This is the same as using the default color configuration. Note that the
+  colors are specified in PCBoard-compatible format. The hexadecimal color
+  specification has gained a lot of popularity on the BBS scene. Most
+  systems support slight variations of the same basic hex format.
+  "Hexadecimal" is a number system which is based on 16 instead of 10 (which
+  is the familiar decimal system we commonly use). The reason for using the
+  hexadecimal system is simple - there are 16 possible colors in text mode
+  applications today. There are a couple of rules which most of the supported
+  formats follow:
+
+        o the allowable characters are 0,1,2,3,4,5,6,7,8,9,A,B,C,D,E,F
+        o the hex value always uses two characters
+        o the first character is the background color
+        o the second character is the foreground color
+        o there are only 8 colors that vary in intensity and blink
+        o to make the foreground blink, add 8 to the background
+        o to make the foreground high intensity, add 8 to the foreground
+
+  In the examples and notes that follow, "**" denotes the background/fore-
+  ground color combination that forms the color attribute. PCBoard uses @X**
+  to specify the color. Note that while the PB-Lib interpreter is not
+  generally case-sensitive, you should not assume that other applications are
+  not as well. Therefore, you should always use the capital case letters for
+  the hex colors.
+
+   ÕÍÍÍÍÍÑÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÑÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÑÍÍÍÍÍÍÍÍÍÍÍÍÑÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¸
+   ³ Hex ³ Foreground    ³ Notes             ³ Background ³ Notes          ³
+   ÆÍÍÍÍÍØÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍØÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍØÍÍÍÍÍÍÍÍÍÍÍÍØÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍµ
+   ³  0  ³ black         ³ low  int. black   ³ black      ³                ³
+   ³  1  ³ blue          ³ low  int. blue    ³ blue       ³                ³
+   ³  2  ³ green         ³ low  int. green   ³ green      ³                ³
+   ³  3  ³ cyan          ³ low  int. cyan    ³ cyan       ³                ³
+   ³  4  ³ red           ³ low  int. red     ³ red        ³                ³
+   ³  5  ³ magenta       ³ low  int. magenta ³ magenta    ³                ³
+   ³  6  ³ brown         ³ low  int. yellow  ³ brown      ³                ³
+   ³  7  ³ light gray    ³ low  int. white   ³ light gray ³                ³
+   ³  8  ³ dark gray     ³ high int. black   ³ black      ³ fore. blinking ³
+   ³  9  ³ light blue    ³ high int. blue    ³ blue       ³ fore. blinking ³
+   ³  A  ³ light green   ³ high int. green   ³ green      ³ fore. blinking ³
+   ³  B  ³ light cyan    ³ high int. cyan    ³ cyan       ³ fore. blinking ³
+   ³  C  ³ light red     ³ high int. red     ³ red        ³ fore. blinking ³
+   ³  D  ³ light magenta ³ high int. magenta ³ magenta    ³ fore. blinking ³
+   ³  E  ³ light yellow  ³ high int. yellow  ³ brown      ³ fore. blinking ³
+   ³  F  ³ light white   ³ high int. white   ³ light gray ³ fore. blinking ³
+   ÔÍÍÍÍÍÏÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÏÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÏÍÍÍÍÍÍÍÍÍÍÍÍÏÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¾
+
+  This chart allows you to easily see the effect on each hex digit when
+  used either as a foreground or as background character. The notes that
+  specify the intensity are provided for your convenience so you can discern
+  the relationship between the 8 basic colors and their variations. It's
+  all actually rather simple. Just don't forget that the first color code
+  in the specification is the background character. Some examples follow.
+
+  PCBoard-style color codes. These are common on the underground BBS scene
+  where some people prefer to use this format to ANSi (as the files that use
+  it are still somewhat readable for humans... or so they claim).
+
+      @X1E - bright yellow on blue     @XFF - blinking white on light gray
+      @X00 - black on black (hidden)   @X80 - blinking black on black
+
+  As you can see, it is very easy to configure the colors for the program!
+
+
+  d a t a b a s e   n o t e s                                       /DATABASE
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+  The main database file (*.DAT) contains the text of the fortune cookies
+  that is to be displayed. Each fortune must be followed by a '%' on an
+  empty line (that is, there should be a '%' character in the first column
+  on a line between two quotes). Note that there is no '%' delimeter before
+  the first quote in the file, but there is one after the last one. There
+  should be no spaces around the delimeter (it should be followed by a single
+  newline sequence). Refer to the sample provided.
+
+  The COOK.EXE program is used to create the index for the .DAT file. This
+  index will always have the same name as the data file, except for the
+  '.IDX' extension. Note that this extension is required as the program must
+  have a way to locate the index. Apart from listing each fortune's location
+  and length, the index also keeps a binary number stamp with the number of
+  the last fortune displayed.
+
+  Previous versions of the program obtained a random fortune by direct scan
+  of the datafile. This made the program not only inefficient and slow, but
+  also prevented some of the cookies from ever getting displayed. This
+  revision changes all that. Now the cookies are shown is sequential order,
+  starting with the first one. Each time the program is run, a new cookie
+  is guaranteed to show up! This application is multi-node comaptible and
+  will perform all necessary locking before updating the file. Several nodes
+  can use the dataset without interfering with each other.
+
+  If you want to reset the dataset counter to 0, you will need to run the
+  COOK program to recreate the index. Note that the counter will wrap
+  around automatically when the last cookie is displayed.
+
+
+  c a v e a t   e m p t o r                                       /DISCLAIMER
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+  Fortune Cookie (all executables, documentation, source, and sample files)
+  is Copyright (c) 1995-1997 Branislav L. Slantchev. A fine production of
+  Silicon Creations, Inc.
+
+  This program is free software; you can redistribute it and/or modify it
+  under the terms of the GNU General Public License as published by the Free
+  Software Foundation; either version 2 of the License, or any later version.
+
+  This program is distributed in the hope that it will be useful, but WITHOUT
+  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+  FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+  more details.
+
+  You should have received a copy of the GNU General Public License along
+  with this program (the LICENSE.DOC file); if not, write to the Free
+  Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+
+
+  s o u r c e   c o d e                                               /SOURCE
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+  The complete C++ source code for Fortune Cookie is freely available. It is
+  released in a separate archive in order to conserve space and to avoid
+  burdening people with things they do not necessarily want. The name of the
+  source code package is formed as FORTUnnS.RAR where 'nn' is the revision
+  number. For example, for version 3.0, the file will be named FORTU30S.RAR.
+
+  Note that you will need PB-Lib v3.0 or later in order to compile the pex.
+
+  Since the source code uses PB-Lib exclusively, you can compile it to a
+  regular MS-DOS(tm) executable (this is exactly how it was initially
+  developed). The code has been tested with Borland C++ 3.1 and might not
+  (although it should) work with different compilers. A makefile is
+  provided for compiling the PEX version, and a project file for building
+  the regular standard executable.
+
+  The source code is subject to the terms and conditions outlined in the
+  file LICENSE.DOC distributed with it. It is basically free for any use
+  but it remains copyrighted by Branislav L. Slantchev.
+
+
+  p a c k i n g   s l i p                                            /PACKING
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+  The files in this archive has been compressed with RAR Version 2.0 with
+  a security envelope. The reason for this format is quite simple - it
+  compresses far better than ZIP (not as fast, though). When you unpack the
+  files, you should see the following message at startup:
+
+      Verifying authenticity information ... Ok
+
+  and then (when the process is complete, you should see the following):
+
+      Archive FORTU30X.RAR
+      created at hh:mm:ss	dd mmm yyyy
+      by Silicon Creations, Inc.
+
+  If you don't see these messages, the archive has most likely been tampered
+  with and you should obtain a fresh copy. Note that I have had problems with
+  people modifying the archives before and that is why I strongly suggest
+  you take every precaution possible to prevent malicious "hackers" from
+  wreaking havoc on your computer. For all those "hackers", I can feel
+  nothing but pity... maybe some day they will learn how to do something on
+  their own... something creative. Until that time, we must protect ourselves.
+
+
+  r e g i s t r a t i o n                                           /REGISTER
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+  Of course, no registration is necessary for this program. It is being
+  distributed as freeware (meaning that I retain the copyright but you
+  are allowed to use Fortune Cookie without paying me any money). Go figure.
+  Since some people have expressed desire to contribute to Silicon Creations,
+  I hereby officially notify everyone that donations are accepted. You can
+  also request custom programs for a nominal fee. I reserve the right to
+  refuse anything sent to me or any request made for programming. Priority
+  will be given to projects that bring $$$. Ah, if you strongly feel like
+  contributing but you are not able to afford sending money, it's ok. Send
+  me a post card of your home town, I would really appreciate it. If you
+  can't afford that... have a beer on my behalf :-)
+
+
+  g e t t i n g   i n   t o u c h                                    /CONTACT
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+  Due to the lengthy nature of the topic, it has been moved to a separate
+  file. Read SUPPORT.DOC for details on how to get in touch with me. Also,
+  read the file FAQ.DOC for some questions people frequently ask me and
+  the answers to them (this file may or may not be present in the archive).
+
+
+  g r e e t i n g s                                                /GREETINGS
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+  Greetings go to the following: Philippe Leybaert (what a novel idea!),
+  Ruben Provoost (JMJ), Wim Jans, Olivier Debonne, Timothy Bryant,
+  Arthur Stark, Chuck King, Tiago Pascoal, and many others whose names
+  have slipped my mind while writing this document.
+
+  Of course, special thanks goes to the faithful support and distribution
+  sites all around the world. You have been great, guys and gals! We have
+  done it once again.
+
+
+  c o p y r i g h t s ,   t r a d e m a r k s ,    e t c .       /TRADEMARKS
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+         Fortune Cookie, PB-Lib ............. Branislav L. Slantchev
+         ProBoard ........................... Philippe Leybaert
+         UserDoes ........................... Eddie Van Loon
+         Doing .............................. Fe-line Software
+         Borland C++ ........................ Borland International
+
+  All other programs and products mentioned above are property of their
+  respective owners. Mentioning them in this manual does not constitute
+  endorsement. If you like them, good. If not, good. I don't care.
+
+  [eof]
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+

@@ -1,0 +1,20 @@
+                                FLS/Fast!
+                     File List Generator for ProBoard
+                             REVISION HISTORY
+
+                          + : added new feature
+                          ! : bug fixed
+                          * : note, modified feature
+                          - : removed feauture
+
+
+Version 2.00.R1, April 13, 1997
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	+ automatically uses templates if found
+	! extended descriptions incorrectly parsed, fixed
+	- removed long options support, now simple parsing
+	* now update to use PB-Lib v3.00.R1
+
+Version 1.00.R1, May 19, 1995
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	* initial release, support for ProBoard v2.10

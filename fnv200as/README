@@ -1,0 +1,66 @@
+Source code map:
+
+  You will need to fix a bug in the ProBoard SDK for the Borland compilers.
+  Remove all va_* references and #include "fixarg.h" for correct variable
+  parameter processing. The way va_arg is currently defined, it will allow
+  for odd size structures on the stack, which is not possible since we can
+  only push words, hence only even sized structures.
+
+  For the FileNav to compile, you need the header files from PBLIBAS.ZIP
+
+The File Library Navigator-specific files:
+
+	MAKEFILE    : makefile, run w/ -DPB_SDK to create the PEX
+	COMMON.DEF  : common include for all Silicon Creations makefiles
+	FILENAV.PRJ : BC project file
+	FILENAV.DSK : BC context file
+
+	FILENAV.H   : included in all FILENAV-specific source files
+	GETNODE.H   : interface for the getFirst, getNext macros
+	FILENAV.C   : main() and getSetup() functions
+	INPUT.C	    : offline version of PB's Input()
+	MKLISTS.C   : load the group and area configuration into the lists
+	NAMEFMT.C   : format the internal name representation
+	PROCESS.C   : process hotkey-commands
+	SCREEN.C    : screen-related display functions
+	SELECT.C    : main function for navigating in the lists
+
+PBLib files:
+
+	OFFLINE.LIB	 : large model library ready to link (for the EXE)
+	PROBOARD.LIB : large model library ready to link (for the PEX)
+
+PBLib Source code files
+	(available in the PBLIBAS.ZIP file, needed to build the libraries)
+	(use the provided makefile to compile the libraries, use -DPB_SDK)
+	(to create PROBOARD.LIB, run make with no params for OFFLINE.LIB )
+
+	Various .H files
+	MAKEFILE   : makefile
+	COMMON.DEF : include file for the makefile
+
+	GETOPT.C   : retrieve command-line options
+	XKEYS.C	   : extended key processing for PB
+	ISACCESS.C : check user access (checks flagsNot too)
+	STRNECPY.C : like strncpy() but always appends the NUL character
+	GDLIST.C   : generic doubly-linked lists
+	TIMER.C	   : timer functions
+	CHEXT.C	   : change (or append) a file extension
+	USERD.C	   : create UserDoes-compatible drop files
+	MEMDBG.C   : memory debugging package*
+	INIFILE.C  : Windows-style INI file support
+	TMPNAME.C  : create unique temporary file name
+	BASEDIR.C  : extract directory specification from path
+	STRISTR.C  : case-insensitive strstr() workalike
+
+* I ported this file from Zortech's MEM.C You can get the functional
+  equivalent from the C_ECHO SNIPPETS collection.
+
+  You only need this file for the EXE version for test purposes.
+  Alternatively, map all mem_???() references to the normal memory
+  allocation functions. Note that the GDLIST.C package uses MEMDBG.C
+  as well, so you'll need to modify it. Next, get rid of the mem_init()
+  and mem_term() functions in main(). You might consider using this
+  memory debugging package since it greatly simplifies tracking memory
+  and pointer bugs, the most obscure bugs of all. Also, the Borland EXE
+  version will check for memory leaks too.

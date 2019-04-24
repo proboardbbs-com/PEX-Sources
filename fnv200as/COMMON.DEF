@@ -1,0 +1,83 @@
+# Makefile for the Borland C++ 3.1 Compiler
+#
+# File Library Navigator
+# Copyright (C) 1995 by Branislav L. Slantchev
+#
+# This file is part of FileNav.
+#
+# FileNav is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; version 2.
+#
+# FileNav is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with FileNav; see the file COPYING.  If not, write to
+# the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
+
+#
+# Common definition file for Borland C++ 3.1 Compilers
+#
+# Copyright (C) 1995 by Branislav L. Slantchev
+# Silicon Creations, Inc.
+#
+
+.AUTODEPEND
+
+#
+# Set up compiler, assembler, librarian and linker
+#
+CC = bcc
+ASM = tasm
+LIB = tlib
+LINK = tlink
+
+#
+# Include and library paths: standard and custom
+#
+STDINC = c:\cc\bc\inc
+PBINC  = c:\dev\inc
+STDLIB = c:\cc\bc\lib
+PBLIB  = c:\dev\lib
+
+#
+# Set up options for the large memory model, warnings, etc.
+#
+CFLAGS = -ml -c -w
+AFLAGS = /mx /m /w2 /d__LARGE__
+LIBFLAGS = /C
+LINKFLAGS = /d /x /C /L$(STDLIB);$(PBLIB)
+
+#
+# See if we want to run on debugging information
+#
+!if $d(debug)
+CFLAGS = $(CFLAGS) -v
+AFLAGS = $(AFLAGS) /zi
+LINKFLAGS = $(LINKFLAGS) /v
+!endif
+
+#
+# The PEX version does not want the standard libraries
+#
+!if $d(PB_SDK)
+CFLAGS = $(CFLAGS) -I$(PBINC) -DPB_SDK
+LINKFLAGS = $(LINKFLAGS) /n
+!else
+CFLAGS = $(CFLAGS) -I$(STDINC)
+!endif
+
+#
+# General implicit rules for .C, .CPP and .ASM to .OBJ
+#
+.c.obj:
+	$(CC) $(CFLAGS) {$< }
+
+.cpp.obj:
+	$(CC) $(CFLAGS) {$< }
+
+.asm.obj:
+	$(ASM) $(AFLAGS) {$< }

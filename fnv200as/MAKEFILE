@@ -1,0 +1,107 @@
+# Makefile for the Borland C++ 3.1 Compiler
+#
+# File Library Navigator
+# Copyright (C) 1995 by Branislav L. Slantchev
+#
+# This file is part of FileNav.
+#
+# FileNav is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; version 2.
+#
+# FileNav is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with FileNav; see the file COPYING.  If not, write to
+# the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
+#
+
+#
+# Create the PEX and EXE versions of FileNav (EXE is lacking some features)
+#
+# Note: this is for the large memory model only
+#
+# To compile the EXE version, use only 'make'
+# To compile the PEX version, use 'make -DPB_SDK'
+# To compile with debug information, use 'make -Ddebug' (not for PEX!)
+# To remove all object files, use 'make clean'
+# To remove all object, exe and pex files, use 'make cleanall'
+#
+!include "common.def"
+
+#
+# define this for any custom libraries
+#
+# CUSTOMLIBS
+
+#
+# Set up the startup code object file and the default libraries
+#
+PEX_STARTUP = $(PBLIB)\pb_sdk.obj
+EXE_STARTUP = $(STDLIB)\c0l.obj
+BCCLIB = $(STDLIB)\cl.lib
+CFLAGS = $(CFLAGS) -I$(PBINC);c:\cc\inc
+
+#
+# set up the macros for EXE or PEX version
+#
+!if $d(PB_SDK)
+STARTUP = $(PEX_STARTUP)
+CLIBS = proboard.lib
+EXT = PEX
+!else
+STARTUP = $(EXE_STARTUP)
+CLIBS = $(BCCLIB) offline.lib
+EXT = EXE
+!endif
+
+#
+# List all object files required for the program
+#
+EXE_depend = \
+	filenav.obj \
+	mklists.obj \
+	namefmt.obj \
+	screen.obj  \
+	select.obj  \
+	process.obj
+
+!if !$d(PB_SDK)
+EXE_depend = $(EXE_depend) input.obj
+!endif
+
+#
+# This is the main line, the file is made here
+#
+filenav.$(EXT): clean $(EXE_depend) filenav.lnk
+	$(LINK) $(STARTUP) @filenav.lnk, $<,, $(CLIBS) $(CUSTOMLIBS),
+
+#
+# for each object file, list its source dependent, if source is in
+# different directory, use $(CC) $(CFLAGS) <sourcepath> as action line
+# otherwise, leave the action line empty
+#
+filenav.obj: filenav.c
+mklists.obj: mklists.c
+namefmt.obj: namefmt.c
+screen.obj:  screen.c
+select.obj:  select.c
+process.obj: process.c
+input.obj  : input.c
+
+filenav.lnk: makefile
+	copy &&|
+$(EXE_depend)
+| filenav.lnk
+
+#
+# clean up all intermediary files
+#
+clean:
+    - rm *.obj *.lnk
+
+cleanall:
+	- rm *.pex *.exe *.obj *.lnk

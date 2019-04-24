@@ -1,0 +1,327 @@
+
+ŞÛÛÛÛÛÛÛÛÛİ ÛÛÛÛÛÛÛ    ÜÛÛÛÛÛÛÛÛÜ
+ŞÛÛÛÛÛÛÛŞÛÛŞÛÛÛÛÛÛÛ   ŞÛÛÛÛŞÛÛÛÛÛ          ÛÛ
+ŞÛÛÛÛÛÛÛŞÛÛŞÛÛÛÛÛÛÛ   ŞÛÛÛÛ               ÛÛ  FLS/Fast! File List Generator!
+ŞÛÛÛÛÛÛÛÜÜ ŞÛÛÛÛÛÛÛŞÛÛŞÛÛÛÛÛÛÛÛÜ         ÛÛ   Version 2.00.R1 April 13, 1997
+ŞÛÛÛÛÛÛÛßß ŞÛÛÛÛÛÛÛŞÛÛ ßßßßßÛÛÛÛÛ       ÛÛ   ²ÛÛÛßÛ ²ÛÛÛßÛ   ²ÛÛÛßÛ ßßÛÛÛÛßß
+ŞÛÛÛÛÛÛÛ   ŞÛÛÛÛÛÛÛŞÛÛŞÛÛÛÛİÛÛÛÛÛ      ÛÛ    ±ÛÛÛÜ  ±ÛÛÛÜÛ   ±ÛÛÛ     ÛÛÛ°
+ŞÛÛÛÛÛÛÛ   ŞÛÛÛÛÛÛÛÛÛÛ ßÛÛÛÛÛÛÛß      ÛÛ     ÛÛÛÛ   ÛÛÛÛ Û ÛÜÛÛÛÛ     ÛÛÛ±
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+             Copyright (c) 1995, 1997 Branislav L. Slantchev
+        A product of Silicon Creations, Inc. All Rights Reserved.
+
+     It is impossible to travel faster than light, and certainly
+     not desirable, as one's hat keeps blowing off.
+                                                      Woody Allen
+
+
+          Overview ................................... /OVERVIEW
+          Command Line Options ....................... /OPTIONS
+          Metacharacters ............................. /MACROS
+          Error Messages ............................. /MESSAGES
+          Caveat Emptor .............................. /DISCLAIMER
+          Source Code ................................ /SOURCE
+          Packing Slip ............................... /PACKING
+          Registration ............................... /REGISTER
+          Getting in Touch ........................... /CONTACT
+          Greetings and Thank You's .................. /GREETINGS
+          Copyrights, Trademarks, Etc. ............... /TRADEMARKS
+
+
+  o v e r v i e w                                                   /OVERVIEW
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+  FLS/Fast! will process the ProBoard file configuration database and will
+  list all files in all areas it finds. Several options are available
+  to customize its behavior and output. The PROBOARD environment must
+  be set or fls will not be able to locate the data file. Refer to
+  your ProBoard User's Guide for more information.
+
+  The FA_???.CTL mechanism of specifying multiple directories per file
+  area is fully supported. (Well, actually, it isn't. But because for the
+  scheme to work, you must have the listings in extended format, as well
+  as the CopyLocal flag set to YES, the program will work just fine).
+
+  CD-ROM areas are processed from the listings only, all the information
+  is extracted from them. If you have the listings on your hard drive,
+  the CD-ROM will not be accessed at all. This means that the shared
+  directories won't be checked (as they should be flagged as CD-ROM).
+
+  To install the program, simply copy the executable and all *.HDR, *.FTR
+  files to a directory of your choice (preferably in your PATH). That is
+  all there is to it! Run 'fls -?' for a list of options.
+
+
+  c o m m a n d   l i n e   o p t i o n s                            /OPTIONS
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+  Note that the command line options are case-sensitive. You should use at
+  least one blank to separate the different options. FLS/Fast! will work
+  without any additional arguments; these are provided so you can modify the
+  default behavior of the program.
+
+    -f listpath
+        'listpath' is the file where you want your output to be stored.
+        By default, FLS/Fast! will use the file name of 'ALLFILES.TXT'.
+
+    -g n1,n2...
+    -g [min-max]
+        List of groups whose areas you want to include in the listing.
+        There are two ways of specifying those: comma-separated (and no
+        spaces!), like this: 1,23,25,34,37,100 or as a range, like this:
+        [23-67]. Only areas that belong to those groups (or all groups)
+        will be included. Default is to list all areas.
+
+    -m level
+        'level' is the minimum security level for an area to be included
+        in the list, this number inclusive. Default is 0.
+
+    -M level
+        'level' is the maximum security level for an area to be included
+        in the list, this number inclusive. Default is 65,535.
+
+    -n days
+        Include files that are newer than 'days' only. The default includes
+        all files regardless of their date.
+
+    -r file
+        'file' is the general header which will be included at the start
+        of the listing. Several key characters are available. See the
+        section on MACROS. This must be the full name of the file. If none
+        is specified, FLS/Fast! will attempt to use the ALLFILES.HDR file
+        located in the same directory as the executable.
+
+    -o file
+        'file' is the general footer file which will be appended at the
+        of the listing. Several key characters are available. See the
+        section on MACROS. This must be the full name of the file. If none
+        is specified, FLS/Fast! will attempt to use the ALLFILES.FTR file
+        located in the same directory as the executable.
+
+    -t file
+        'file' is the header that will be included at the start of each
+        file area. Several key characters are available. See the
+        section on MACROS. This must be the full name of the file. If none
+        is specified, FLS/Fast! will attempt to use the FILEAREA.HDR file
+        located in the same directory as the executable.
+
+    -p file
+        'file' is the footer that will be included at the end of each
+        file area. Several key characters are available. See the
+        section on MACROS. This must be the full name of the file. If none
+        is specified, FLS/Fast! will attempt to use the FILEAREA.FTR file
+        located in the same directory as the executable.
+
+    -x
+        Exclude lines that begin with '!' and ';' in the file listings.
+        The default setting is to include all lines except empty lines and
+        lines that begin with a blank/backspace sequence.
+
+    -e
+        Exclude CD-ROM areas. Very useful for newfiles listings. Default
+        is to include all areas.
+
+    -s
+        Single line descriptions. This is very good and makes the listings
+		a lot more readable. The default is to use all lines from the
+		descriptions in the FILES.BBS file.
+
+    -v
+        Display program version and compilation date.
+
+    -c
+        Display program copyright information.
+
+    -h or -?
+        Display brief help screen and option summary.
+
+
+  m e t a c h a r a c t e r s                                         /MACROS
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+  Several metacharacters are available which you can place in your header and
+  footer files. Note: '^' means the [Ctrl] key, so ^A will read Control+A
+  (which is the same as ASCII 0x01).
+
+              ^A : current time (hh:mm:ss), 8 chars
+              ^B : current date (dd:mm:yy), 8 chars
+              ^P : days old (with the -n switch), 6 chars
+
+              ^C : kbytes in this area, 8 chars (1)
+              ^D : number of files in this area, 8 chars (1)
+
+              ^E : current file area name, 40 chars (2)
+              ^F : current file area number, 7 chars (2)
+
+              ^K : total number of files, 8 chars (3)
+              ^N : total kbytes, 8 chars (3)
+              ^O : total areas, 7 chars (3)
+
+  Note: metacharacters that are marked with (1) can be only used in
+        area footer files, those which are marked with (2) can only
+        be used in area header/footer files. The ones marked with
+        (3) can only be used in the general footer file. All others
+        can used in all header/footer files. If you use any of the
+        characters where you're not supposed to, erroneous results
+        will probably plague you. If you don't specify the -d switch,
+        then the ^P will display 0.
+
+
+  e r r o r   m e s s a g e s                                       /MESSAGES
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+  This section lists all messages displayed by the program. Note that the
+  text below will be preceded by 'fls.exe:' when it is actually displayed.
+
+    syntax error: wrong [] range.
+        Your -g switch syntax is bad, check for whitespace. This will be
+        acceptable: -g[1-23] or -g [1-23]. Anythig else won't.
+
+    syntax error: unbalanced [].
+        Again, you messed up the -g switch. See the example above.
+
+    unrecognized option 's'.
+        Well, obvious. Sometimes, you might get a misleading 's', so
+        check your command-line carefully.
+
+    environment variable PROBOARD is not set.
+        Refer to your ProBoard User's Manual. This should point to your
+        system directory (no trailing backslash!)
+
+    could not read from 'file'
+        Your ProBoard filebase is probably inaccessible. Check the path
+        that the program displays and make sure it's looking in the
+        right place.
+
+    couldn't create file 'file'
+        For some reason the program could not create the output file.
+        Check the name displayed and see if you have a read-only file
+        there or a directory with the same name.
+
+    error reading the area definition file.
+        Your ProBoard filebase is corrupt. Check your FILECFG.PRO file
+        by running ProCFG FA and see what it does.
+
+    couldn't access listfile for area 'n'.
+        The listing file for area n could not be found. Check your ProCFG
+        settings. If this program can't find it, the ProBoard can't find
+        it either.
+
+
+  c a v e a t   e m p t o r                                       /DISCLAIMER
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+  FLS/Fast! (all executables, documentation, source, and sample files) are
+  Copyright (c) 1985-1997 Branislav L. Slantchev. A fine production of
+  Silicon Creations, Inc.
+
+  This program is free software; you can redistribute it and/or modify it
+  under the terms of the GNU General Public License as published by the Free
+  Software Foundation; either version 2 of the License, or any later version.
+
+  This program is distributed in the hope that it will be useful, but WITHOUT
+  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+  FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+  more details.
+
+  You should have received a copy of the GNU General Public License along
+  with this program (the LICENSE.DOC file); if not, write to the Free
+  Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+
+
+  s o u r c e   c o d e                                               /SOURCE
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+  The complete C++ source code for FLS/Fast! is freely available. It is
+  released in a separate archive in order to conserve space and to avoid
+  burdening people with things they do not necessarily want. The name of the
+  source code package is formed as FLISTnnS.RAR where 'nn' is the revision
+  number. For example, for version 2.0, the file will be named FLIST20S.RAR.
+
+  Note that you will need PB-Lib v3.0 or later in order to compile the exe.
+  The code has been tested with Borland C++ 3.1 and might not (although it
+  should) work with different compilers. A project file is provided for
+  building the regular standard executable.
+
+  The source code is subject to the terms and conditions outlined in the
+  file LICENSE.DOC distributed with it. It is basically free for any use
+  but it remains copyrighted by Branislav L. Slantchev.
+
+
+  p a c k i n g   s l i p                                            /PACKING
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+  The files in this archive has been compressed with RAR Version 2.0 with
+  a security envelope. The reason for this format is quite simple - it
+  compresses far better than ZIP (not as fast, though). When you unpack the
+  files, you should see the following message at startup:
+
+      Verifying authenticity information ... Ok
+
+  and then (when the process is complete, you should see the following):
+
+      Archive FLIST20X.RAR
+      created at hh:mm:ss	dd mmm yyyy
+      by Silicon Creations, Inc.
+
+  If you don't see these messages, the archive has most likely been tampered
+  with and you should obtain a fresh copy. Note that I have had problems with
+  people modifying the archives before and that is why I strongly suggest
+  you take every precaution possible to prevent malicious "hackers" from
+  wreaking havoc on your computer. For all those "hackers", I can feel
+  nothing but pity... maybe some day they will learn how to do something on
+  their own... something creative. Until that time, we must protect ourselves.
+
+
+  r e g i s t r a t i o n                                           /REGISTER
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+  Of course, no registration is necessary for this program. It is being
+  distributed as freeware (meaning that I retain the copyright but you
+  are allowed to use FLS/Fast! without paying me any money). Go figure. Since
+  some people have expressed desire to contribute to Silicon Creations,
+  I hereby officially notify everyone that donations are accepted. You can
+  also request custom programs for a nominal fee. I reserve the right to
+  refuse anything sent to me or any request made for programming. Priority
+  will be given to projects that bring $$$. Ah, if you strongly feel like
+  contributing but you are not able to afford sending money, it's ok. Send
+  me a post card of your home town, I would really appreciate it. If you
+  can't afford that... have a beer on my behalf :-)
+
+
+  g e t t i n g   i n   t o u c h                                    /CONTACT
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+  Due to the lengthy nature of the topic, it has been moved to a separate
+  file. Read SUPPORT.DOC for details on how to get in touch with me. Also,
+  read the file FAQ.Doc for some questions people frequently ask me and
+  the answers to them (this file may or may not be present in the archive).
+
+
+  g r e e t i n g s                                                /GREETINGS
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+  Greetings go to the following: Philippe Leybaert (what a novel idea!),
+  Ruben Provoost (JMJ), Wim Jans, Olivier Debonne, Timothy Bryant,
+  Arthur Stark, Chuck King, Tiago Pascoal, and many others whose names
+  have slipped my mind while writing this document.
+
+  Of course, special thanks goes to the faithful support and distribution
+  sites all around the world. You have been great, guys and gals! We have
+  done it once again.
+
+
+  c o p y r i g h t s ,   t r a d e m a r k s ,    e t c .       /TRADEMARKS
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+         FLS/Fast!, PB-Lib .................. Branislav L. Slantchev
+         ProBoard ........................... Philippe Leybaert
+         Borland C++ ........................ Borland International
+
+  All other programs and products mentioned above are property of their
+  respective owners. Mentioning them in this manual does not constitute
+  endorsement. If you like them, good. If not, good. I don't care.
+
+  [eof]
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
