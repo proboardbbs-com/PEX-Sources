@@ -1,0 +1,102 @@
+# Makefile for Borland C++ 3.1 Compilers
+#
+# PB-GNU BULETMAN ProBoard PEX Version
+# Copyright (C) 1995 by Branislav L. Slantchev
+#
+# This file is part of the PB-GNU BULETMAN.
+#
+# PB-GNU BULETMAN is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; version 2.
+#
+# PB-GNU BULETMAN is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with PB-GNU BULETMAN; see the file COPYING.  If not, write to
+# the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
+#
+
+
+.AUTODEPEND
+
+.PATH.obj = .\
+
+CC = bcc +BULETMAN.CFG
+TLINK = tlink
+LIBPATH = C:\DEV\LIB
+INCLUDEPATH = C:\DEV\INC
+
+.c.obj:
+  $(CC) -c {$< }
+
+.cpp.obj:
+  $(CC) -c {$< }
+
+EXE_dependencies =  \
+ $(LIBPATH)\pb_sdk.obj \
+ effects.obj           \
+ center.obj            \
+ inifile.obj           \
+ chext.obj             \
+ tmpname.obj           \
+ basedir.obj           \
+ getopt.obj			   \
+ buletman.obj
+
+buletman.pex: buletman.cfg $(EXE_dependencies) buletman.lnk
+   tlink $(LIBPATH)\pb_sdk.obj @buletman.lnk, buletman.pex,,, /n /C /x
+
+buletman.obj: buletman.cfg buletman.cpp
+effects.obj: buletman.cfg effects.c
+center.obj: buletman.cfg center.c
+inifile.obj: buletman.cfg inifile.c
+chext.obj: buletman.cfg chext.c
+tmpname.obj: buletman.cfg tmpname.c
+basedir.obj: buletman.cfg basedir.c
+getopt.obj: buletman.cfg getopt.c
+
+buletman.lnk: makefile
+  copy &&|
+buletman.obj+
+effects.obj+
+center.obj+
+inifile.obj+
+chext.obj+
+tmpname.obj+
+basedir.obj+
+getopt.obj
+| buletman.lnk
+
+buletman.cfg: makefile
+  copy &&|
+-ml
+-k-
+-r-
+-vi-
+-wbbf
+-wpin
+-wamb
+-wamp
+-wasm
+-wpro
+-wcln
+-wdef
+-wsig
+-wnod
+-wstv
+-wucp
+-wuse
+-weas
+-wpre
+-n.
+-DPB_SDK
+-I$(INCLUDEPATH)
+-L$(LIBPATH)
+| buletman.cfg
+
+
+clean:
+	del *.obj

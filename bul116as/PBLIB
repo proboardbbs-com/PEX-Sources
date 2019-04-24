@@ -1,0 +1,342 @@
+/***************************************************************************/
+  PB-Lib (all source, binaries, documentation, examples and other files)
+  is copyrighted material of Branislav L. Slantchev.
+
+  Copyright (C) 1995 by Branislav L. Slantchev, Silicon Creations, Inc.
+
+  This file is part of PB-Lib.
+
+  This is a preliminary release of the list of all functions and utilities
+  that are currently included in PB-Lib, the Programmer's Library for PB.
+
+  If you're interested in becoming a part of the PB-GNU Project or
+  if you have any requests, suggestions, questions and answers, you
+  can contact me via one or more of the following:
+
+  Snail     : Branislav L. Slantchev
+              1814 S.Pierce #36
+              San Angelo, TX 76904
+			  USA
+  Voice     : (915) 949-4798
+  CompuServe: 73023,262
+  Internet  : 73023.262@compuserve.com
+  FidoNet   : 1:383/25, 1:383/26 (Branislav Slantchev or Ad Avis)
+
+  PROBOARD Fidonet echo.
+
+/***************************************************************************/
+
+PB-Lib Contents:
+================
+
+NOTE
+	all utilities and functions come with a manpage which describes
+	the correct usage and such. Those files are modelled after the
+	UNIX manpages. All functions (except isAccess) will run both
+	online (as PEXes) and offline (as EXEs). You can use isAccess()
+	if you're running PBEMU, the ProBoard Emulator.
+
+NOTE
+	all the undocumented data files were hacked with LIST (not even
+	a HEX editor ;-)) and their format is yet to be confirmed by
+	Philippe. The structures work, however... as far as I tested them.
+
+NOTE
+	this library is released under GNU General Public License Version 2.
+	C source code, examples, makefiles, project files and complete
+	documentation must accompany each distribution, as per the original.
+
+
+Structures to access following files:
+=====================================
+AKA.PRO, BINLOG.PB, CONFIG.PRO, EVENTS.PRO, FGROUPS.PB, FILECFG.PRO
+FILESIDX.PB, FLAGDESK.PB, LASTREAD.BBS, LIMITS.PRO, MGROUPS.PB
+MODEM.PRO, MSGAREAS.PB, ONLINE.PRO, PROTOCOL.PRO, PVTFILE.PRO
+TEMPLATE.PB, TIMELOG.PRO, TOPS.PRO, USERS.BBS, USERSIDX.BBS
+USERSPB.BBS, USERSXI.BBS, *.PBL (all language files)
+
+
+Miscellaneous ProBoard-related:
+===============================
+isAccess    - CheckAccess() which supports flagsNot
+makepath    - build full path for a file from the index
+NumPBLimits	- returns number of limits in the limit definition file
+ReadLimit   - reads a limit definition
+ReadConfig  - reads the ProBoard configuration
+
+
+ProBoard Language file support:
+===============================
+GetLangStat	 - returns information about a language
+GetLangStr	 - gets an entry from the language file
+FreeLangStr  - frees entries allocated by GetLangStr
+PrintLangStr - prints a language string with color support
+
+
+Configuration file support:
+===========================
+IniReadBool - reads a boolean value from INI file, w/ default
+IniReadInt  - reads an integer value from INI file, w/ default
+IniReadLong - reads a long value from INI file, w/default
+IniReadStr  - reads a string from INI file, w/default
+IniWrite    - writes to Windows-style INI file (groups and entries)
+GetIniVar	- reads from ProBoard-style plain INI (no groups)
+SetIniVar   - writes to ProBoard-style plain INI (no groups)
+
+
+Wildcard and regular expression matching:
+=========================================
+grep		  - compile and search for regular expression
+glob		  - compile and match UNIX shell-style wildcards
+grep_compile  - compile a regular expression
+glob_compile  - compile wildcards for filename globbing
+grep_match	  - try to match a compiled regular expression
+glob_match	  - try to match a compiled wildcard expression
+
+
+Command-line processing:
+========================
+getopt - UNIX-like command-line option processing
+
+
+Filebase manipulation:
+======================
+ReadFileArea  - reads a file area definition
+NumFileAreas  - returns number of file areas
+ReadFileGroup -	reads a file group definition
+NumFileGroups - returns number of file groups
+openIDX		  - opens the file index and prepares the search engine
+closeIDX	  - closes the file index
+rewindIDX	  - starts next search from beginning of index
+readIDX		  - reads an entry from the index
+findfirstIDX  - findfirst() for the index, supports UNIX-like wildcards
+findnextIDX   - findnext() for the index
+firstareaIDX  - findfirst() that only operates for one area
+nextareaIDX   - findnext() that only operates for one area
+
+
+Combined boards manipulation:
+=============================
+GetCombinedArea    - checks state of area in combined boards
+SetCombinedArea	   - sets area in combined boards
+ToggleCombinedArea - toggles area in combined boards
+UnsetCombinedArea  - unsets area in combined boards
+
+
+Timer functions:
+================
+timer_diff   - returns the number of elapsed ticks
+timer_sleep  - suspends program execution
+timer_start  - starts the timer
+timer_stat   - returns current state of timer
+timer_stop   - stops the timer
+
+Date manipulation:
+==================
+date_isleap  - checks if a year is leap
+date_julian  - converts gregorian to julian date
+date_diff    - computes difference of two dates (in days)
+
+
+USERDOES-compatibility:
+=======================
+userd_creat	 - create a USERDOES-compatible drop file with printf() syntax
+userd_unlink - remove the dropfile
+
+
+Userbase manipulation:
+======================
+ReadUser	  - builds a USER_REC record from the userbase
+WriteUser	  - writes a USER_REC record to the userbase
+NumUsersXI	  - returns number of records in USERSXI.BBS
+ReadUsersXI	  - reads a record from USERSXI.BBS
+WriteUsersXI  - writes a record to USERSXI.BBS
+NumUsersPB    - returns number of records in USERSPB.BBS
+ReadUsersPB	  - reads a record from USERSPB.BBS
+WriteUsersPB  - writes a record to USERSPB.BBS
+NumUsersIDX   - returns number of records in USERSIDX.BBS
+NumUserName   - searches the userbase for name
+NumUserAlias  - searches the userbase for alias
+WriteUsersIDX - writes a record to USERSIDX.BBS
+NumUsersBBS   - returns number of records in USERS.BBS
+ReadUsersBBS  - reads a record from USERS.BBS
+WriteUsersBBS - writes a record to USERS.BBS
+
+
+Miscellaneous utilities:
+========================
+bsearch	   - performs a binary search on an array of elements
+bufCRC32   - calculates ANSI X3.66 32-bit CRC of a buffer
+detectOS   - detects the running operating system (DOS/Win/OS2/DV)
+dosver	   - returns the DOS version number
+fileCRC32  - calculate the 32-bit CRC of a file
+idle	   - releases time slices to DESQview, OS/2 and Windows
+qsort	   - performs a Quick Sort of an array of elements
+truedosver - returns true DOS version (not affected by SETVER)
+isshare    - checks if SHARE is installed
+isstdin    - checks if STDIN is redirected to a file
+isstdout   - checks if STDOUT is redirected to a file
+fileCheck  - internal program validation using 32-bit CRC
+ltom       - converts a signed long into a MegaNum (base-36)
+mtol       - converts a MegaNum (base-36) string to a signed long
+
+
+Special effects:
+================
+bounce  - bounces a string in user-defined screen
+fade    - fades a string in and out
+flash	- flashes through a string
+lscroll - scrolls a string to the left
+rscroll - scrolls a string to the right
+twirl   - display animated color or black and white prompts
+
+
+Directory and file management:
+==============================
+basedir	 - returns the directory specification of a path
+basename - returns the program name from a path
+chdir    - same as standard chdir()
+chdrive  - chdir() which also changes the current drive
+chext    - changes extension in file specification
+cpfile	 - copies a file to a new destination
+drvalid  - checks if drive is valid
+drvget	 - returns the current drive
+drvready - checks if floppy is ready w/o triggering the critical handler
+drvrwr   - checks if drive is ready and is writable
+drvset	 - sets the current drive
+feach	 - execute a function for each file matching a criteria
+fgetdw	 - get a long from a file
+fgetw	 - get an integer from a file
+mkdir	 - create a directory
+mkdirs	 - create a directory tree
+rmdir	 - remove a directory
+rmfile	 - remove any file
+tell	 - get current position in a file
+tempname - create a temporary file name in TEMP directory
+tmpname  - create a temporary file name in a specified directory
+
+
+String management:
+==================
+stradd   - adds two numbers represented as strings
+strccat  - appends a character to a string
+strcdel  - deletes a character from a string
+strcent  - centers a string in a buffer
+strcins  - inserts a character into a string
+strcma   - insert comma-delimeters for numbers as strings
+strcrep  - replaces all occurences of a character with another
+strcrm   - removes all occurences of a character
+strdate  - formats the current date into a string
+strdel   - deletes a substring from a string
+strecpy  - a strpcpy() which does not append NUL at end
+strequ   - macro that tests two strings for equality
+strfmpas - converts a Pascal-style string to C
+strfupr  - uppercases first letters of words
+strichr  - case-insensitive strchr()
+striequ  - macro that tests two strings for equality, case-insensitive
+stright  - returns characters from end of string
+strinequ - macro that tests two strings for inequality, case-insensitive
+strins   - inserts a string into a string
+stristr  - case-insensitive strstr()
+strleft  - returns characters from beginning of string
+strmid   - returns a portion of a string
+strnecpy - strncpy() which always appends the NUL character
+strnequ  - macro that tests two strings for inequality
+strneset - strnset() that always appends the NUL character
+strrtrm  - removes trailing whitespace
+strsrep  - replaces all occurences of a substring in a string
+strsrm   - removes all occurences of a substring from a string
+strtime  - formats the current time into a string
+strtopas - converts C-style strings to Pascal
+strtrm   - removes all leading whitespace
+strtts   - expands all tabs to spaces
+strvcat  - concatenates a list of strings
+
+
+Singly and doubly linked lists, stacks and queues:
+==================================================
+(slist is the singly-linked list, dlist is the doubly-linked list)
+slist_link      - adds a node to the list, head, tail or sorted
+slist_count     - returns count of elements in the list
+slist_unlink    - release memory allocated for a node
+slist_first     - returns first element from the list
+slist_free      - dispose of the whole list
+slist_last      - returns last element in the list
+slist_new       - creates a new doubly-linked list
+slist_next      - returns node after the current one
+dlist_link      - adds a node to the list, head, tail or sorted
+dlist_count     - returns count of elements in the doubly-linked list
+dlist_unlink    - release memory allocated for a node
+dlist_first     - returns first element from the list
+dlist_free      - dispose of the whole list
+dlist_last      - returns last element in the list
+dlist_new       - creates a new doubly-linked list
+dlist_next      - returns node after the current one
+dlist_prev      - returns node previous to the current one
+
+
+Keyboard extended control:
+==========================
+XGetKey		- waits for a character and returns it (cursor keys, etc.)
+XKeyFlush	- flushes the internal keyboard buffer
+XKeysDeinit	- uninstalls the extended keyboard handler
+XKeysInit	- installs the extended keyboard handler and buffer
+XPeekKey	- checks for character in the buffer
+
+
+Tools and utilities:
+====================
+crc32gen - generate the ANSI X3.66 32-bit CRC lookup table
+crcset   - store the validation code in .EXE for call to fileCheck()
+std2ext  - convert standard FILES.BBS to extended format
+pb-howto - sysop's and programmer's guide to undocumented tricks
+
+
+Fixes for ProBoard SDK bugs:
+============================
+va_list, va_start, va_arg, va_end  - handle variable number of arguments
+
+
+Under construction:
+===================
+offline printf() with PB color support
+findfirst/findnext for compressed files
+
+
+Utilities released under the PB-GNU Project:
+============================================
+Bulletin Manager 1.14    ... BUL114AX.ZIP
+Fortune Cookie 1.0       ... COOK10AX.ZIP
+File List Generator 1.01 ... FLS101AX.ZIP
+File Navigator 1.25      ... FNV125AX.ZIP
+Key Navigator 1.01       ... KEYN11AX.ZIP
+Minesweeper 1.0          ... MINE10AX.ZIP
+Password Enforcer 1.0    ... PASS10AX.ZIP
+Physical Graffiti 1.01   ... GRAF11AX.ZIP
+Who Called 1.23          ... WHOCA123.ZIP
+
+
+PB-GNU support sites and boards running PB-GNU software
+=======================================================
+The above files can be found at
+
+FTP
+	wl.iglou.com /members/pbftp, courtesy of John Maddox
+
+Ad Avis (aka Branislav L. Slantchev)
+Silicon Creations (915) 949-4798 (soon on Fido)
+73023.262@compuserve.com
+
+Dave Christie
+Alpha Omega BBS, 1:284/31
+davech@ix.netcom.com
+
+Ryan Chiu
+Cosmic Gate BBS, 6:754/6
+xmen@durian.usc.edu.ph
+ryan.chiu%cebu@catalina.org
+
+Nicolai Rathmann
+FidoNet: 2:2449/431
+PB-Net : 246:6101/5030
+tlange@rzserve.rz.uni-osnabrueck.de

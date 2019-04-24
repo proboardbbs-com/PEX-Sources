@@ -1,0 +1,9 @@
+This is the readme file for the Bulletin Manager source code package.
+
+Even though BULMAN was developed with Borland C++ 3.1, it should be easy
+to compile on Zortech and MSC compilers with only minor modifications. I
+am currently working on PBLib to make is compiler-independent (which is not
+all that easy since the Zortech that I have doesn't support inline assembly).
+Anyway, the code should be straightforward to compile with the provided
+makefile. Note that the only BULMAN source file is the BULETMAN.CPP. All
+others are straight out of PBLib.
