@@ -1,0 +1,21 @@
+Files included in this archive:
+
+	Copying.Doc		- GNU General Public License (your license)
+	Effects.H		- header for the special effects
+	Effects.C		- special effect implementation
+	Gadgets.H		- header for the header and status line drawing
+	Gadgets.Cpp		- implementation of the above
+	ListBox.H		- the generic list box class definition
+	ListBox.Cpp		- list box implementation
+	ListRec.H		- list record (base class) and top record
+	ListRec.Cpp		- implementation
+	Readme.Doc		- short instructions and notes
+	Support.Doc		- tech support for the source code
+	TopTag.H		- structure of the TOPFILES.IDX file
+	TopTagz.H		- main include with general macros and structures
+	TopTagz.Cpp		- implementation of the program
+	TopTagz.Mak		- makefile for the PEX version
+	TopTagz.Prj		- project file for the EXE version
+	File_id.Diz		- BBS description file
+	Manifest.Doc	- this file...
+

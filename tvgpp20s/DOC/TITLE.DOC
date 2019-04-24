@@ -1,0 +1,18 @@
+TTitleLine
+=============================================================================
+
+    This is a very simple class which allows you to put text on the
+    title bar (normally used by the pull-down menu system). You only
+    need to create on object with the appropriate text and insert it
+    in your desktop. This is normally done in your application
+    constructor. Here's an example (TMyApplication constructor):
+
+               const char s[] = "I Am The Title!";
+               TRect bounds   = getExtent();
+
+               bounds.b.y = bounds.a.y + 1;
+               bounds.a.x = bounds.b.x - strlen(s) - 1;
+               insert(new TTitleLine(bounds, s));
+
+    That's all there is to it. You can change the text dynamically
+    with the newTitle() method.

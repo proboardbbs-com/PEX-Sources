@@ -1,0 +1,81 @@
+TFlagView, TFlagSelect (requires TurboVision)
+=============================================================================
+
+	Summary  Edit ProBoard-style access control flags.
+
+	Remarks  TFlagSelect implements a class for a dialog where you can
+	         select 32-bit flag values. All three states of the flags are
+	         supported: on, off and reversed. The flag bits are selected
+	         with the letters 'A' through 'Z' and the digits '1' through '6'.
+	         The user can type in the letter (case-insensitive) or digit to
+	         cycle through the bit states.  Also, the following special keys
+	         are supported:  Alt+S sets all the bits, Alt+C clears all the
+	         bits and Alt+R sets all bits to reverse. The flag mapping is
+	         somewhat odd (but compatible with ProBoard). The bits from 31
+	         to 6 are mapped to 'A' to 'Z' and from 5 to 0 are mapped to '1'
+	         to '6'.  Don't ask me why, 'A'..'Z', '0'..'5' on 0..31 whould
+	         have been easier, in my opinion, but this is what ProBoard's
+	         author (Philippe) chose, so I decided to stick with it. You
+	         can use the TFlagView class in the same fashion as a TInputLine,
+	         i.e. you can insert it in your own dialog, attach a label to it
+	         and won't have to call a separate dialog.
+
+
+	TFLAGVIEW::TFLAGVIEW
+	------------------------------------------------------------------------
+
+		Summary  Constructs the flag input line.
+
+		Syntax   TFlagView(const TPoint &where, long aFlags, long aFlagsRev);
+
+		Remarks  The constructor creates a flag selection line and sets the
+		         flag representation for aFlags and aFlagsRev respectively.
+		         Note that some error checking is performed, and if a flag
+		         is both set and reset, it is left off. The 'where' point
+		         is the origin of the upper-left corner of the viewer. The
+		         dimensions are fixed and cannot be changed by the user.
+
+
+	TFLAGSELECT::TFLAGSELECT
+	------------------------------------------------------------------------
+
+		Summary  Creates the flag selection dialog box.
+
+		Syntax   TFlagSelect(long aFlags = 0, long aFlagsRev = 0,
+                             const char *aTitle = "Flags");
+
+		Remarks  The constructor creates a flag selection dialog with the
+		         initial values specified by the parameters. Note that a bit
+		         is on in both the normal 'aFlags' and in the reversed set
+		         'aFlagsRev', the effect is combined which leads to clearing
+		         that bit.
+
+
+	TFLAGVIEW::FLAGS, TFLAGVIEW::FLAGSREV
+	------------------------------------------------------------------------
+
+		Summary  Hold the flag bitmaps.
+
+		Syntax   long TFlagView::flags;
+                 long TFlagView::flagsRev;
+
+		Remarks  These are directly accessible to the public. The first one
+                 contains the flags that are set and the second one, the
+                 flags that are reset.
+
+
+	TFLAGSELECT::GETFLAGS, TFLAGSELECT::GETFLAGSREV
+	------------------------------------------------------------------------
+
+		Summary  Return the flag settings.
+
+		Syntax   long getFlags() const;
+		         long getFlagsRev() const;
+
+		Remarks  The two functions return the flag settings from the
+		         dialog box. When the execView() returns, and the result
+		         was not cmCancel, you can retrieve the new flag values with
+		         the getFlags() and getFlagsRev() functions. They both behave
+		         similarly and simply return the bit-mapped long integers for
+		         the flags and the reverse flags respectively.
+

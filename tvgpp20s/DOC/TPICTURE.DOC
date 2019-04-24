@@ -1,0 +1,93 @@
+TPicture
+=============================================================================
+
+TPicture: handles data input (much like TInputLine) except the user can
+specify the format and type of acceptable strings. This is done with a
+'picture' specifier (yeah, Cobol, yikes!). You need to construct the
+picture according to the following rules:
+
+    (1) A picture can contain any number of characters. Some of them
+        are called 'literals' and others are called 'meta-characters'.
+    (2) Literals are pre-defined characters that will appear in the
+        result string. The user will not be able to type them, they
+        will be forced by the class. The cursor also skips over them
+        when typing or moving with the arrow keys.
+    (3) Meta-characters specify the type of input that is acceptable
+        for the particular position the meta-character is in. The
+        following is a complete list of these symbols:
+
+           +--------+---------------------------------------------+
+           | Symbol |  Allowed input                              |
+           |--------+---------------------------------------------+
+           |   #   |  numeric character (0..9)                    |
+           |   +   |  +, - or blank                               |
+           |   %   |  numeric character or blank                  |
+           +--------+---------------------------------------------+
+           |   $   |  alphanumeric character                      |
+           |   \   |  alphanumeric character or blank (see note)  |
+           +--------+---------------------------------------------+
+           |   ?   |  alpha character                             |
+           |   ^   |  alpha character, force upper-case           |
+           |   !   |  alpha character, force lower-case           |
+           |   |   |  alpha character or blank                    |
+           +--------+---------------------------------------------+
+           |   @   |  any character except blank                  |
+           |   *   |  any character                               |
+           +--------+---------------------------------------------+
+
+        NOTE: when using the '\' symbol, remeber that in C/C++ strings
+              it should be coded as '\\'
+
+    (4) If you want to use any of the meta-characters as a regular
+        literal, you must precede it with a tilde ('~'). These escape
+        characters are not counted when determining the length of the
+        allowable string. To specify a tilde as a literal, use "~~".
+
+Example: This picture specifies a phone number (standard format) with
+         an optional extension (which may be left blank).
+
+                   "(###) ###-#### [%%%%]"
+
+         Here all the '#' character specify that a digit input is valid
+         in the corresponding position, and that a character there is
+         required. The '%' meta-characters specify that the digit input
+         there is optional (i.e. a blank is acceptable too). Note that
+         all other characters (such as '(', ')', ' ', '[' and ']') will
+         always be present in the string.
+
+Validation: most of the validation is done on-the-fly. If the character
+that the user us trying to input does not constitute a valid choice with
+regard to the picture, a beep is sounded and the character is ignored.
+Also, when closing the dialog with the picture, another validation check
+is performed. This one is tricky. If you have specified a call-back
+validating routine (see the constructor description), this function will
+be called with the current data as argument. If the routine returns True,
+the validation is complete and we release the focus. If not, the input
+line is selected again. It will be useful if your routine provides some
+sort of visual explanation as to why the input is considered invalid. If
+you have not specified a validation routine, a simple picture validation
+is performed and a pre-written message is displayed if one or more of the
+characters are out of sync. On validation error, the input line will be
+focused and the dialog cannot be closed until data is valid.
+
+Functionality: the input is performed in overtype mode regardless of the
+insertion flag. I have decided to stick with the underscore cursor since
+I find it easier to use. The user can toggle between the cursor types with
+the Insert key (as usual). This, however, does not affect the input mode.
+The Space key is handled such that if a blank is NOT acceptable for the
+position, the Space will function like a right arrow. This makes moving
+around the string very easy. The Backspace and Delete keys will not cause
+any shifting of characters. Ctrl+Y clears the whole line. Also, when the
+line is focused, it is selected. Typing a character will delete the
+selected string, while using direction keys removes the selection
+(standard UI behavior).
+
+Caveat Emptor: before you say anything about the call-back validation
+routine (like "Hey, you could have made it a virtual member function; you
+then only need to derive a class and override it!"), let me assure you
+that this design is intentional, though not very OOP. The reason is
+simple: I would rather code one function body than derive a whole new
+class. Not to mention that with a lot of specific pictures, it gets out
+of hand real fast. Sorry if you don't like it.
+
+

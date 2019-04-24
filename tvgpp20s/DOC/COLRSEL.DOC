@@ -1,0 +1,154 @@
+TColorChart, TColorDemo, TColorSelect (requires TurboVision)
+=============================================================================
+
+	Summary  ProBoard-style color selection classes and dialog.
+
+	Remarks  TColorSelect implements a class for selection of colors, similar
+	         to ProBoard's ProCFG mechanism.  It displays a dialog box with
+	         all the available colors listed, and the user can use the mouse
+	         or the direction keys to make a selection. The supported
+	         navigational keys are:  arrow keys (behaving in the predictable
+	         fashion, with line and column wrap-arounds), 'Home' and 'End'
+	         which position the selecion bar at the beginning or the end of
+	         the current row respectively, 'Page Up' and 'Page Down' which
+	         position the selection bar at the top or the bottom of the
+	         current column respectively, 'Escape' which cancels the
+	         selection, and 'Enter' which accepts it and generates cmClose
+	         when ending the modal state.  Also, the user can use the mouse
+	         to position the selection bar and double-click to select
+	         colors.  The user can also drag the mouse in the view to move
+	         the selection bar.
+
+	Special  To toggle the blinking attribute, the user can press 'Alt-B'.
+
+	Notes    TColorChart and TColorDemo are suitable for direct inclusion
+	         in a dialog box. They should be inserted like any other normal
+	         view. TColorDemo will update itself automatically whenever a
+	         new selection is made in the color chart.
+
+
+	TCOLORSELECT::TCOLORSELECT
+	------------------------------------------------------------------------
+
+		Summary  Constructs a color slection dialog box.
+
+		Syntax   TColorSelect(uchar color = 0, const char *title="Colors");
+
+		Remarks  This constructor creates a dialog box that will appear
+		         centered on your desktop.  You can initialize the starting
+		         position of the selection bar, as well as the title of the
+		         dialog by overriding the default values. The color attribute
+		         'color' must have the following format (note that this will
+		         be the format of the value returned by getColorCode(), see
+		         below):
+
+                           7 6 5 4 3 2 1 0
+                          ³B³b³b³b³f³f³f³f³
+                          ³ ³ ³ ³ ÀÄÁÄÁÄÁÄÄ Foreground value
+                          ³ ÀÄÁÄÁÄÄÄÄÄÄÄÄÄÄ Background value
+                          ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ Blink enable bit
+
+                 The format is compatible with the byte used by textattr()
+                 (defined in 'conio.h'), so you can read further in your
+                 Borland manuals.
+
+
+	TCOLORSELECT::GETCOLORCODE
+	------------------------------------------------------------------------
+
+		Summary  Returns the color code selected.
+
+		Syntax   uchar getColorCode() const;
+
+		Remarks  Returns the color code selected by the user. Note that you
+		         should use this function to retrieve the code only if the
+		         dialog ended the modal state with cmOK.  If it ended with
+		         cmCancel, then the content of the 'color' variable are
+		         undefined and the function will return an erroneous color
+		         code. The format of the returned value is described in the
+		         entry for the constructor (see above).
+
+
+	TCOLORCHART::TCOLORCHART
+	------------------------------------------------------------------------
+
+		Summary  Constructs a color chart view for inclusion in a dialog.
+
+		Syntax   TColorChart(const TPoint &origin, uchar aColor = 0);
+
+		Remarks	 Constructs a color chart with 'origin' for the top left
+		         corner. Note that the size is always constant and cannot
+		         be modified here. You only need to specify this corner and
+		         the rest will be calculated automatically. The 'color'
+		         parameter can be used to set the selection bar to specified
+		         color position (refer to the TColorSelect constructor for
+		         a description of the byte format).
+
+
+	TCOLORCHART::SETCOLOR
+	------------------------------------------------------------------------
+
+		Summary  Sets the color selection.
+
+		Syntax   void setColor(uchar aColor);
+
+		Remarks  This function can be used to modify the color selection
+		         of the chart outside the chart itself. For example, it
+		         can be used together with the TColorDemo object to show
+		         current color selections. You can set up a list of color
+		         items to bradcast an event and then trap the event in your
+		         dialog handler and call the setColor() function to update
+		         the chart with the color value.
+
+
+	TCOLORCHART::GETCOLOR
+	------------------------------------------------------------------------
+
+		Summary  Retrieves the current color selection.
+
+		Syntax   uchar getColor() const;
+
+		Remarks  Use this routine to retrieve the current color selection
+		         from the chart. Since the internal mapping is somewhat
+		         complicated, you need to call this routine that will do
+		         the conversion for you.
+
+
+	TCOLORDEMO::TCOLORDEMO
+	------------------------------------------------------------------------
+
+		Summary  Creates a color demo object.
+
+		Syntax   TColorDemo(const TRect &bounds, uchar color, const char *t);
+
+		Remarks  Creates a color demo object with given dimensions, text
+		         and initial color. This is used in conjunction with the
+		         color chart to show the current selection in a better way.
+
+
+	TCOLORDEMO::SETCOLOR
+	------------------------------------------------------------------------
+
+		Summary  Change the color of the demo line.
+
+		Syntax   void setColor(uchar color);
+
+		Remarks  Generally, you won't need to call this function directly.
+		         The color demo object responds to bradcast events from the
+		         color chart and updates itself accordingly. In the rare
+		         cases where you would want to do it manually, this is the
+		         routine to use.
+
+
+	TCOLORDEMO::SETTEXT
+	------------------------------------------------------------------------
+
+		Summary  Change the demo string.
+
+		Syntax   void setText(const char *aText);
+
+		Remarks  This routine can be used to update the demo text string
+		         dynamically. This replaces the current text for the demo.
+		         Very useful if you set up a list with color selections
+		         and you want the demo string to be the same as the text
+		         for the selections.

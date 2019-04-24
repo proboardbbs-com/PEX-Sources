@@ -1,0 +1,22 @@
+This is the readme file for TopTagz source code. You will need to have
+PB-Lib v2.0+ with the Classes add-on in order to use the source code.
+
+Install with the command:
+
+		pkunzip -od ttagz10s \sci\src
+
+where '\SCI' should be your root directory for all SCI distributions, and
+'SRC' is the standard source code directory.
+
+Notes
+=====
+
+	TListBox is a generic list box to manipulate records which are
+derived from TBaseRecord. It is used as it is (no changes) in all recent
+programs I write. To use it, derive your class from TBaseRecord (just
+as TTopFile is) and write the draw(), select() and deselect() functions
+(and, toggleTag(), which is optional). Refer to the source code on how to
+assign a list to it (TDoubleList) and how to make it process keystrokes.
+Note that the TListBox::handle(); function recognizes all keys it needs
+and will process them internally, it will ignore everything else.
+

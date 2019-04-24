@@ -1,0 +1,74 @@
+TTimeFrame (requires TurboVision)
+=============================================================================
+
+	Summary  Dialog to edit ProBoard-compatible time frame structures.
+
+	Remarks  TTimeFrame implements a class which provides the necessary
+	         functionality to manipulate the ProBoard time frames (e.g.
+	         TimeFrame structure). It is a simple two-dimensional array
+	         of bytes, with rows corresponding to the day of the week
+	         (starting from Monday!) and the columns (6 of them) dividing
+             the day into 48 half-hour increments. Each increment is
+             assigned a single bit... so I guess the data is "compressed".
+             Why it is like that, I don't know, but it makes it awfully
+             hard to work with. Therefore, I opted for a different approach
+             within the class (not that you care). I assigned a byte to
+             each increment. This may seem like a waste, but trust me, the
+             formulae that coordinate the visual-to-internal translation are
+             obfuscated enough already (just look at the setCell() function).
+             Anyway, because of that, you cannot use the time frame in the
+             dialog directly (heck, you can't even access it). You should
+             use the two member functions getTimeFrame() and setTimeFrame()
+             respectively that will do all the necessary mapping for you
+             (am I nice or what?). As usual, you can assign a name to the
+             dialog box. You cannot, however, change it size. You don't want
+             to do that anyway because it will really look bad otherwise.
+             The default appearance will center the dialog and that is
+             probably what you want). If you will, you can move it down or
+             up so the user can view the data that's being adjusted (this
+             is all up to you). The time frame expected and returned by the
+             two member functions is the exact one from the ProBoard setup.
+             Apart from the regular ProCFG keys (Arrow keys, Space, Alt+D,
+             and Alt+E), my version provides some additional enhancements.
+             Namely, you can use the mouse to toggle states of the time
+             slots, just click on the desired position. Also, Home, End,
+             PageUp and PageDown all work in the predictable fashion. In a
+             jest, I added Ctrl+Home, Ctrl+End, Ctrl+PageUp, and Ctrl+
+             PageDown which will move the selection bar to the four corners
+             of the table. When you use the Space, the selection bar will
+             advance forward (with wrap-around). When you use the mouse, it
+             will not. Also, the Up and Down arrow keys will also wrap
+             around. As usual, if the dialog box returns with cmOK, then
+             the user has pressed Enter. If it's cmCancel, the user has
+             pressed Escape or clicked the close dialog icon.
+
+
+	TTIMEFRAME::TTIMEFRAME
+	------------------------------------------------------------------------
+
+		Summary  Constructs a time frame editor dialog.
+
+		Syntax   TTimeFrame(const char *aTitle);
+
+		Remarks  This is it. Constructs a time frame dialog all ready for
+		         use. The constructor will enable all time slots by default.
+		         If you wish to use a different setting (slots), use the
+		         setTimeFrame() function before you execute the dialog.
+
+
+	TTIMEFRAME::GETTIMEFRAME
+	TTIMEFRAME::SETTIMEFRAME
+	------------------------------------------------------------------------
+
+		Summary  Transfer time frame data to and from the dialog.
+
+		Syntax   void setTimeFrame(TimeFrame aTimeFrame);
+                 void getTimeFrame(TimeFrame aTimeFrame);
+
+		Remarks  These two functions will do all the necessary translation
+		         and mapping to and from the ProBoard TimeFrame structure
+		         from and to the internal structures used by TTimeFrame. Use
+		         them to set the default data for the dialog and retrieve
+		         the resulting data after the dialog was closed. Or, you can
+		         opt to use the getData() and saveData() in the usual way.
+

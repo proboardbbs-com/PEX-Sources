@@ -1,0 +1,129 @@
+zBitVector
+============================================================================
+
+	Summary  Non-view class for managing bitmapped vectors.
+
+	Remarks  zBitVector provides an implementation of a bit vector object.
+	         Bit vectors are bit-mapped structures useful for storing
+	         boolean values. Boolean values are values that can only have
+	         two states, true and false. zBitVector can hold up to 65535
+	         different values.
+
+
+	ZBITVECTOR::ZBITVECTOR
+	-----------------------------------------------------------------------
+
+		Summary  Construct bit vectors from bit sets or other objects.
+
+		Syntax   zBitVector(size_t aNumBits);
+                 zBitVector(const zBitVector &aVector);
+
+		Remarks  The extended bit vector class allows you to store up to
+                 65,535 bit states.  The constructor needs to know how many
+                 flags you need to store before it can create the object.
+                 The second constructor is a copy constructor for objects
+                 that have aVector as a parent.
+
+
+	ZBITVECTOR::~ZBITVECTOR
+	------------------------------------------------------------------------
+
+		Summary  Destroys the extended bitmapped vector.
+
+		Syntax   ~zBitVector();
+
+		Remarks  Destroys the extended vector and frees all memory.
+
+
+	ZBITVECTOR::SET, ZBITVECTOR::RESET
+	------------------------------------------------------------------------
+
+		Summary  Change the state of a particular bit.
+
+		Syntax   void set(size_t aBit);
+                 void reset(size_t aBit);
+                 void toggle(size_t aBit);
+
+		Remarks  The first function sets the 'aBit' bit to on regardless of
+		         the current state. The second one sets the 'aBit' bit to
+		         off regardless of the current state. The third one changes
+		         the state of the bit. If the bit is on, it is turned off.
+		         If the bit is off, it is turned on.
+
+
+	ZBITVECTOR::HAS
+	------------------------------------------------------------------------
+
+		Summary  Checks the state of a bit.
+
+		Syntax   Boolean has(size_t aBit) const;
+
+		Remarks  Returns True if the 'aBit' bit is set in the vector, False
+		         if not. Note that this only checks the state of the bit.
+
+
+	ZBITVECTOR::CAPACITY
+	------------------------------------------------------------------------
+
+		Summary  Returns the number of bits that can be used.
+
+		Syntax   size_t capacity() const;
+
+		Remarks  Returns the number of bits that this vector can hold. This
+		         number can be predetermined as in the 16 and 32 bit vectors
+		         or defined at runtime (as in the extended version).
+
+
+	ZBITVECTOR::CLEARALL, ZBITVECTOR::SETALL
+	------------------------------------------------------------------------
+
+		Summary  Clear all bits in the vector.
+
+		Syntax   void zBitVector::clearAll();
+		         void zBitVector::setAll();
+
+		Remarks  The first function clears all bits in the extended vector.
+		         The second method sets all bits to on.
+
+
+	ZBITVECTOR::ERROR
+	------------------------------------------------------------------------
+
+		Summary  Returns the error state of the vector.
+
+		Syntax   int error();
+
+		Remarks  Returns the error state of the vector. It will be 0 or
+		         ENOMEM if there wasn't enough memory top perform the
+		         requested operation. Note that this resets the error flag.
+
+
+	ZBITVECTOR::OPERATOR[]
+	------------------------------------------------------------------------
+
+		Summary  Return a state of a particular bit.
+
+		Syntax   Boolean operator[](size_t aBit) const;
+
+		Remarks  Returns true if the aBit bit is set and False otherwise.
+		         This is just an alias for the has() function. Note that
+		         a state is retrieved and not a reference to the bit. This
+		         means that you cannot use array-like syntax to modify the
+		         bit, you can just test it.
+
+
+	ZBITVECTOR::OPERATOR=
+	------------------------------------------------------------------------
+
+		Summary  Assigns bit-mapped vectors to one another.
+
+		Syntax   zBitVector& operator=(const zBitVector &aVector);
+
+		Remarks  Assignment operator: assigns values of vectors of the same
+		         type. Note that if the capacity of the current object
+		         is not enough, the vector will not be expanded, but it will
+		         be truncated to fit in. Also note that the assignment
+		         operation does reset all flag states before the copying,
+		         which means that is the new vector is shorter, the excess
+		         bits in the current one will be reset to 0.
+

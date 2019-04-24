@@ -1,0 +1,189 @@
+TTagListBox (requires TurboVision)
+=============================================================================
+
+	Summary  A list box class that supports multiple selections.
+
+	Remarks  TTagListBox is a direct derivative of TListBox. It is used in
+	         the same way you would use a TListBox. Unlike TListBox, however,
+	         TTagListBox supports only one column of items.  It can also
+	         perform various tagging operations on the items in the attached
+	         list. TTagListBox requires that the attached TCollection be of
+	         items that are derived from TTagEntry. A tagged item will be
+	         marked with '[X]' in the first four columns. It will also be
+	         highlighted unlike the normal items. Here's what TTagListBox
+	         supports as far as mouse and keyboard are concerned:
+
+             Up/Down arrows : handled in the usual way
+             Page Up/Down   : handled in the usual way
+             Ctrl/Pg/Up/Down: handled in the usual way
+             Space          : toggle tag, move the selection bar
+             Enter          : toggle tag, don't move the selection bar
+             F5             : tag all items
+             F6             : untag all items
+             F7             : toggle all tags
+             Left button    : usual, also sets first item for range
+             Ctrl+Left btn. : tags the item
+             Shift+Left btn.: tag range of items (see below)
+             Right button   : swap pointed item and current item
+             Drag right btn.: drag the selected item up and down the list
+             Double click   : focus the item and broadcast cmTagFocused
+
+             Range of items (for mouse+shift) is defined as the start item
+             (which can be selected with a normal mouse click) and the item
+             you click on while the shift is pressed.  All items between the
+             two will be tagged (all others will be untagged).
+
+	Notes    TTagEntry is a simple class with one relevant member function:
+             the pure virtual getText(). Your items should be derived from
+             this class and therefore, must also implement the function.
+             It is used by the list box to retrieve the text associated
+             with the item. It will be passed the item's number and should
+             return the text to display for it.
+
+
+	TTAGLISTBOX::TTAGLISTBOX
+	------------------------------------------------------------------------
+
+		Summary  Creates a multiple selection list box.
+
+		Syntax   TTagListBox(const TRect &r, TScrollBar *sb, short maxSize);
+
+		Remarks  This constructor invokes the default TListBox constructor
+		         with only 1 column (forced) and the bounds specified by
+		         the 'r' parameter and attaches a 'sb' scroll bar to it. The
+		         third parameter specifies the maximum number of items in
+		         the collection. It is very important that you select the
+		         correct setting here (having more does not hurt, but having
+		         a smaller number than items here will certainly produce
+		         wrong results). If you anticipate adding items, make sure
+		         you leave room for them too. Don't worry about memory with
+		         that parameter. The largest number (32,767) here will
+		         reserve only 4K memory for the internal bit flags.
+
+
+	TTAGLISTBOX::SETTAGCHAR
+	------------------------------------------------------------------------
+
+		Summary  Changes the default tagging character.
+
+		Syntax   char SetTagChar(char aChar);
+
+		Remarks  The default tag character that will be shown between the
+		         two brackets is 'X'. You might want to change it to
+		         something else, like 'û' or 'þ', depending on your taste.
+		         Call this routine with the character immediately after
+		         constructing the list box.
+
+
+	TTAGLSITBOX::DELETETAG
+	------------------------------------------------------------------------
+
+		Summary  Updates the bitmap tag status for deletion.
+
+		Syntax   void DeleteTag(short item);
+
+		Remarks  Keeping the tag status in a bitmap vector is very convenient
+		         until you decide to add or remove items from the list. This
+		         means that the bit designations need to be shifted up or
+		         down. Call this function when you are deleting an item from
+		         the collection. This will update the tag status bits in the
+		         internal buffer.
+
+
+	TTAGLISTBOX::INSERTTAG
+	------------------------------------------------------------------------
+
+		Summary  Updates the bitmap tag status for insertion.
+
+		Syntax   InsertTag(short item);
+
+		Remarks  Keeping the tag status in a bitmap vector is very convenient
+		         until you decide to add or remove items from the list. This
+		         means that the bit designations need to be shifted up or
+		         down. Call this function when you are inserting an item into
+		         the collection. This will update the tag status bits in the
+		         internal buffer.
+
+
+	TTAGLISTBOX::TOGGLETAG
+	------------------------------------------------------------------------
+
+		Summary  Toggles the tagged status for an item.
+
+		Syntax   void ToggleTag(short item);
+
+		Remarks  This routine toggles the status bit associated with the
+		         'item' from the collection.
+
+
+	TTAGLISTBOX::SETTAG
+	------------------------------------------------------------------------
+
+		Summary  Sets the tagged state for an element.
+
+		Syntax	 void SetTag(short item);
+
+		Remarks  Sets the tagged flag for the 'item' element regardless
+		         of its current state.
+
+
+	TTAGLISTBOX::SETALLTAGS
+	------------------------------------------------------------------------
+
+		Summary  Sets the tags for all elements in the collection.
+
+		Syntax   void SetAllTags();
+
+		Remarks  Sets the tag flags for all elements in the collection.
+
+
+	TTAGLISTBOX::REMOVEALLTAGS
+	------------------------------------------------------------------------
+
+		Summary  Reset the tags for all elements.
+
+		Syntax   void RemoveAllTags();
+
+		Remarks  Reset the tagged state for all elements in the collection.
+
+
+	TTAGLISTBOX::TOGGLEALLTAGS
+	------------------------------------------------------------------------
+
+		Summary  Toggles the tagged state for all elements.
+
+		Syntax   void ToggleAllTags();
+
+		Remarks  This changes the state of all elements in the collection.
+		         If the item was tagged, it will be untagged. If it was
+		         not, it will be tagged.
+
+
+	TTAGLISTBOX::ISTAGGED
+	------------------------------------------------------------------------
+
+		Summary  Checks the state for an element.
+
+		Syntax   Boolean IsTagged(short item);
+
+		Remarks  Checks the tagged state for an element in the collection.
+		         If it is tagged, this routine will return True. False if
+		         not. This is a non-destructive check.
+
+
+	TTAGENTRY::GETTEXT
+	------------------------------------------------------------------------
+
+		Summary  Retrieve the text associated with an item.
+
+		Syntax   char *getText();
+
+		Remarks  This is a pure virtual function that must be provided by
+		         the user. All elements in the collection associated with
+		         the TTagListBox must be derived from TTagEntry. This is
+		         to provide the necessary interface via the virtual function.
+		         This routine will be passed an item number and it should
+		         return a string associated with it. This string will not
+		         be modified by the list box and will be used to construct
+		         the display in the list.
+

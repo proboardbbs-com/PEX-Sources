@@ -1,0 +1,102 @@
+#
+#   TurboVision Gadgets++ v2.0
+#   Copyright (c) 1995-1997 Branislav L. Slantchev
+#   A Product of Silicon Creations, Inc.
+#
+#   Makefile for building the TurboVision modules library
+#
+#   This is a Borland C++ 3.1 specific makefile.
+#
+#   Command line options:
+#
+#    clean        remove all .obj and temp files
+#
+#   Compiler switches:
+#
+
+#
+# Set up the compiler location (root) and support directories
+#
+PBLIB_DIR    = e:\sci\pbl
+COMPILER_DIR = e:\c\bc
+TVINC_DIR    = $(COMPILER_DIR)\tv\h
+PBLIB_INC    = $(PBLIB_DIR)\h
+INCLUDE_DIR  = $(COMPILER_DIR)\h;$(TVINC_DIR);$(PBLIB_INC)
+
+#
+# Set up some Borland make-specific features
+#
+.autodepend
+.swap
+
+#
+# Set up the commands to run the utilities and support filenames
+#
+PCH    = tvision.sym
+CC     = $(COMPILER_DIR)\bin\bcc +$(CONFIG)
+LIB    = $(COMPILER_DIR)\bin\tlib /0
+LIBDIR = $(PBLIB_DIR)\lib
+CONFIG = tvision.cfg
+LIBRSP = tvision.rsp
+TARGET = $(LIBDIR)\tvision
+
+#
+# List of all object files that go into the library
+#
+OBJS =  colrsel.obj  \
+		flagsel.obj  \
+		taglist.obj  \
+		title.obj    \
+		tmframe.obj  \
+		tpicture.obj
+
+#
+# Implicit rule for compiling .C files
+#
+.cpp.obj:
+	$(CC) {$. }
+
+#
+# This is where the library is actually made
+#
+$(TARGET): $(CONFIG) $(OBJS) $(LIBRSP)
+	@if exist $(TARGET).lib del $(TARGET).lib
+	$(LIB) $@ @$(LIBRSP),nul
+	@del $(LIBRSP)
+	@if exist $(TARGET).bak del $(TARGET).bak
+
+#
+# Create the librarian response file
+#
+$(LIBRSP):
+	makersp "+%s &\n" &&|
+$(OBJS)
+| > $(LIBRSP)
+
+#
+# Clean all temporary and intermediate files
+#
+clean:
+	if exist *.obj del *.obj
+	if exist *.sym del *.sym
+	if exist $(CONFIG) del $(CONFIG)
+
+#
+# Create the compiler configuration file
+#
+$(CONFIG): makefile
+	copy &&|
+-3
+-f-
+-G
+-ml
+-O2
+-P
+-w
+-X
+-v-
+-c
+-I$(INCLUDE_DIR)
+-DNDEBUG=1
+| $(CONFIG)
+

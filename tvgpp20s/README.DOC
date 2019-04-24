@@ -1,0 +1,22 @@
+This the the brief readme file which will simply introduce you to the
+library. Note that you do not have to have any additional software (well,
+except TurboVision, of course) to use this library.
+
+TurboVision has been placed in the public domain by Borland International
+and as such is freely available on the Internet. You need to obtain the
+version 1.02, with the patches. Note that this library may not run on the
+newer version 2.0. I have used the Borland C++ 3.1 compiler to develop it.
+
+The DOC\ directory contains the individual manuals for the classes. The
+EXAMPLE\ directory has all the source code examples that demonstrate how
+to use the library correctly.
+
+I have provided the makefile for Borland. Of course, since you must have
+TV (and Borland) to use the library, it makes sense that the makefile is
+in Borland-specific format.
+
+The file LICENSE.DOC contains the full text of your user license. The file
+SUPPORT.DOC contains the list of the current support sites as well as phone
+and data numbers for getting in touch with me.
+
+
