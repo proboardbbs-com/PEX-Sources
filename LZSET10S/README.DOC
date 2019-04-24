@@ -1,0 +1,113 @@
+This file is part of LZSETUP (Configuration program for Listerz)
+
+Copyright (c) 1997 Branislav L. Slantchev (gargoyle)
+A fine product of Silicon Creations, Inc.
+
+This file is released under the terms and conditions of the GNU
+General Public License Version 2. The full text of the license is
+supplied in the Copying.Doc file included with this archive. This
+free software comes with absolutely no warranty, as outlined in the
+licensing text. You are not allowed to remove this copyright notice.
+
+Contact: Branislav L. Slantchev at 73023.262@compuserve.com
+-----------------------------------------------------------------------------
+
+I wrote the first version Listerz about a year ago and it proved to be quite
+a popular product. The demand for more configurability grew and finally
+evolved in the current LZSETUP separate setup program.
+
+I also wanted to do a complete rewrite of Listerz in order to incorporate
+some of the new advanced features of PB-Lib v3.0 such as the bucket file
+buffering which allows all file areas to be transparently loaded in memory
+without a noticeable sacrifice in performance. Unlike the previous versions
+of Listerz, this one now supports all 10,000 file areas that ProBoard can
+use. Also, the command bar classes have been fully utilized along with the
+modified list viewer class which now supports windowed output. Another new
+feature is the user-definable background screens which can be in ASCII, ANSI,
+Avatar, PCBoard or Wildcat! formats. This versatility is due to the built-in
+terminal from PB-Lib. I should also mention the useron support for UserDoes
+and Doing (multinode systems). This built-in feature provides some online
+information which can be used by these utilities.
+
+This source code represents my first effort in using the Object Professional
+library (version 1.10) from TurboPower Software. I think that I did quite
+alright, although some code optimization may be in order. In the course of
+developing the supporting routines for LZSETUP, several useful and generic
+functions took shape and are now available as part of the toolkit for OPRO
+also released by Silicon Creations, Inc. (along with the TurboVision kit).
+
+The MANIFEST.DOC file outlines briefly the content of each file. Please,
+look over it now to make sure that you have received all the necessary files.
+
+In order to recompile LZSETUP, you will need the following wares:
+
+	- Borland C++ 3.1 (a later version may work too)
+	- Object Professional for C++ v1.10
+	- PB-Lib v3.0 (a later version may work too)
+
+Although I have not tested the source with any compiler other than Borland
+C++ 3.1, it is reasonable to expect that it will compile with any later
+version of BC (as long as it is DOS-based). I am not sure that the code will
+even compile on Microsoft compilers. (It will not work with Watcom, Zortech
+or Symantec because Object Professional does not support them at all). You
+can get the current version of OPRO (C++) at a very low price (only $49)
+from TurboPower Software (http://www.tpower.com). This discounted price is
+due to them discontinuing development and support of all their C++ libraries.
+Note that the documentation you get is excellent so you should not have any
+trouble picking it up without assistance.
+
+You will definitely need PB-Lib from Silicon Creations, Inc. in order to get
+this program up and running. Several classes and routines from this library
+have been used extensively throughout LZSETUP (such as the terminal emulator
+class). You should be able to obtain the latest release of PB-Lib from the
+same place you got this source code. For more information, refer to the
+SUPPORT.DOC file. Note that you will not be able to use versions prior to the
+3.0 release (some of the features are simply not there).
+
+I have included the LZSETUP.PRJ file, although I did not use it to create
+the distribution executable (I only used it as a single configuration file).
+The reason for this is the size of OPRO. The IDE linker cannot link the
+library as it is too big. I have provided a MAKEFILE which should be used
+to do that instead. Note that TLINK distributed with Borland C++ 3.1 cannot
+link it either as it runs out of table space. I have resorted to using the
+TLINK that comes with Borland C++ 4.51 which works quite ok (note that it
+also chokes if you try to compile with debugging information turned on).
+
+The LZS_DATA.OPL file is the library file I used to store the dialog box
+and menu configuration from MakeMenu and MakeScrn (these come with OPRO).
+Note that the versions stored in this library are probably quite different
+from the ones you see in the source code. This is due to the subsequent
+revisions which I implemented straight in the code without using the two
+utilities. The same applies to the stored color configuration (I know I
+changed that manually too). The OPL file is provided for your convenience
+and should be used as a secondary source only.
+
+Possible improvements to the program include updating the help status line.
+Right now, it only deals with menu items (i.e. when a dialog is popped-up,
+it does not display context-sensitive hints). Since the status line was an
+afterthought anyway, I decided not to waste valuable time investigating how
+to implement the additional features. A full-blown help module is very easy
+to do in OPRO but I think that it would be an overkill for an application
+such as this one. Another possible thing which can arguably be termed an
+"improvement" is to make the interface more like the JoHo-style it somewhat
+mimics (JoHo = Joaquim Homrighausen). I don't think that this is readily
+achieved with OPRO without some extensive additional programming. And last,
+the color setup is very confusing. I should have probably gone with a single
+dialog which groups all options. Oh well, maybe next time.
+
+Have fun with the source code and I hope that you learn something from it!
+Please, refer to the file SUPPORT.DOC for information on how to contact me.
+
+Copyrights and Trademarks:
+
+  LZSETUP and PB-Lib ............. Copyright (c) 1997 Branislav L. Slantchev
+  Object Professional for C++ .... Copyright (c) 1991 TurboPower Software
+  Borland C++ 3.1 ................ Copyright (c) 1992 Borland International
+  UserDoes ....................... Copyright (c) Eddie Van Loon (DqP)
+  Doing .......................... Copyright (c) Fe-line Software
+  ProBoard ....................... Copyright (c) Philippe Leybaert
+
+Branislav L. Slantchev
+Silicon Creations, Inc.
+San Angelo, TX
+February 15-16, 1997

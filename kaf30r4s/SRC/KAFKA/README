@@ -1,0 +1,63 @@
+This is the 'readme' file for the KaFKa source code distribution.  The
+code is not really commented, so use this if you have any difficulties.
+_________________________________________________________________________
+-!-NOTE-!-NOTE-!-NOTE-!-NOTE-!-NOTE-!-NOTE-!-NOTE-!-NOTE-!-NOTE-!-NOTE-!-
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+	To use the source code, you MUST have the following products:
+
+	- Borland C++ 3.1 (commercial, Copyright by Borland Int'l)
+	- Turbo Vision 1.03 (commercial, Copyright by Borland Int'l)
+	- PB-Lib 0.02b1 (PB-GNU, Copyright by Branislav L. Slantchev)
+	- SPAWNO 4.13 (freeware, Copyright by Ralf Brown)
+
+_________________________________________________________________________
+-!-NOTE-!-NOTE-!-NOTE-!-NOTE-!-NOTE-!-NOTE-!-NOTE-!-NOTE-!-NOTE-!-NOTE-!-
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+1. File map
+-----------
+
+ENTERZ.KDT and ENTERZ.KIX
+	Sample KaF data files, can be edited with the compiled KAFKA.EXE
+
+ISANSI.C
+	Checks for presence of ANSI.SYS (or compatible driver).
+
+KAFCMDS.H
+	Contants for the command messages for the TV events.
+
+KAFCOLL.H and KAFCOLL.CPP
+	The TKafCollection class and TKafData structure.
+
+KAFDLG.H and KAFDLG.CPP
+	The main editing dialog, contains the collection and the list.
+
+KAFEDIT.H and KAFEDIT.CPP
+	The record properties dialog editor.
+
+KAFFILE.H and KAFFILE.CPP
+	The .KDT and .KIX file record definitions and initializations.
+
+KAFKA.CPP
+	The application class itself and the function main()
+
+KAFKA.PRJ
+	Borland C++ Project File (you need to adjust the directories)
+
+KAFTITLE.H and KAFTITLE.CPP
+	The class for the title on top of the menubar.
+
+Compilation
+-----------
+	You need to know Turbo Vision.  Period.  There's no way you can
+understand the code otherwise (well, most of it anyway).  The way the
+compiler options are set up now is as follows:  no debugging information
+(.OBJ nor .EXE), use pre-compiled headers (goes up to 1.3 megs), optmize
+for speed. Nothing fancy, really.
+
+Availability
+------------
+	SPAWNO and PB-Lib are available for download from (915) 949-4798.
+This is my own BBS, Silicon Creations, 9600-28800 baud, 81N, 24hrs/7days.
+

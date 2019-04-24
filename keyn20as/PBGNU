@@ -1,0 +1,272 @@
+Title: PB-GNU Overview
+Author: Branislav L. Slantchev
+Company: Silicon Creations
+Date: July 22, 1995
+Revision: 1.0.2
+
+							PB-GNU OVERVIEW
+
+CONTENTS
+	1. What is PB-GNU?
+	2. What is PBLIB?
+	3. What software has been released so far?
+	4. How do I get it?
+	5. How do I join?
+	6. PB-GNU Program Guidelines
+
+
+WHAT IS PB-GNU
+	PB-GNU is a project started by Silicon Creations. It is modelled
+	after the prestigious GNUs of the Free Software Foundation. It is
+	in no way affiliated with FSF or its GNU, it just uses the same
+	General Public License.
+
+	As with most people running ProBoard BBS, one of the reasons I
+	chose it, was because of its SDK. It is by far the most powerful
+	extension-writing kit that I have seen for BBS programs. It is
+	fast, neat, mean and in C (the latter is a personal preference).
+
+	The extendibility prompted a lot of people to write software (or,
+	the so-called PEXes) for it. Some are good, some are lame, yet
+	some are state-of-the-art programs. Even though most of them are
+	free, some are not. PB-GNU is the counteraction: it was, is, and
+	will be free while retaining all the features of the mentioned
+	shareware stuff. I have nothing against shareware authors except
+	maybe, as the author of TheMin remarked, some of them spend more
+	time coding their registration validation routines than the actual
+	programs. This is not good. What is worse, is the fact that some
+	of us don't have money... Yep, Sysops are poor everywhere (well,
+	except if they are running WildCat!). I do not like running shareware
+	unregistered programs. The few that I use are all paid for. So,
+	what's the alternative? Answer: free software. Ok, this is what
+	PB-GNU is all about. The other is: all source code is released
+	with the programs (as per GNU's GPL) and can be freely used and
+	incorporated in other GNU programs. People can use it, learn from
+	it or point bugs and improvements for it. Also, this ensures that
+	if the program is good, there will always be someone that supports
+	it, no matter what the original author does. Consider that in the
+	light of the here-today-gone-tomorrow programs that cost mega-bucks!
+
+
+WHAT IS PBLIB?
+	Anyway, a lot of nice stuff, but some things notably missing. Some
+	standard C functions that Philippe chose not to implement as well
+	as some means of accessing ProBoard's external files.
+
+	PBLib is an attempt to remedy this situation. It documents some
+	undocumented features, provides for the missing functions and
+	even fixes some bugs in the SDK itself.
+
+	All of it is given in source code, so you can modify it to suit your
+	needs. Refer to the file COPYING for more information.
+
+	Currently, PBLib is being revised and updated for the new ProBoard
+	2.10 that recently hit the distrbution. For some reason Philippe
+	chose to change some file formats thus making a lot of fine programs
+	obsolete. We're working hard to remedy this situation.
+
+WHAT SOFTWARE HAS BEEN RELEASED SO FAR?
+	Here's a list of all programs officially released under PB-GNU
+
+	Binlog File Fixer.......................BFIX10AX.ZIP and BFIX10AS.ZIP
+	Bulletin Manager........................BUL116AX.ZIP and BUL116AS.ZIP
+	Fortune Cookie..........................FORT20AX.ZIP and FORT20AS.ZIP
+	File List Generator.....................FLS101AX.ZIP
+	File Navigator..........................FNV200AX.ZIP and FNV200AS.ZIP
+	Key Navigator (ProBoard 2.0x)...........KEYN11AX.ZIP
+	              (ProBoard 2.1x)...........KEYN20AX.ZIP and KEYN20AS.ZIP
+	Minesweeper.............................MINE10AX.ZIP
+	Password Enforcer.......................PASS10AX.ZIP
+	ProBoard to Internet Message Handler....P2I200AX.ZIP
+	Physical Graffiti.......................GRAF11AX.ZIP
+	Who Called..............................WHO123AX.ZIP
+
+	Binlog File Fixer fixes the ProBoard's BINLOG.PB file. Cirrently,
+	it removes all orphaned records (for users that are no longer
+	present in the userbase).
+		-- Original by Silicon Creations.
+
+	The Bulletin Manager was written to implement features that a lot
+	of Sysops are looking for. In fact, it was developed while writing
+	and reading messages with requests.
+		-- Original by Silicon Creations.
+
+	Fortune Cookie uses an ASCII database (BSD UNIX-compatible) to
+	display a quote with an optional logoff after that. Simple and nice.
+	There are additional data files available.
+		-- Original by Silicon Creations.
+
+	The File List Generator creates listings of your file areas. You
+	can create your own header/footers - general and for the areas.
+	Supports multiple directories per file area. Speedy processing of
+	CD-ROM areas. Single-line listings available, can filter out
+	ProBoard's line characters (recognizes them as descriptions too).
+	Many options, controlled fully via UNIX-like command-line interface.
+		-- Original by Silicon Creations
+
+	The File Navigator lets you view/search/tag/scroll/etc. etc. file
+	groups and areas. A lot of functions. Once users see it, they just
+	love it. As with all Silicon Creations programs, visual appeal is
+	so important that this will be the first thing you'll notice.
+		-- Original by Silicon Creations.
+
+	The Key Navigator lets you implement keys from changing immediately
+	to the next or previous file/message area with or without regard
+	to the current group. Very nice, users like it. There are two
+	versions, old for ProBoard v2.0x and new, for ProBoard v2.1x
+		-- Original by Silicon Creations.
+
+	Minesweeper is an implementation of the highly addictive Windows(tm)
+	game. Three levels as well as one user-configurable. Beautiful.
+		-- Original by Silicon Creations.
+
+	Password Enforcer is modelled after AIX passwd, it will enforce change
+	of password on expiration, write warning messages, etc. Lets you
+	define the minimum number of alphanumerics and special symbols. The
+	maximum number of duplicates from old password or repeats. You can
+	become a real Cerberus if you want to.
+		-- Original by Silicon Creations.
+
+	PB2INET Message Handler eliminates hassles with writing InterNet
+	messages from ProBoard. You can do this using your favorite editor
+	and the program takes care of the proper addressing. Supports both
+	EXE and PEX external editors. Very easy to install.
+		-- Original by John Maddox.
+
+	Physical Graffiti is a graffiti wall (oneliner) for ProBoard. Users
+	can enter lines and choose from 18 color definitions which are sysop-
+	configurable. Name is optionally shown, as well as time and date the
+	line was written.
+		-- Original by Silicon Creations.
+
+	Who Called is a very configurable Last Callers lister. Can print one,
+	two or three lines statistices. Supports names and aliases. Can
+	export the data to ANSI file. Sort the listings with 4 different
+	criteria. Proper page breaks and nice colors. Multitude of options.
+	EXE version can run offline and PEX version to run within ProBoard.
+		-- Original by Silicon Creations.
+
+
+HOW DO I GET IT?
+	Wow, now with all those nice goodies, if there only was a way to
+	lay my hands on them... Well, you can. There are a couple of ways.
+
+	Look in the file SUPPORT for a list of support sites.
+
+	The official support BBS for Silicon Creations Software is Silicon
+	Creations at (915) 949-4798, 1:383/47.
+
+	The official ftp site for PB-GNU software is wl.iglou.com. The
+	uploads go to /members/pbftp/uploads and the files are in the
+	/members/pbftp. This is courtesy of John Maddox.
+
+HOW DO I JOIN?
+	If you are a programmer or a Sysop who wants to support PB-GNU, you
+	can join. No, there's no need to send money or mail (although both
+	would be nice, I prefer mail to notify me if you join, so I can
+	include you in all the documentation). However, you can join by
+	writing a program and releasing it as PB-GNU. To do that, read the
+	section on PB-GNU PROGRAMS that follows. If you are a Sysop, then
+	just use the programs if you like them, send cards to the programmers,
+	and say: PB-GNU Support Site on your BBS. Keep the files for down-
+	load, this makes them live. If you wish, you can contact the author
+	and see if you can make arrangements to get the latest versions of
+	their software.
+
+
+PB-GNU PROGRAM GUIDELINES
+	What makes a program PB-GNU? Ostensibly, it is the GNU General Public
+	License Version 2, under which all PB-GNU programs should be released.
+	The full text must be included with the program. Refer to the file
+	COPYING for more information.
+
+	Even though this is the single requirement, here are some suggestions
+	that all Silicon Creations releases follow:
+
+	Archive naming - packages are named in the form:
+
+		NAMExxAS.ZIP	if it contains source code
+		NAMExxAX.ZIP	if it contains the executables
+
+		Name is a four-character abbreviation of the program name. Care
+		should be taken to avoid duplicates. Note that NAME can go down
+		to three characters, in which case the version number will be
+		restricted to 3 (2 otherwise): these are the 'xx'. PKWare's
+		PKZIP (tm) is the preferred format. It is widely available and
+		PKZIP is very very fast. You can use whichever archiver you wish,
+		though. I used ARJ, but it's a lot slower (saves bytes though).
+
+		The ??????AX.ZIP file may contain the ??????AS.ZIP, if you will.
+		This is the standard way of distributing unless your source
+		code package is too big for that.
+
+	Documentation and User's Manuals:
+
+		No high-ASCII characters should be used in any of the text
+		files. Use tabs, set at 4 spaces.
+
+		The user manuals should have the same name as the executable
+		save for the extension, which should be MAN. The format is
+		closely related to the UNIX manpages. Look at the ones that
+		come with the Silicon Creations programs or call me and I will
+		send you the template that I use to make them.
+
+		A file called COPYING should be included. It will contain the
+		full unaltered text of the GNU General Public License Version 2.
+		Note that while the name is not important, the full License
+		MUST be included with your program to qualify as PB-GNU.
+
+		A file called README should be included. It will outline a quick
+		installation procedure and, if necessary, other quick notes. It
+		should not be long and the format must be unobtrusive. Refer to
+		the README files in Silicon Creations distribution packages.
+
+		A file called MANIFEST should be included. It will contain a
+		list of all the files in the archive, their sizes and modification
+		dates as well as brief descriptions for each. It should also
+		contain the 32-bit CRC and RSA Data Security, Inc. MD5 Message-
+		Digest for all executables. The latter can be calculated using
+		a utility called MDX which is available on Silicon Creations in
+		the Telecommunications Area.
+
+		A FILE_ID.DIZ should be included with a brief description of the
+		package. Please, don't use elaborate and wasteful pictures. High
+		ASCII codes tend to upset a lot of programs.
+
+		A file called SUPPORT should be included. It should list how
+		to contact the author, any support sites, etc. E-Mail address
+		is necessary because it is a good means of contact. Optionally,
+		you can provide voice/data/fax phone numbers, snail mail address,
+		Support Sites, or whatever you think is necessary.
+
+		If you are updating a program, you may optionally include a file
+		called NOTES which will outline the updates and new features.
+
+		Additional files, as necessary.
+
+	Dating of files:
+
+		All files in the archive should be stamped with the release
+		date and the time must encode the version. For example, for
+		program version 3.47, the time would be 03:47a. This makes
+		it really easy to identify program updates.
+
+	Source code:
+
+		All source code files should bear the appropriate banners as
+		per GNU General Public License Version 2. Refer to Silicon
+		Creations packages for examples.
+
+	You can download a copy of the PBGNUFDN.ZIP file which includes
+	sample files and templates you can use for the above. It is
+	available on Silicon Creations, both for D/L and FREQ (use the
+	full name for FREQ).
+
+	Since there are a lot of text files accompanying each package, it
+	is recommended that you either pack them in a separate ./DOC
+	directory off the main installation or in a separate (but included)
+	file. It may seem like an overkill at first, but consider people
+	who are getting one of your packages for the first time: all the
+	necessary information is at hand. And then consider people who are
+	getting all your packages, they know how to use them, where to look
+	for what they need.

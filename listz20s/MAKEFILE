@@ -1,0 +1,79 @@
+#
+# This file is part of Listerz v2.0 (VE)
+#
+# Copyright (C) 1995-1997 by Branislav L. Slantchev
+# A Product of Silicon Creations, Inc.
+#
+# This file is distributed under the terms and conditions of the GNU
+# General Public License. For more information, refer to the file
+# Copying.Doc which is included in the archive.
+#
+.AUTODEPEND
+
+CC      = bcc +LISTERZ.CFG
+TLINK   = tlink
+LIBPATH = E:\SCI\PBL\LIB
+INCPATH = E:\SCI\PBL\H
+PBSDK   = E:\C\LIB\PB_SDK.OBJ
+PBLIB	= $(LIBPATH)\PBL_PEX.LIB
+
+.cpp.obj:
+	$(CC) -c {$< }
+
+OBJS =  lsz_main.obj \
+		lsz_appl.obj \
+		lsz_area.obj \
+		lsz_list.obj \
+		lsz_macs.obj
+
+listerz.exe: listerz.cfg $(OBJS)
+	$(TLINK) /C/n/x/P @&&|
+$(PBSDK)+
+lsz_main.obj+
+lsz_appl.obj+
+lsz_area.obj+
+lsz_list.obj+
+lsz_macs.obj
+listerz.pex
+		# no map file
+$(PBLIB)+
+f_scopy.lib
+|
+
+lsz_main.obj: listerz.cfg lsz_main.cpp
+lsz_appl.obj: listerz.cfg lsz_appl.cpp
+lsz_area.obj: listerz.cfg lsz_area.cpp
+lsz_list.obj: listerz.cfg lsz_list.cpp
+lsz_macs.obj: listerz.cfg lsz_macs.cpp
+
+clean:
+	if exist *.obj del *.obj
+	if exist listerz.cfg del listerz.cfg
+
+listerz.cfg: makefile
+	copy &&|
+-ml
+-O
+-3
+-f-
+-v-
+-vi-
+-G
+-O
+-Og
+-Oe
+-Om
+-Ov
+-Ol
+-Ob
+-Op
+-Oi
+-Z
+-k-
+-I$(INCPATH)
+-L$(LIBPATH)
+-DNDEBUG
+-DPB_SDK
+-P
+| listerz.cfg
+

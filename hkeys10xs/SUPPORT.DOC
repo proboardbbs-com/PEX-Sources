@@ -1,0 +1,143 @@
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+                   Technical Support and Contact Notes
+
+          "Silicon Creations, Inc - Powers To Be Reckoned With"
+
+               Copyright (c) 1996 by Branislav L. Slantchev
+                       Last updated on Jun 17, 1996
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+INTRODUCTION
+===========================================================================
+	Before requesting support or contacting with problems, please be sure
+	to read and understand the manual. Most problems are often due to
+	incorrect data files and/or wrong command line parameters. Also, since
+	most of the programs are free, requests for new features and fixes will
+	be given low priority and work on them will be heavily dependent of
+	time availability.
+
+
+POINTS OF CONTACT
+===========================================================================
+	The following is a list of addresses in decreasing order of preference.
+
+	Mail:			Branislav L. Slantchev
+					c/o Silicon Creations Inc.
+					1814 S.Pierce Str #36
+					San Angelo, TX 76904, USA
+	Fido Netmail:	1:383/47 (Branislav Slantchev or the eccentric)
+	TGPBN       :   751:1000/200
+	WWW         :	http://www.webstar.net/sci (the official site)
+	FTP         :   ftp://logical.ao.net/sci (all recent files)
+	            :   ftp://pcmicro.com/4_authors/sci (all recent files)
+	Internet    :	sci@webstar.net
+	CompuServe  :   73023,262
+	Internet    :   branislav.slantchev@f47.n383.z1.fidonet.org
+	Internet    :   73023.262@compuserve.com
+	Voice       :   1-915-947-5327
+
+	All files can be found at the following places:
+
+	Silicon Creations, 1:383/47, (915) 949-4798 (VFC, V42b, 28800)
+	(freq 'SILICON' for a list of programs, 'CHECK' for checksums)
+
+
+SUPPORT SITES
+===========================================================================
+	This is a list of the official support/distribution sites for all SCi
+	software. Most of them have all the files and magic names for FREQ.
+
+	Castle Rock, (414) 830-1590, Appleton WI, Dan Richter
+	Columbia Basin BBS, (509) 766-2867, Moses Lake WA, Cal Baker
+	Fe-line, +44-181-471-6928, London UK, Sarah Pearson
+	Pen COM, (604) 493-0565, Penticton, BC, Scott Montle
+	The Danger Zone!, (904) 291-5055, Middleburg FL, David Aldridge
+	The Dead Zone, (513) 521-0705, Cincinnati OH, Michael Baker
+	The EIC Board, (601) 236-2505, University MS, Timothy Bryant
+	The Future Generation, (414) 739-8242, Appleton WI, Jason Verhagen
+	The Hy-it Express, (407) 295-0594, Orlando FL, John Creamer
+	Top's Diamond Mine, (817) 542-8783, Copperas Cove TX, Arthur Stark
+	Trucker's Inn BBS, (503) 362-7398, Salem OR, Michael Hannon
+	Pacific BBS, +44-01430-431145, Howden, England, Peter Hargroves
+	MegaByte BBS, +32-13-674345, Flanders, Belgium, Wim Jans
+
+	In addition, ProBoard-specific files can be found on the following
+	sites (most of them have additional links that you might want to visit):
+
+	ftp://logical.ao.net
+	-----------------------------------------------------------------------
+		This is the home place for James Padgett's utilities (Logical
+		Decisions Software). There is also a directory '/sci' which
+		has all recent Silicon Creations, Inc. releases.
+
+	ftp://pcmicro.com and http://pcmicro.com
+	-----------------------------------------------------------------------
+		This is Mike Ehlert's site. It has a very good RemoteAccess file
+		base and a fast growing ProBoard support (since he switched to
+		ProBoard). There is also a '/4_authors/sci' directory which has
+		all recent Silicon Creations, Inc. releases.
+
+	ftp://www.win.net/winnet/jamaddox
+	-----------------------------------------------------------------------
+		This is a general repository. Has a lot of files, but there is
+		no easy way to find anything unless you know what you are looking
+		for - everything is lumped in one directory. Courtesy of John
+		Maddox. Uploads go to incoming/ (didn't work last time I checked)
+
+	http://www.win-uk.net/~fe-line/
+	-----------------------------------------------------------------------
+		The official site for all Fe-line software releases. This is also
+		the UK registration site for ProBoard. An interesting feature of
+		this site is the "Author Direct" page for news from Philippe with
+		regards to ProBoard development. This is also the home of the big
+		ProBoard FAQ (Frequently Asked Questions).
+
+	http://www.dma.be/p/bewoner/jmj
+	-----------------------------------------------------------------------
+		The home site for all JMJ productions (most made by Ruben Provoost).
+		This is the place where you will find the best chatter TheMin, as
+		well as a lot of useful utilities (inluding the JMJLINE oneliner).
+
+	ftp://silverado.cyberstation.net
+	-----------------------------------------------------------------------
+		This is the ftp site used by TGPBN (The Global ProBoard Network) for
+		the InterNet file/echo bone. The directories that begin with 'pb'
+		is where you want to look. The two directories dedicated to Silicon
+		Creations releases are '/pbscibin' and '/pbscisrc'.
+
+
+CONTACT NOTES
+===========================================================================
+	Support message conferences are available at Silicon Creations BBS.
+	Note that there are dedicated sections for PB-Lib files/patches, etc.
+	Also, there are file sections with A LOT of ProBoard related files.
+
+	ProBoard-related problems are discussed in the PROBOARD Fidonet echo
+	which I monitor. You can post a PEX-related problem there. You can also
+	post messages to me in any of the TGPBN echo areas.
+
+	Please note that I am a full-time student and as such there may be a
+	delay in replying. I regret that, but there is nothing I can currently
+	do about it. Sorry.
+
+	All pex suggestions and bug reports can be sent by email or netmail,
+	whichever you prefer. I will answer in the manner the original message
+	was sent. Netmail may be an exception. I am known to make direct
+	overseas calls if the message has a high priority and I will do that,
+	as long as my resources permit it. However, I may reply via routed
+	netmail in case the reply is not urgent. In that case, allow a couple
+	of days for delivery. Also note that I do not like receiving InterNet
+	email at my CompuServe address. I may not reply to those messages
+	because I am charged for reading them (meaning, I may decide not to
+	read them). Only use this address if you are a CompuServe member (in
+	which case we're ok).
+
+	A note for voice calls.	Remember that there's a time difference and
+	of you are calling from Europe, make sure you are not trying to page
+	me or talk to me in the middle of the night. Actually, late afternoon
+	is the best time to call (this is in Central Standard Time). I do
+	accept voice calls for software support (as lots of people know by now)
+	but I really prefer email/netmail/echomail as it gives me an opportunity
+	to go over the problem thoroughly and (in case of echomail), benefit
+	more sysops with the reply.
+

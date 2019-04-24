@@ -1,0 +1,3 @@
+To compile, simply modify the makefile's INCLUDEPATH and LIBPATH.
+
+This is a Borland C++ -specific version.

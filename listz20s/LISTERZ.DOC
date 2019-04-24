@@ -1,0 +1,390 @@
+
+               ßÛÛ      ÛÛ  ÜÛß      Ü		Version 2.0 (VE)
+                ÛÛ     ÜÜÜ  ßßÛÛÜ   ÛÛ     ÜÜÜ  Ü ÜÜÜ  ÜÜÜÜÜ
+                ÛÛ   Ü  ÛÛ     ßÛÛ ßÛÛß  ÜÛÛ ÛÛ  ÛÛ ÛÛ ÛßÜÛß
+               ÜÛÛÜÜÛÛ  ÛÛ      ÛÛ  ÛÛ   ÛÛßßßß  ÛÛ    ÜÛß Ü
+                       ÜÛÛÜ ßÜÜÛß   ßÛÜß  ßÛÜÜß ÜÛÛ    ÛÜÜÛÛ
+
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+  ßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßß
+
+              Copyright (c) 1995-1997 Branislav L. Slantchev
+                   A product of Silicon Creations, Inc.
+                    Listerz v2.0 (The Visual Edition)
+
+
+          [Topic]                                      [Keyword]
+
+          Overview ................................... /OVERVIEW
+          Installation ............................... /INSTALL
+          Advanced Configuration ..................... /ADVANCED
+          Macros ..................................... /MACROS
+          Caveat Emptor .............................. /DISCLAIMER
+          Source Code ................................ /SOURCE
+          Packing Slip ............................... /PACKING
+          Registration ............................... /REGISTER
+          Getting in Touch ........................... /CONTACT
+          Greetings and Thank You's .................. /GREETINGS
+          Copyrights, Trademarks, Etc. ............... /TRADEMARKS
+
+
+  o v e r v i e w                                                   /OVERVIEW
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+  How many times you wished you had smaller file listings and listings
+  localized to certain areas so that users can download only what they
+  want instead of the huge AllFiles lists? How about letting the users
+  choose what areas they want to look at offline? Well, after the initial
+  discussion in the ProBoard Fido echo, and a push from Dennis Briggs
+  (dbriggs@ionet.net), Listerz has been born. It is an online filelist
+  generator with a twist. Users can select which areas they want to
+  include in the list, (optionally) compress the list and the download
+  the compressed file.
+
+  The advanced full-screen ANSi interface allows users to tag all areas,
+  untag all areas, select areas by group, and scroll in all directions. The
+  cursor keys are recognized as well as the numeric pad keys for some
+  terminal programs with buggy implementations.
+
+  When the user chooses which areas to include in the list, the listing
+  is built right away. Of course, the user gets entertained by various
+  bells and whistles until the somewhat time-consuming process is ended.
+  At this point, the user will be presented with a choice of compression
+  programs to mash the listing and further cut on the download time.
+
+  Listerz performs all necessary cleanup and it will never leave a mess
+  behind itself. Fancy animations and display sequences make its elegant
+  interface stand out even more. Full multinode support (no file name
+  collisions) plus optional support for both UserDoes and Doing style user
+  information files.
+
+  Here's a quick (by no means comprehensive rundown of features):
+
+      -	intelligent and 100% configurable user interface
+      - support for ANSi/Avatar/PCBoard/Wildcat! files formats
+      -	support for Zip, Rar, Arj, Lha, and Zoo compressors
+      -	advanced current progress display bars and reports
+      - listing generation can be prematurely aborted
+      - protocol selection activated only if necessary
+      - multitasker support (DesqView, Windows, Win95, OS/2)
+      - multinode compatible, with UserDoes and Doing support
+      - very fast listing generation runs like bat out of hell
+      - custom headers and footers (global and for each area)
+      - smart FILES.BBS handler, automatically recognizes formatting
+      - CD-ROM areas are processed without accessing the slow CD-ROM
+      - support for FA_<n>.CTL multiple directories per area in ProBoard
+      - for hard drive areas, file size and date are added
+      - descriptions are formatted properly and neatly (what a pain!)
+      - 14 macros with text justification options for the headers/footers
+      - really nice animations (only shown at higher baud rates)
+      - no copyright notices that you can't get rid off
+      - nice external menuing configuration program (yipee!)
+      - absolutely free!
+      - source code is also available
+
+  Wow! If this list is not enough to convince you that you have just obtained
+  a worthy program, simply install it and check for yourself. You will be
+  pleased, I assure you.
+
+
+  i n s t a l l a t i o n                                            /INSTALL
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+  The basic installation of Listerz is very simple. If you want to check it
+  out without further ado, follow these steps:
+
+      (  i) Copy LISTERZ.PEX and LISTERZ.CNF to your PEX directory
+
+      ( ii) Create a directory for the data files (e.g. C:\LISTERZ)
+
+      (iii) Unpack the DEFAULT.RAR file to that directory.
+
+      ( iv) Copy the LZSETUP.EXE to the same directory.
+
+      (  v) In ProBoard, add a menu item with the following data:
+
+               Function: 60
+               Data    : LISTERZ
+
+      ( vi) Run it (note: the sample setup assumes that the directory
+            with the setup files is named C:\LISTERZ). if you don't see
+            the nice ANSi background, you probably placed the files in
+            the wrong directory. See step (iii).
+
+  That's it. Was it simple or not? Now, the good news is that nothing in
+  Listerz is hard-coded and there are NO external slow and bulky INI text
+  files to worry about. The LZSETUP program takes care of everything. See
+  the section on Advanced Confguration for more information about customizing
+  your setup.
+
+
+  a d v a n c e d   c o n f i g u r a t i o n                       /ADVANCED
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+  Ok, now that you have seen how good Listerz looks, you might be thinking
+  that its color scheme or its underground looks do not fit your board. Well,
+  good news - you can change that. First of all, there is the LZSETUP config
+  program. To use it, you must have the PROBOARD environment set to point to
+  your ProBoard System directory as per the manual. By default, LZSETUP will
+  first try to locate the LISTERZ.CNF file in the ProBoard PEX directory
+  (where it should normally live), and then - in the directory it was fired
+  from. If it cannot find this file, it will alert you about this and then
+  proceed to create one with the default values (these values are optimized
+  for the sample screens that come with this distribution). Note that the
+  setup program will also auto-configure itself for all supported archivers.
+  If the compressor's executable is anywhere in your PATH statement, LZSETUP
+  will load its information and enable the archiver option. You can change
+  this later.
+
+  When you first start LZSETUP, you are presented with the main menu. All
+  items are self-explanatory (and there are hints on the status line). You
+  should be able to figure out most of the options. Of special interest are
+  the two screen layout control items. Here you can edit the position of
+  all textual output from the program. Use the arrow keys to move around the
+  windows, shift+arrow keys to resize them and tab/shift+tab - to switch
+  the currently active window. Again, hints are available on the status line.
+
+  You MUST modify the "System Directory" entry in the File Locations item.
+  This is the directory where all header, footer and screen files live. This
+  allows you to move Listerz anywhere and it will still be able to find all
+  the necessary files. All other entries in this dialog are simply names
+  for the files that should be used as headers/footers/screens. Refer to the
+  samples included with this distribution. If you don't want to use and of
+  these files, leave the field blank.
+
+  The "Colors and Options" menu lets you select all colors for Listerz to
+  use. The color selector dialog is the same as used in ProCFG, so you
+  should have no problems with it. Note that you can press Alt+B in this
+  dialog to toggle the blink attribute. You can also choose the character
+  used to display the tagged status of an area, the progress bar background
+  and foreground characters.
+
+  The "Useron Support" is useful for multinode systems which use UserDoes
+  or Doing for online status reporting. You can enable either or both of
+  the supported formats and also specify the text to write to the drop
+  files. The default setting is disabled.
+
+  The "Compression Programs" item deals with the setup for all supported
+  compressors. Reasonable defaults are provided for each of them. The
+  "Archiver Path" field should be used to specify the full path and name
+  of the compressor (e.g. C:\BIN\RAR.EXE). The "Options" field is used to
+  list all options that Listerz must pass to the archiver. If you do not
+  specify these correctly, the program will definitely misbehave! You can
+  refer to the samples provided with the default setup. The "Enabled"
+  field controls whether this format will be made available to the caller.
+  In order to use a compressor, this field must be set to 'Y'. Finally,
+  the "Swap" option tells Listerz whether to cause ProBoard to swap
+  itself out of memory before running the external program. It is strongly
+  recommended that you set this to 'Y'.
+
+  "Information" shows some interesting program info and statistics.
+
+
+  m a c r o s                                                         /MACROS
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+  You can use several macros in your headers and footers. Note that the text
+  in these files is copied verbatim and only the macros are replaced with
+  the relevant string values. You should be aware that different macros are
+  available in different places. I have separated them by the file in which
+  they can be used.
+
+  The macros are not case-sensitive and are specified between two '@'
+  characters. You can also use the formatting characters to the right of
+  the macro name and before the closing '@' symbol.
+
+      Global Macros
+      ----------------------------------------------------------------------
+      These macros can be used in all headers and footers:
+
+          DATE       - current system date (8 characters)
+          TIME       - current system time (8 characters)
+          PROGID     - program id (name and version number)
+
+      Allfiles Header
+      ----------------------------------------------------------------------
+      This header is used only once and is placed at the beginning of the
+      listing. You can only use the global macros here.
+
+      Allfiles Footer
+      ----------------------------------------------------------------------
+      This file is used only once and it is placed at the end of the whole
+      listing. This is the last thing in the file. You can use it to print
+      totals and board contact information. Here are the macros you can use:
+
+          TOTALFILES - total files found in all areas processed
+          TOTALSIZE  - total size of these files (in bytes)
+          TOTALSIZEK - total size of these files (in kilobytes)
+          TOTALFDLS  - total downloads for all areas processed
+          TOTALAREAS - total areas processed on this run
+
+      Area Header
+      ----------------------------------------------------------------------
+      This file is used for each area. It is placed before the area is really
+      processed. That is why there aren't many macros you can use here.
+
+          AREANUM    - the number of the area being processed
+          AREANAME   - the name of the area being processed
+
+      Area Footer
+      ----------------------------------------------------------------------
+	  This file is used at the end of each area. You can place area totals
+	  for some kind of local summary. Note that both macros from the area
+	  header can be used here too.
+
+	      AREAFILES  - number of files in this area
+	      AREASIZE   - size of all files in this area (bytes)
+	      AREASIZEK  - size of all files in this area (kilobytes)
+	      AREAFDLS   - total downloads for this area
+
+  Of course, you want to make nice looking screens with boxes, etc. Well,
+  you can since there is a way to tell the macro to occupy a specified
+  number of spaces. You can also justify the resulting text within the
+  bounds specified by the justifier characters. Here are the three characters
+  you can use to do that:
+
+          <          - left justification for the text replacement
+          >          - right justification for the text replacement
+          %          - center the text in the specified area
+
+  Note that the area width is calculated by summing the macro length itself,
+  the two bounding characters and the formatting characters. Refer to the
+  samples for some hands-on examples of this usage.
+
+  Here are several examples:
+
+      @AREAFILES>>>>>@  -  16 character-field with the number of files
+      @PROG_ID@         -  the program identification string, no formatting
+      @AREANAME<<<<<<@  -  area name, clipped in 16 chars, left justified
+      @DATE%%%%%%%%%%@  -  the current system date, centered in 16 blanks
+
+  As you can see, it is fairly simple. There is only one disadvantage,
+  however: you cannot specify lengths which are less than the macro text
+  string itself. This may be remedied in a next version of the program.
+
+
+  c a v e a t   e m p t o r                                       /DISCLAIMER
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+  Listerz (all executables, documentation, source, and sample files) are
+  Copyright (c) 1985-1997 Branislav L. Slantchev. A fine production of
+  Silicon Creations, Inc.
+
+  This program is free software; you can redistribute it and/or modify it
+  under the terms of the GNU General Public License as published by the Free
+  Software Foundation; either version 2 of the License, or any later version.
+
+  This program is distributed in the hope that it will be useful, but WITHOUT
+  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+  FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+  more details.
+
+  You should have received a copy of the GNU General Public License along
+  with this program (the COPYING.DOC file); if not, write to the Free
+  Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+
+
+  s o u r c e   c o d e                                               /SOURCE
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+  The complete C++ source code for Listerz is freely available. It is
+  released in a separate archive in order to conserve space and to avoid
+  burdening people with things they do not necessarily want. The name of the
+  source code package is formed as LISTZnnS.RAR where 'nn' is the revision
+  number. For example, for version 2.0, the file will be named LISTZ20S.RAR.
+  This source code package also includes the full sources for the LZSETUP
+  configuration program. You will need some additional things in order to
+  use this part of the code. The requirements are listed in the package.
+
+  Note that you will need PB-Lib v3.0 or later in order to compile the pex.
+
+  Since the source code uses PB-Lib exclusively, you can compile it to a
+  regular MS-DOS(tm) executable (this is exactly how it was initially
+  developed). The code has been tested with Borland C++ 3.1 and might not
+  (although it should) work with different compilers. A makefile is
+  provided for compiling the PEX version, and a project file for building
+  the regular standard executable.
+
+  The source code is subject to the terms and conditions outlined in the
+  file Copying.Doc distributed with it. It is basically free for any use
+  but it remains copyrighted by Branislav L. Slantchev.
+
+
+  p a c k i n g   s l i p                                            /PACKING
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+  The files in this archive has been compressed with RAR Version 2.0 with
+  a security envelope. The reason for this format is quite simple - it
+  compresses far better than ZIP (not as fast, though). When you unpack the
+  files, you should see the following message at startup:
+
+      Verifying authenticity information ... Ok
+
+  and then (when the process is complete, you should see the following):
+
+      Archive LISTZ20X.RAR
+      created at hh:mm:ss	dd mmm yyyy
+      by Silicon Creations, Inc.
+
+  If you don't see these messages, the archive has most likely been tampered
+  with and you should obtain a fresh copy. Note that I have had problems with
+  people modifying the archives before and that is why I strongly suggest
+  you take every precaution possible to prevent malicious "hackers" from
+  wreaking havoc on your computer. For all those "hackers", I can feel
+  nothing but pity... maybe some day they will learn how to do something on
+  their own... something creative. Until that time, we must protect ourselves.
+
+
+  r e g i s t r a t i o n                                           /REGISTER
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+  Of course, no registration is necessary for this program. It is being
+  distributed as freeware (meaning that I retain the copyright but you
+  are allowed to use Listerz without paying me any money). Go figure. Since
+  some people have expressed desire to contribute to Silicon Creations,
+  I hereby officially notify everyone that donations are accepted. You can
+  also request custom programs for a nominal fee. I reserve the right to
+  refuse anything sent to me or any request made for programming. Priority
+  will be given to projects that bring $$$. Ah, if you strongly feel like
+  contributing but you are not able to afford sending money, it's ok. Send
+  me a post card of your home town, I would really appreciate it. If you
+  can't afford that... have a beer on my behalf :-)
+
+
+  g e t t i n g   i n   t o u c h                                    /CONTACT
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+  Due to the lengthy nature of the topic, it has been moved to a separate
+  file. Read SUPPORT.DOC for details on how to get in touch with me. Also,
+  read the file FAQ.Doc for some questions people frequently ask me and
+  the answers to them (this file may or may not be present in the archive).
+
+
+  g r e e t i n g s                                                /GREETINGS
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+  Greetings go to the following: Philippe Leybaert (what a novel idea!),
+  Ruben Provoost (JMJ), Wim Jans, Olivier Debonne, Timothy Bryant,
+  Arthur Stark, Chuck King, Tiago Pascoal, and many others whose names
+  have slipped my mind while writing this document.
+
+  Of course, special thanks goes to the faithful support and distribution
+  sites all around the world. You have been great, guys and gals! We have
+  done it once again.
+
+
+  c o p y r i g h t s ,   t r a d e m a r k s ,    e t c .       /TRADEMARKS
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+         Listerz, lzSetup, PB-Lib ........... Branislav L. Slantchev
+         ProBoard ........................... Philippe Leybaert
+         UserDoes ........................... Eddie Van Loon
+         Doing .............................. Fe-line Software
+         Borland C++ ........................ Borland International
+
+  All other programs and products mentioned above are property of their
+  respective owners. Mentioning them in this manual does not constitute
+  endorsement. If you like them, good. If not, good. I don't care.
+
+  [eof]
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ

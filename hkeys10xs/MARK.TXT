@@ -1,0 +1,3 @@
+Copyright (c) 1996 Branislav L. Slantchev /gargoyle
+A Product of Silicon Creations, Inc. (PB-GNU Prj!)
+Re-distribution of this progrma is allowed under the terms and conditions set forth in the Copying.Doc file. Modification of this signature is not allowed! This program is free.

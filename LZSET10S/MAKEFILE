@@ -1,0 +1,122 @@
+#
+# This file is part of LZSETUP (Configuration program for Listerz)
+#
+# Copyright (c) 1997 Branislav L. Slantchev (gargoyle)
+# A fine product of Silicon Creations, Inc.
+#
+# This file is released under the terms and conditions of the GNU
+# General Public License Version 2. The full text of the license is
+# supplied in the Copying.Doc file included with this archive. This
+# free software comes with absolutely no warranty, as outlined in the
+# licensing text. You are not allowed to remove this copyright notice.
+#
+# Contact: Branislav L. Slantchev at 73023.262@compuserve.com
+#
+# Parameters:
+#
+#       make          <- create the LZSETUP.EXE program
+#       make clean	  <- delete the .OBJ and .CFG files
+#
+.AUTODEPEND
+
+#		*Translator Definitions*
+CC = bcc +LZSETUP.CFG
+TLINK = tlink
+LIBPATH = E:\C\BC\LIB;E:\SCI\PBL\LIB
+INCLUDEPATH = E:\C\BC\H;E:\SCI\PBL\H;E:\C\OPC\INC
+
+.cpp.obj:
+	$(CC) -c {$< }
+
+EXE_dependencies =  \
+	lzs_ask.obj  \
+	lzs_drop.obj \
+	lzs_info.obj \
+	lzs_main.obj \
+	lzs_menu.obj \
+	lzs_name.obj \
+	lzs_sdir.obj \
+	lzs_mbox.obj \
+	lzs_arch.obj \
+	lzs_conf.obj \
+	lzs_clrs.obj \
+	lzs_keys.obj \
+	lzs_char.obj \
+	lzs_scrn.obj
+
+#		*Explicit Rules*
+lzsetup.exe: lzsetup.cfg $(EXE_dependencies)
+	$(TLINK) /x/c/P-/L$(LIBPATH) @&&|
+c0l.obj+
+lzs_ask.obj+
+lzs_drop.obj+
+lzs_info.obj+
+lzs_main.obj+
+lzs_menu.obj+
+lzs_name.obj+
+lzs_sdir.obj+
+lzs_mbox.obj+
+lzs_arch.obj+
+lzs_conf.obj+
+lzs_clrs.obj+
+lzs_keys.obj+
+lzs_char.obj+
+lzs_scrn.obj
+lzsetup
+		# no map file
+\c\opc\base.lib+
+\c\opc\entry.lib+
+\c\opc\sp1.lib+
+\c\opc\sp2.lib+
+\c\opc\sp3.lib+
+\c\opc\sp4.lib+
+\c\opc\win.lib+
+\sci\pbl\lib\pbl_exe.lib+
+cl.lib
+|
+
+
+#		*Individual File Dependencies*
+lzs_ask.obj : lzsetup.cfg lzs_ask.cpp
+lzs_drop.obj: lzsetup.cfg lzs_drop.cpp
+lzs_info.obj: lzsetup.cfg lzs_info.cpp
+lzs_main.obj: lzsetup.cfg lzs_main.cpp
+lzs_menu.obj: lzsetup.cfg lzs_menu.cpp
+lzs_name.obj: lzsetup.cfg lzs_name.cpp
+lzs_sdir.obj: lzsetup.cfg lzs_sdir.cpp
+lzs_mbox.obj: lzsetup.cfg lzs_mbox.cpp
+lzs_arch.obj: lzsetup.cfg lzs_arch.cpp
+lzs_conf.obj: lzsetup.cfg lzs_conf.cpp
+lzs_clrs.obj: lzsetup.cfg lzs_clrs.cpp
+lzs_keys.obj: lzsetup.cfg lzs_keys.cpp
+lzs_char.obj: lzsetup.cfg lzs_char.cpp
+lzs_scrn.obj: lzsetup.cfg lzs_scrn.cpp
+
+clean:
+	if exist lzsetup.cfg del lzsetup.cfg
+	if exist *.obj del *.obj
+
+#		*Compiler Configuration File*
+lzsetup.cfg: makefile
+  copy &&|
+-ml
+-3
+-f-
+-v-
+-G
+-O
+-Og
+-Oe
+-Om
+-Ov
+-Ol
+-Ob
+-Op
+-Oi
+-Z
+-k-
+-I$(INCLUDEPATH)
+-L$(LIBPATH)
+-P
+| lzsetup.cfg
+

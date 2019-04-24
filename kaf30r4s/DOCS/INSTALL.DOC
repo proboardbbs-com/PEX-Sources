@@ -1,0 +1,92 @@
+This is the "install.doc" file which describes the standard directory
+structure that is expected by all Silicon Creations software packages
+distribution archives.
+
+The home directory
+------------------
+
+The directory structure is designed to be very intuitive and easily
+maintainable.  First, you need to decide upon a home directory.  This is
+the directory where all Silicon Creations packages will install themselves
+into. The default (suggested) path is \SCI on your hard drive (in my
+case, this is C:\SCI).  You are not limited to the root directory of
+your hard drve, but it is recommended that you use it so you can shorten
+your PATH statement.  Once you choose your home directory, create it and
+set the SILICON environment variable to point to it (I recommend you put
+it in your AUTOEXEC.BAT).  A lot of the programs will be using shared
+libraries and files, so if you observe the proper directory structure, all
+of the installations will run smoothly.
+
+Example:
+	mkdir C:\SCI
+	set SILICON=C:\SCI
+	(add the last line to your AUTOEXEC.BAT to ensure it is always set)
+
+Once you've done this, all the packages you receive must be installed with
+the following command line (assuming you chose the default home):
+
+	pkunzip -od <filename>.zip C:\SCI
+
+This will create the necessary directories for the <filename>.zip package
+and will install it into the Silicon Creations home directory.
+
+
+The directory tree
+------------------
+
+Assuming you chose C:\SCI as your home directory, here's what the
+directory tree underneath it will look like:
+
+SCI				home directory (you choose it)
+³
+ÃÄÄBIN			various programs necessary for all packages
+³
+ÃÄÄDOCS			miscellaneous documentation (the common files will be
+³				in the directory itself, and each package will have its
+³				specific documentation in a subdirectory here
+³
+ÃÄÄLIB			libraries needed to compile the source code
+³
+ÃÄÄPBLIB		PBLib source code distribution
+³
+ÃÄÄTMP			temporary directory for program builds
+³
+ÃÄÄSRC			source code directory
+³
+ÃÄÄEXAMPLES		various example programs
+³
+ÃÄÄETC			configuration files
+³
+ÀÄÄH			header files common to all Silicon Creations software
+
+
+Installing software packages
+----------------------------
+
+Every package you receive will be either binaries, source or both.  You
+can determine what it is by looking at the name which is formed as
+follows:  ccccnnnX.ZIP, where 'ccc' is four-character code representing
+the package (unique for each one), 'nnn' is the version number and 'X' is
+one of the following:  'S' - source code, 'X' - binaries, 'C' - both
+source and binaries, 'D' - documentation, 'U' - additional utilities, and
+'P' - something else (like data files).  Generally, you shouldn't care
+about these since each package will be designed to install itself properly
+into the home directory.
+
+To install, use the command (assuming you have C:\SCI as root):
+
+		pkunzip -od filename.zip C:\SCI
+
+
+Supported compilers
+-------------------
+
+* Borland C++ 3.1 (keyword: bc31)
+* Zortech C++ 3.0r2 (keyword: ztc3)
+* Symantec C++ 6.0 (keyword: sc6)
+* Microsoft C 6.0 (keyword: msc6)
+* DJGPP (GCC) 2.60 (keyword: gcc26)
+* Watcom C++ 10.0 (keyword: wc10)
+
+Some of the software may not support all of the above but it will clearly
+indicate so in that case.

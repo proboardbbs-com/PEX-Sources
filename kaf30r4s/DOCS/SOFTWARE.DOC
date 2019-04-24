@@ -1,0 +1,110 @@
+This is the "software.doc" file which outlines the programs released under
+the PB-GNU Project.  If you don't see your favorite one here, call me at
+the places listed in the "support.doc" file.
+
+List of programs and utilities as of November 20, 1995.
+
+	Binlog File Fixer...................BFIX10AX.ZIP and BFIX10AS.ZIP
+	Bulletin Manager....................BUL116AX.ZIP and BUL116AS.ZIP
+	ÓNTÓRZ..............................ENTR201X.ZIP and ENTR201S.ZIP
+	Fortune Cookie......................FORT20AX.ZIP and FORT20AS.ZIP
+	File List Generator.................FLS101AX.ZIP
+	File Navigator......................FNV200AX.ZIP and FNV200AS.ZIP
+	KaFKa (KaF Kompiler)................KAF30R4X.ZIP and KAF30R4S.ZIP
+	Key Navigator.......................KEYN11AX.ZIP
+	Minesweeper.........................MINE10AX.ZIP
+	Password Enforcer...................PASS10AX.ZIP
+	Physical Graffiti...................GRAF11AX.ZIP
+	Who Called..........................WHO123AX.ZIP
+	PB-Lib v0.02b1......................PBL02B1X.ZIP, PBL02B1D.ZIP
+	                                    PBL02B1S.ZIP
+    Silicon Creations MakeUtil..........SCMK001X.ZIP
+    Standard FILES.BBS to extended......S2EF10AX.ZIP
+    Check ProBoard Configuration........CHKP104X.ZIP
+
+Binlog File Fixer fixes the ProBoard's BINLOG.PB file. Currently, it
+removes all orphaned records (for users that are no longer present in the
+userbase).
+
+The Bulletin Manager was written to implement features that a lot of
+Sysopsare looking for.  In fact, it was developed while writing and
+reading messages with requests.  Very nice and configurable.
+
+ÓNTÓRZ displays random (or user-selceted) 'press enter' prompt from a KaF
+database (included).  Speed and location customizable.  This PEX is very
+useful for replacement of the internal ProBoard prompt, as well as an
+add-on for external programs that support it (TheMin 2.0 does).  The
+included database provides 100 state-of-the-art animated prompts.
+
+Fortune Cookie uses an ASCII database (BSD UNIX-compatible) to display a
+quote with an optional logoff after that. Simple and nice. There are
+additional data files available as FORT20D?.ZIP
+
+The File List Generator creates listings of your file areas.  You can
+createy our own header/footers - general and for the areas. Supports
+multiple directories per file area. Speedy processing of CD-ROM areas.
+Single-line listings available, can filter out ProBoard's line characters
+(recognizes them as descriptions too). Many options, controlled fully via
+UNIX-like command-line interface.
+
+The File Navigator lets you view/search/tag/scroll/etc. etc. file groups
+anda reas.  A lot of functions.  Once users see it, they just love it. As
+with all Silicon Creations programs, visual appeal is so important that
+this will be the first thing you'll notice.
+
+KaFKa is the maintenance utility for KaF files (used by programs such as
+ÓNTÓRZ and CÓLÓRiTY).  It has state-of-the-art fully menu-driven interface
+and is very easy to use.  This is the tool you need if you want to create
+your own animated prompts in KaF format that can be drop-in replacements
+for the defaults shipped with ÓNTÓRZ and other programs.  The included
+sample is the same as the one in ÓNTÓRZ and has 100 animated 'press enter'
+prompts. Must see to appreciate.
+
+The Key Navigator lets you implement keys from changing immediately to the
+next or previous file/message area with or without regard to the current
+group. Very nice, users like it.
+
+Minesweeper is an implementation of the highly addictive Windows(tm) game.
+Three levels as well as one user-configurable. Beautiful.
+
+Password Enforcer is modelled after AIX passwd, it will enforce change of
+password on expiration, write warning messages, etc. Lets you define the
+minimum number of alphanumerics and special symbols. The maximum number of
+duplicates from old password or repeats. You can become a real Cerberus
+if you want to.
+
+Physical Graffiti is a graffiti wall (oneliner) for ProBoard. Users can
+enter lines and choose from 18 color definitions which are sysop-
+configurable. Name is optionally shown, as well as time and date the line
+was written.
+
+Who Called is a very configurable Last Callers lister. Can print one, two
+or three lines statistices.  Supports names and aliases.  Can export the
+datato ANSI file.  Sort the listings with 4 different criteria. Proper
+page breaks and nice colors. Multitude of options. EXE version can run
+offline and PEX version to run within ProBoard.
+
+PB-Lib is an extensive library for C/C++ programmers. Apart from functions
+dealing specifically with ProBoard, it has a lot of other useful routines,
+such as drive, file manipulation, multitasker support, string library,
+CRC calculation, searching, sorting, etc. It comes with a couple of files,
+be sure to get the documentation first, so you'll know what you need.
+
+Std2Ext converts standard FILES.BBS listings to enhanced (extended or
+CD-ROM format).  The standard listing includes file, optional download
+counters and description.  The extended format adds file size and date to
+the listing.  Very useful if you need to generate some FILES.BBS for the
+ProBoard CD-ROM support and you only have the regular file.
+
+MakeUtil is a package of makefile utilities that are required if you want
+to compile the source code that comes with the distributions starting with
+PB-Lib, September 1995. It has DMAKE - the variant of the UNIX "make" that
+is used to do the maintenance, "cp", "rm" and "mv", which are equivalents
+of the UNIX commands with the same names, startup configuaration files for
+DMAKE, batch files to set the environment and documentation. If you are a
+programmer, you might want to take a look at these.
+
+ChkPRO is a utility that checks your ProBoard configuration records.  It
+will process the file and message bases, the binary log and the general
+configuration paths.  It can also repair some of the errors found.  This
+file supercedes BinFix completely.

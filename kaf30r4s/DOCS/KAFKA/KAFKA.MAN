@@ -1,0 +1,227 @@
+
+KaFKa							User's Manual					KaFKa
+					Last revision date: November 20, 1995
+
+NAME
+	KaFKa - compiler and maintenance utility for KaF files.
+
+SYNOPSIS
+	kafka
+
+DESCRIPTION
+	The Silicon Creations Compiler (KaFKa) is the utility that compiles and
+	maintains KaF files (Kompiled Animation Files).  These files are used
+	by programs such as ÓNTÓRZ to display animated prompts and CÓLÓRiTY to
+	implement cursor-driven animated menus. The KaF filebase consists of
+	two files with the same root name and different extensions: .KDT (the
+	data file) and .KIX (the index file).  Both files are binary and
+	should not be modified directly.  Instead, use the KaFKa utility.
+
+	To add an entry to the KaF, you need to prepare your animated prompt
+	in the so-called 'raw format'.  To do this, use an ANSi editor, like
+	TheDraw or AcidDraw.  Create your file with each animation sequence
+	placed on a separate line. Block save the file as a regular ANSi. Do
+	not select Clear Screen or Home Cursor options from the save menu
+	because these will distort the animation sequences.  You can choose
+	unlimited line length because KaFKa will handle it if the file was
+	saved in block mode (as it should).  Generally, KaFKa can handle lines
+	as long as 4096 characters (including the ANSi escape sequences), but
+	it's a good idea not to have long lines anyway.
+
+	KaFKa is fully menu-driven and should be quite easy to use.  When you
+	first start it, you will see an About box.  Press 'enter' to bypass it
+	and select 'Open KaF' from the System menu (you can press F3 for a
+	shortcut).  This will pop up a dialog box where you can select the
+	file name (with the .KDT) extension.  If you're creating a new KaF,
+	type in the new name here.  The program will then create the new file
+	or load the data from the existing one.
+
+	At the main KaF dialog, you will see the name of the KaF as the title
+	of the box, the KaF records list and various buttons.  The available
+	commands are summarized below:
+
+	New
+		Add a new record to the KaF, you must have prepared the raw ANSi
+		file as described earlier.  Clicking on the button (or pressing
+		the 'insert' key) will bring up a dialog box where you can select
+		your raw ANSi file.  After the program finishes importing it, it
+		will say so and pop up the Edit dialog box.  For more information
+		about how to proceed from here, refer to the Edit section.  Note
+		that this command will physically update the KaF, so there's no
+		need for the save command.  There will be need, however, to
+		compile the index (see the Compile index command).
+
+	Edit
+		If you double-click on an item in the record list or press 'enter'
+		when an item is highlighted, or click on the 'Edit' button, KaFKa
+		will bring up the editor dialog where you can adjust the
+		parameters for the particular entry in the list.  These parameters
+		are the name, the display speed and the maximum line length of the
+		sequence.
+
+			Name
+				The name of the sequence, used in the record list.  This
+				can be anything you want, up to 25 characters.
+
+			Speed
+				The delay between the animation steps, a value around 80
+				is a good one (measured in milliseconds).  A value of 0
+				entered here disables the animation (all utilities that
+				use KaF files will interpret it that way and consequently
+				display the record once without looping back to the
+				beginning).
+
+			Length
+				The maximum number of displayable characters that the
+				record occupies.  This is used by various KaF utilities to
+				center the text.  Since none of the KaF programs have a
+				way of knowing which characters you want visible, you need
+				to enter this yourself.  When you draw a picture/prompt in
+				the ANSi editor, just count the number of visible
+				characters on the longest line.  For examples, choose the
+				Extract function and when prompted, choose 'Yes' for
+				dumping the additional information.  A value of 0 here
+				means the the display utilities should assume that the
+				line is too long to be effectively centered.  Use this for
+				lines that you don't want centered or that occupy the
+				whole line (like some of the scrolling enter prompts).
+
+		Note that these changes are saved immediately to disk if you
+		choose 'Accept'.  There's no need to repack the file with the Save
+		command of compile the index.
+
+	Delete
+		Removes the highlighted entry from the KaF. You can also press the
+		'delete' key for the same effect.  Note that the entry is not
+		physically removed from the KaF file until you select 'Save'.  You
+		will be prompted if you want to delete the record from the list.
+
+	View
+		Displays the current entry in a way similar that a KaF interpreter
+		will.  By default, it will use line 12 for animation sequences and
+		line 1 for still records.  It will loop until you press a key (for
+		animations) and then wait for another keypress to return to KaFKa.
+		Important note:  you must have ANSI.SYS loaded for this command to
+		work.  KaFKa will try to autodetect the presence of the driver.
+		In some cases, it may fail to establish it reliably, at which
+		point, it will assume that the driver is not present and will
+		prompt you if you want to continue anyway.  You should answer
+		'yes' if you're sure you have ANSI.SYS (or compatible) driver
+		loaded or if the record does not contain ANSi sequences.
+
+	Export
+		Will export the current record to a file.  Selecting this command
+		will bring up a dialog box where you can choose the name you want
+		for the raw file.  By default, the name will be'dumpnnnn.ans',
+		where the 'nnnn' is the number of the current record.  After that,
+		the program will ask you if you want to save the extended
+		information to the file.  Selecting 'Yes' here will dump the name,
+		speed and maximum length parameters to the first line of the new
+		file.  Then, the record will be saved, line by line.  Records that
+		are saved without the extended information (plain ANSi files) are
+		directly importable back to KaFKa. For files saved with the
+		extended information enabled, you need to remove the fist line
+		before using them.
+
+	Save
+		Saves the current list.  This will physically rebuild the data
+		file and commit all your changes to disk.  Note that some of the
+		functions do this internally and there's no need for this command.
+		Generally, you have to use it only after you've used the Delete
+		function.
+
+	Compile Index
+		All KaF utilities expect to find an index for each .KDT file.
+		This index has the same file name, but with the '.KiX' extension
+		appended.  KaFKa itself does not use it and does not require it.
+		You can use this command to generate indices for any .KDT file.
+		The program will ask you on exiting if it determines that the index
+		needs to be rebuilt.  Select 'Yes' only if you intend to use the
+		data file with a KaF utility.
+
+	Close
+		Closes the current KaF. If you have made deletions, and have not
+		saved the changes since, it will prompt you to do that. It might
+		also ask you if you need the index rebuilt.
+
+	A couple of other commands are available from the System menu:
+
+		About
+			Brings up a message with program information and copyright
+			notice.  This will also display the KaFKa version number and
+			revision level.
+
+		Change dir
+			Brings up a dialog box where you can change your current
+			working directory.  Very useful if you will be adding a lot of
+			raw files from a different location (means you won't have to
+			go there for each and every file every time you select the New
+			command).
+
+		Shell to DOS (Alt-J shortcut)
+			Exits temporarily to the operating system.  This will also
+			swap the program out of memory and leave only 240 bytes
+			resident.  The swapper will use EMS/XMS/Disk, whichever is
+			applicable.
+
+		Bye, Bye (Alt-X shortcut)
+			Exits the program completely.
+
+OPTIONS
+	None.
+
+FILES
+	KAFKA.EXE - the KaF maintenance utility
+
+NOTE TO PROGRAMMERS
+	If you wish to program a utility that uses KaF files, refer to the
+	source code for ÓNTÓRZ for the correct way to access the data.  The
+	file format is described in the 'kaffile.doc' file.
+
+THE SCC COMPILER
+	This program replaces the earlier SCC compiler completely.  Note that
+	the file formats have changed too, so CAF files created with SCC are
+	not compatible with KaFKa. You can export your CAF files with SCC and
+	then import them into KaFKa. Sorry for the inconvenience, but the
+	advantages of the menu-driven interface should be obvious, as well as
+	the extended information saved to KaF files that was not available in
+	the earlier CAFs.
+
+IDENTIFICATION
+	Author: Branislav L. Slantchev
+	Revision Number: 3.0r4
+	Release Date: November 19, 1995
+	Copyright (C) 1995 by Branislav L. Slantchev
+
+LEGAL
+	KaFKa was created using with the following products:
+
+	Borland C++ 3.1, TLINK 5.22b and Turbo Vision 1.03
+	Copyright (C) by Borland International.
+
+	SPAWNO 4.13 Disk/XMS/EMS/INT15 spawn() replacement
+	Copyright (C) by Ralf Brown
+
+	PB-Lib C/C++ Library v0.02·1
+	Copyright (C) 1995 by Branislav L. Slantchev
+
+	KaFKa (all executables, source and documentation files)
+	Copyright (C) 1995 by Branislav L. Slantchev.
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+
+	If you find this program useful, drop me a post card at the mail
+	address (see file SUPPORT.DOC). I will really appreciate that.
+

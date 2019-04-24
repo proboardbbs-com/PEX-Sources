@@ -1,0 +1,13 @@
+
+Contents of KEYN20AS.ZIP
+
+copying             18,363 07-30-95   2:00a GNU General Public License
+file_id  diz           166 07-30-95   2:00a BBS description file
+getopt   c           2,578 07-30-95   2:00a Command-line retrieval
+getopt   h             525 07-30-95   2:00a header for above
+keynav   c           4,221 07-30-95   2:00a Main source file
+makefile             1,185 07-30-95   2:00a Borland C++ makefile
+manifest               674 07-30-95   2:00a this file
+pbgnu               12,639 07-30-95   2:00a PB-GNU InfoPak
+readme                 111 07-30-95   2:00a Compilation instructions
+support              1,993 07-30-95   2:00a technical support

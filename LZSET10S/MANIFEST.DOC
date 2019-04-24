@@ -1,0 +1,29 @@
+This is a list of all files included in the archive. If you are missing
+any of those, please obtain a fresh copy of the distribution file.
+
+	COPYING.DOC      Source Code License (read this first!)
+	FILE_ID.DIZ      BBS distribution information file
+	LZSETUP.PRJ      Borland C++ 3.1 project file
+	LZS_ARCH.CPP     Archive setup processing functions
+	LZS_ASK.CPP      Generic Y/N dialog box implementation
+	LZS_CHAR.CPP     Character table selector (from MakeMenu)
+	LZS_CLRS.CPP     Color selector ala ProBoard
+	LZS_CMDS.H       Command definitions
+	LZS_CONF.CPP     Default configuration (load and save routines)
+	LZS_DATA.OPL     MakeMenu and MakeScrn library data file
+	LZS_DROP.CPP     Useron setup processing functions
+	LZS_INFO.CPP     Program information dialog
+	LZS_KEYS.CPP     Command processor setup
+	LZS_MAIN.CPP     Color definitions and main() routine
+	LZS_MBOX.CPP     Generic message box implementation
+	LZS_MENU.CPP     Menu definitions and setup
+	LZS_NAME.CPP     Generic file name prompting dialog box
+	LZS_SCRN.CPP     Screen layout processing module
+	LZS_SDIR.CPP     System directories setup functions
+	LZS_VERS.H       Program version and copyright information
+	MAKEFILE         Borland C++ specific makefile
+	MANIFEST.DOC     This file
+	README.DOC       Source code notes
+	SUPPORT.DOC      Technical support and contact information
+
+Please, refer to the README.DOC file for some notes on the source code.

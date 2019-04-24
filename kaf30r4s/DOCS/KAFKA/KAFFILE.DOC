@@ -1,0 +1,167 @@
+This is the 'kaffile.doc' file for the KaFKa utility. This file provides a
+brief description of the KaF file formats and brief notes about using it.
+
+General
+-------
+The KaF consists of two files that have the same root name, but different
+extensions.  The data file 'filename.KDT' has the actual data for all the
+records and the index file 'filename.KiX' has the offsets of each data
+record in the '.KDT' file.
+
+The KDT File
+------------
+	The .KDT data file has the following header:
+
+				struct KafDataFile{
+					char  name[80];
+				    char  idString[10];
+				    short numRecs;
+				    char  __rsrvd[58];
+				};
+
+	Note that neither 'name' nor 'idString' are ASCIIZ (i.e. regular C
+	nul-terminated strings).  They are not intended for loading and
+	displaying in applications directly.  Rather, the first one is used if
+	the user decided to 'type' the data file from the command prompt.
+	That way, they will get the name.  See the 'kaffile.c' for an example
+	how to initialize the strings to do that (note that actually 'name' is
+	an ASCIIZ string in this case, but you will have to take into account
+	the EOF character at the end, before the nul-terminator).  The name
+	string can be anything you want.
+
+	'idString' is a constant defined as "SCi-DaT" and _must_ be that.  All
+	utilities that use the KaK (and KaFKa itself) will check for this
+	string.  This is how the programs determine if the file has a valid
+	header.
+
+	'numRecs' is the number of records in the file, 0 if none.
+
+	After you read in the file header, make sure it has a valid KaF
+	signature (the 'idString') and determine the number of records to
+	read.  Each record is variable length with a fixed length header,
+	which is defined as follows:
+
+				struct KafEntryData{
+					char   name[26];
+				    ushort dataSize;
+				    short  numLines;
+				    ushort speed;
+				    short  maxChars;
+				    char   __rsrvd[6];
+				};
+
+	The 'name' is a C string (nul-terminated) with the user-defined name
+	of the sequence. This can be anything you want.
+
+	'dataSize' is the length (in bytes) of the record, not including the
+	size of the header (used for skipping quickly over records).
+
+	'numLines' is the number of entries that the record contains.  The KaF
+	treats all lines as separate entries in the record, hence the name.
+
+	'speed' is an integer which defines the default animation speed for
+	the record (this is the delay between the display of each line of
+	the animation).  If this field is 0, the animation is assumed to be
+	static (no animation) and the entries (lines) are displayed at the
+	fastest possible speed and only once (the animation will loop to the
+	beginning).  This is the prescribed behavior of the KaF utilities, but
+	may vary from one utility to another.
+
+	'maxChars' is the maximum number of displayable characters that the
+	entries reach.  Thus, if you have a 20-line record and line 5, for
+	example, is the longest one with 35 characters, then you will enter 35
+	in this field.  The length _does not_ include the ANSi escape
+	sequences, if any.  This field is used by KaF utilities to center the
+	display line if necessary.
+
+	This local header is then followed by a 'numLines' entries that have
+	the following structure:
+
+					ushort lineLength;
+					char   line[lineLength];
+
+	You will need to read in the length byte.  This is the count of
+	characters you need to read immediately following it (including the
+	nul-terminator).  The lines themselves are all C-strings with the
+	nul-terminator saved in the file.
+
+
+The KiX File
+------------
+	The KiX file uses the same header as the .KDT, the only difference
+	being the value of the 'idString' which is "SCi-iDX".  For more
+	information about the various fields, see the notes about the .KDT
+	file header.
+
+	The rest of the .KiX file consists simply of offsets into the .KDT
+	file.  For each record in the .KDT file, there is a corresponding
+	record in the .KiX, which is as follows:
+
+					struct KixEntry{
+						long dataOffset;
+					};
+
+	This offset is the number of bytes from the beginning of the .KDT file
+	of the particular record.  For example, ÓNTÓRZ generates a random
+	number less than the 'numRecs' field in the header and then seeks to
+	that record and reads in the offset for the actual data in the .KDT
+	file. Then, it simply opens the .KDT and seeks to that record.
+
+	Note while the .KiX is part of the KaF specifications, the KaFKa
+	utility will not generate one without user intervention.  This is
+	actually a good idea since it eliminates the need to rebuild it each
+	time changes are made to the KaF data.  Note however, that all KaF
+	utilities (with the exception of KaFKa) require the presence of a
+	updated .KiX file.
+
+Usage Notes
+-----------
+	Here's a quick and dirty example of how to use the KaF in C++:
+
+	#include <stdio.h>
+	#include <string.h>
+	#include "kaffile.h"  /* for the structure definitions */
+
+	int main(void){
+		FILE         *fp;
+		KafDataFile   dataHeader;
+		KafIdxFile    indexHeader;
+		KafEntryData  localHeader;
+		short         recNum;
+		long          anOffset;
+
+		if( !(fp = fopen("enterz.kix", "rb")) ) return 1;
+		fread(&indexHeader, sizeof(indexHeader), 1, fp);
+		if( memcmp(indexHeader.idString, "SCi-iDX", 7) ||
+			!indexHeader.numRecs )
+		{
+			fclose(fp);  // not a valid index file
+			return 1;
+		}
+
+		recNum = indexHeader.numRecs / 2;            // get middle record
+		fseek(fp, recNum * sizeof(long), SEEK_CUR);  // find the record
+		fread(&anOffset, sizeof(long), 1, fp);       // get the offset
+		fclose(fp);                                  // done with file
+
+		if( !(fp = fopen("enterz.kdt", "rb")) ) return 1;
+
+		// you can verify the data file here, just as we previously
+		// verified the index, but we are skipping this for brevity
+
+		fseek(fp, anOffset, SEEK_SET);                   // find the record
+		fread(&localHeader, sizeof(localHeader), 1, fp); // read it in
+
+		// show all the lines once
+		for( short i = 0; i < localHeader.numLines; ++i ){
+			short slen;
+
+			fread(&slen, sizeof(short), 1, fp);
+			fread(buf, sizeof(char), slen, fp);
+			puts(buf);
+			if( localHeader.speed ) delay(localHeader.speed);
+		}
+
+		fclose(fp);  // close the file
+		return 0;
+	}

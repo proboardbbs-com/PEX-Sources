@@ -1,0 +1,13 @@
+hKeys v1.00 - special hotkeys for menus
+---------------------------------------
+hKeys lets you add special items to any
+ProBoard menu which will respond to the
+Return and Escape hotkeys. Not a PEX or
+TSR.  Simply appends records to current
+menu files. This is the full C source
+only!
+---------------------------------------
+ú        Copyright (c) 1996 by        ú
+ú  Branislav L. Slantchev  /gargoyle  ú
+ú  Silicon Creations, Inc. (PB-GNU!)  ú
+---------------------------------------
