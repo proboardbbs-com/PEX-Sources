@@ -1,0 +1,178 @@
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+                                ProTag II
+
+                               Version 1.0
+
+          A PowerPEX Developed by Gregory Gulick and Gil Gulick
+
+                       Written by Gregory Gulick
+                       Enhanced By Tiago Pascoal
+
+                  Copyright 1994 - All Rights Reserved
+
+                        Documented by Gil Gulick
+
+
+
+Note: All of the enhancements i made, will have a | in the beggining of the
+line.
+
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+°°°°°°°°°°±±±±±±±±±±²²²²²²²²²²ÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛ²²²²²²²²²²±±±±±±±±±±°°°°°°°°°
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+                                 Description
+                                 ÄÄÄÄÄÄÄÄÄÄÄ
+
+ProTag is a PEX for ProBoard that allows users to add taglines to messages
+entered using a full-screen editor.  It allows the sysop to add or
+delete taglines from the database, and allows up to 30,000 taglines to
+be stored in the master tagline database.  In order to maintain speed,
+ProTag uses a master tag file, which contains your entire database of
+taglines, and a smaller database of taglines that is used by the program
+while the user is online.  A program is included that will randomly pick
+taglines from the master tagline database, and copy them to the online
+database.
+
+                                  Guarantees
+                                  ÄÄÄÄÄÄÄÄÄÄ
+
+The software and other materials in this archive are distributed "AS IS"
+without warrenty of any kind.  We do not guarantee that this program will
+actually work.  The author or any agent of the author is not liable for
+any direct or indirect damage caused as a result of using this program.
+
+
+                                Requirements
+                                ÄÄÄÄÄÄÄÄÄÄÄÄ
+
+-ProBoard 2.0 or higher
+-Full screen editor such as GEdit, Pedit, IceEdit, or The Edit
+
+
+                                 How it works
+                                 ÄÄÄÄÄÄÄÄÄÄÄÄ
+
+ProTag runs after a user enters a message using a full-screen editor.  The
+user then chooses a tagline which is placed at the end of the message.
+
+During your nightly maintenance event, PTMAINT.EXE will randomly extract
+a sysop defined amount of taglines from a file called MASTER.TAG to a
+file called PROTAG.TAG.  This allows you to have a VERY LARGE database
+of taglines, but still maintain speed while a user is online.
+
+
+                                 Installation
+                                 ÄÄÄÄÄÄÄÄÄÄÄÄ
+
+-Copy FSED.PEX, PTMAINT.EXE, and MASTER.TAG to your PEX directory.
+
+-Run PTMAINT followed by the number of taglines you would like in your
+ online database.  We reccommend a number between 250 and 500.
+
+-You can optionally replace the header in the line that appears before
+ tagline.  To do this, place your own header in the file PROTAG.CFG.
+
+-GEdit requires additional command line parameters in PROCFG.  Here's
+ what our command line looks like:
+
+   *E *SGEDIT.EXE -S3200 *P *B.
+
+ If you DO NOT have the *P and *B on the command line, GEdit WILL NOT
+ work properly with ProTag.  ProTag has been found to work with Pedit,
+ and IceEdit without modifing the command line.
+
+| To use a PEX as a full screen editor, you just have to follow the PEX
+| author instructions.
+
+                             Using PTMAINT
+                             ÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+Large tagline files may take an extensive amount of time to search for
+random taglines.  One solution to this is to use binary files rather
+than text files, however, this does not allow the tagline file to be
+easily edited by the sysop.  So, we decided to stay with the text files
+and create PTMAINT.
+
+PTMAINT will search a master tagline database called MASTER.TAG and
+randomly copy a sysop defined number of taglines, to the online database
+called PROTAG.TAG.  To run PTMAINT simply type PTMAINT followed by the
+number of taglines you would like in the online database.  We reccommend
+a number between 250 and 500.
+
+Running PTMAINT during your nightly maintenance event is necessary
+because ProTag does not randomly pick each tagline while the user is
+online.  It simply picks a random starting point, and shows 15 taglines
+sequentially from there.  By using PTMAINT nightly, the tagline search
+will appear to be completely random.
+
+PTMAINT also allows you to easily remove taglines containing certain
+words from the database.  To do this, type PTMAINT /D followed by a
+word.  All taglines containing that word will be removed from the
+database.  For example, PTMAINT /D IDIOT would remove all taglines with
+the word idiot in them.
+
+
+                                Taglines
+                                ÄÄÄÄÄÄÄÄ
+
+The included tagline database contains about 1,100 taglines.  Another
+tagline database containing over 10,000 taglines is available from The
+Power Supply.  You can freq TAGLINES from 1:377/64, or download it
+online from the PowerPEX support area.
+
+| PowerPEX have been discontinued. By it's authors.
+
+                              Legal Stuff
+                              ÄÄÄÄÄÄÄÄÄÄÄ
+                               
+  -ProTag is FreeWare.  There is no charge for using this program
+
+  -ProTag is copyrighted material of Gregory Gulick.
+
+  -ProBoard is copyrighted material fo Philippe Leybaert.
+
+  -GEdit is copyrighted material of The Developers Group
+
+  -IceEdit is copyrighted material of Jeremy Landvoight.
+
+  -Pedit is copyrighted material of James Padgett.
+
+| -The Edit is copyrighted material of Alain Schellinck
+
+                                 Registration
+                                 ÄÄÄÄÄÄÄÄÄÄÄÄ
+
+Now the famous part of all docs that SysOps just LOVE to pieces!
+REGISTRATION!  Well, good news!  It's free!  We enjoy programming and we
+LOVE ProBoard.  If you do decide to use this program, it would be nice
+if you would send us a letter on our system telling us what you think
+(comments, suggestions, etc.).  This is the way we know which of our
+programs I should continue to support.  If we don't hear from you, we
+will assume that no one is using this program and that we should
+discontinue support for it.
+
+Furthermore, we encourage other programmers to write FreeWare PEXes as
+we have. ProBoard isn't a widely used BBS system, and the more FreeWare
+utilities, the better for ProBoard!
+
+
+                                   Support
+                                   ÄÄÄÄÄÄÄ
+
+| Support is available in the Proboard International Echo (fidonet)
+| (also linked to PB-NET)
+
+| You can also write to me at:
+|                                     l41484@alfa.ist.utl.pt
+|                                      246:6101/9902@PB-NET
+
+| Source Code has been included in the file. Except source code for PTMAINT
+| since i don't have it.
+
+
+
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+°°°°°°°°°°±±±±±±±±±±²²²²²²²²²²ÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛ²²²²²²²²²²±±±±±±±±±±°°°°°°°°°
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ

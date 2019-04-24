@@ -1,0 +1,79 @@
+.AUTODEPEND
+
+#		*Translator Definitions*
+CC = bcc +MAILX.CFG
+TLINK = tlink
+LIBPATH = E:\SCI\PBL\LIB
+INCLUDEPATH = E:\SCI\PBL\H
+
+
+.cpp.obj:
+  $(CC) -c {$< }
+
+
+EXE_dependencies =  \
+ mx_main.obj \
+ mx_area.obj
+
+#		*Explicit Rules*
+mailx.exe: mailx.cfg $(EXE_dependencies)
+  $(TLINK) /C/n/x/c/P-/L$(LIBPATH) @&&|
+ \c\lib\pb_sdk.obj+
+mx_main.obj+
+mx_area.obj
+mailx.pex
+		# no map file
+\sci\pbl\lib\pbl_pex.lib
+|
+
+
+#		*Individual File Dependencies*
+mx_main.obj: mailx.cfg mx_main.cpp
+mx_area.obj: mailx.cfg mx_area.cpp
+
+clean:
+	@if exist *.obj del *.obj
+	@if exist mailx.cfg del mailx.cfg
+
+#		*Compiler Configuration File*
+mailx.cfg: makefile
+  copy &&|
+-ml
+-3
+-f-
+-v
+-G
+-O
+-Og
+-Oe
+-Om
+-Ov
+-Ol
+-Ob
+-Op
+-Oi
+-Z
+-k-
+-vi-
+-wbbf
+-wpin
+-wamb
+-wamp
+-wasm
+-wpro
+-wcln
+-wdef
+-wsig
+-wnod
+-wstv
+-wucp
+-wuse
+-weas
+-wpre
+-I$(INCLUDEPATH)
+-L$(LIBPATH)
+-DPB_SDK
+-P
+| mailx.cfg
+
+

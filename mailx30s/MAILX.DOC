@@ -1,0 +1,382 @@
+                                                ___                   ;
+                                           ___-~''~~~~~------      ; /,
+                                         /         __"~~~~       ;;;;,
+                                        (    -,~  \\ ~~~  _    ;/;;,  ,,,
+                                         \|~---,  \        ``;/; _,'''~
+                                               .`  ;  `;';\|/  /,___--~~~--_
+  Copyright 1995-1997 Branislav L. Slantchev   ;   ; ;,;_~-     :/;~'''-
+  A Production of Silicon Creations, Inc.     ;   ; `;;'~     :/   |';`~
+  All Rights Reserved.                       ;    : ;,      :/     ;;;'
+                                             :     `'            _;;;;'
+                                              `_          `\______;;'
+                                                ~-____,,   ;,```
+   _____,   ___,    ____,  __        _   __,    _---' -''`.. ,`,
+  (-| | |  (-|_\_, (-|    (-|       (-\_/      '-/__)--'   ``,_;,
+   _| | |_, _|  )   _|__,  _|__, --  _/ \_,                _,  _-
+  (        (       (      (         (       Version 3.0a (,~_)
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+  ßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßß
+
+
+
+          [Topic]                                      [Keyword]
+
+          Overview ................................... /OVERVIEW
+          Installation ............................... /INSTALL
+          Command Line Options ....................... /OPTIONS
+          MAILX.INI Reference ........................ /MAILX
+          Usage and Sample ........................... /USAGE
+          Caveat Emptor .............................. /DISCLAIMER
+          Source Code ................................ /SOURCE
+          Packing Slip ............................... /PACKING
+          Registration ............................... /REGISTER
+          Getting in Touch ........................... /CONTACT
+          Greetings and Thank You's .................. /GREETINGS
+          Copyrights, Trademarks, Etc. ............... /TRADEMARKS
+
+
+  o v e r v i e w                                                   /OVERVIEW
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+  This is yet another quality product of Silicon Creations, Inc. and a nice
+  addition to your collection of ProBoard pexen. If you are not running the
+  ProBoard BBS package, this program will not be useful to you, so you should
+  probably discontiue wasting your time with this document. On the other
+  hand, if you are a ProBoard sysop, read on.
+
+  mail-x is the new incarnation of the popular Mail-X program. It offers
+  most of the features of the previous versions, but with added flexibility.
+  To summarize, the new revision was aimed strictly at visual appeal. There
+  are virtually no hard-coded colors or layouts, everything can be configured
+  with the MAILX.INI setup file. The program also uses a free-form background
+  file which can be drawn in any software which supports text mode graphics.
+
+  So, what is mail-x? It is a hybrid program which will enable your users to
+  select the areas they want included in their scans for new mail, as well
+  as the combined board processing. This pex completely replaces the built-in
+  ProBoard functions. There is a very annoying feature of the BBS which sets
+  all areas to ON for new mail scans when a new user logs on. Most callers
+  are unaware of that and wonder why the scans take so long to complete. This
+  program lets the callers control which areas will be checked for new mail.
+  As an additional bonus, the Sysop can define forced areas which will be
+  always set to ON regardless of the preferences of the users. This is done
+  in order to make it easier for Sysops to ensure that certain areas will be
+  checked for mail (like system announcement areas, for example). There is
+  no such feature in ProBoard itself.
+
+  The second mode of operation is more or less similar to the first one
+  except users can manipulate the combined boards. You can setup mail-x to
+  operate interactively, in which case the caller is presented with a full
+  screen multi-colored selection menu. The program is very intuitive and
+  easy to use, so there should be no confusion. In the transparent mode,
+  mail-x lets you set or reset globally the areas. You can elect to set all
+  boards to on or off, or simply enable the areas defined as forced.
+
+  mail-x fully supports UserDoes and Doing for multiline systems. Also,
+  if the caller does not have ANSI/AVATAR capabilities, mail-x will
+  automatically run the appropriate internal ProBoard routines!
+
+
+  i n s t a l l a t i o n                                            /INSTALL
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+  Copy MAILX.PEX, MAILX.INI and MAILX.ANS to your PEX directory. Actually,
+  the .ANS file (which is the background screen) does not have to go there.
+  You can place it anywhere on your system and name it anything you want,
+  just make sure you update the DisplayFile field in the MAILX.INI file so
+  that the program can find it.
+
+  The second step is to edit your menu setup. There are two ways in which
+  you can install mail-x. On of them is to use the TOP menu with the
+  transparent mode if you want to force areas on or off. You would simply
+  use Function 60 (Execute SDK File) and the data will be on of the
+  following lines (note the explanations or each one of them):
+
+            MAILX /G ON        ; this forces all areas to ON
+            MAILX /G OFF       ; this forces all areas to OFF
+            MAILX /G FORCED    ; turn on all areas defined as forced
+            MAILX /C /G ON     ; turn on all combined boards
+            MAILX /C /G OFF    ; turn off all combined boards
+            MAILX /C /G FORCED ; turn on all forced combined areas (??)
+
+  The last three command lines are not very useful, but some people find
+  them necessary.
+
+  The other way to install mail-x (and this is the recommended setup), is
+  to have it as a separate menu item. The data line should be 'mailx' without
+  any parameters. This will launch mail-x in its interactive full-screen
+  mode. Note that your callers have to have either ANSI or AVATAR terminal
+  emulation enabled. If mail-x detects a caller with an ASCII terminal, it
+  will note this in your PROBOARD.LOG file and will then ProBoard's internal
+  selector function (depending on the mode requested). This way you don't
+  have to worry about ASCII users not getting what they need. Note that this
+  only applies to the interactive mode. Terminal emulation does not matter
+  for the transparent operation.
+
+  Of course, only the areas to which the user has read access will be shown
+  in the program. Also note that only the first 1,000 areas are available
+  for use. This is a limitation of ProBoard which despite supporting 10,000
+  areas, can only store the information for the first 1,000.
+
+  If, for some strange reason, mail-x does not seem to work and simply
+  exits when run, check your PROBOARD.LOG file for possible errors. All
+  error conditions will be logged there.
+
+
+  c o m m a n d   l i n e   o p t i o n s                            /OPTIONS
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+  If you want to use mail-x in its most common way, there are no command-line
+  options to worry about, except possibly for one (/C). Note that the options
+  are not case sensitive, and can be preceded by a dash ('-') or a forward
+  slash ('/'). You should separate options with one or more blanks, but
+  there should be no whitespace between the option switch and the letter.
+
+      /C
+          Combined boards mode of operation. By default, mail-x works on
+          the new mail scan areas. This option is used to force mail-x to
+          operate as a replacement for function 28.
+
+      /G [ON|OFF|FORCED]
+          Global mode. This turns off the interactive features and causes
+          mail-x to run transparently. The user will not be notified of any
+          action that takes place. You can use only on of the three option
+          parameters:
+
+              ON
+                  Turn all areas on in the user record
+
+              OFF
+                  Turn all areas off in the user record (including forced)
+
+              FORCED
+                  Turn on all areas marked as forced in the MAILX.INI file
+
+      /D [USERDOES|DOING]
+          Drop file. You can choose what kind of information file should
+          mail-x use. This feature is useful for multinode systems where
+          there exist programs which report the status of other nodes. You
+          can choose the format of drop file depending on the program you
+          have set up on your system:
+
+              USERDOES
+                 UserDoes (DqP, Eddie Van Loon's program). This option
+                 creates a UserDoes.<node> file with a brief information
+                 about what the user is currently up to.
+
+              DOING
+                 Creates a drop file compatible with Fe-line's Doing
+                 program. If the file already exists, the proper record
+                 will be updated.
+
+          By default, mail-x does not create any information drop files.
+
+
+  m a i l x . i n i   r e f e r e n c e                                /MAILX
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+  Previous versions of mail-x used data stored in the mail-x domain in the
+  SILICON.INI file. This version departs from this approach. The reason is
+  speed. There are too many options that need to be loaded from the INI
+  file and a bigger file means slower execution. Note that the .INI file
+  must be placed in the same directory as the executable (usually, your
+  ProBoard PEX directory) and must have the same name as the PEX (just a
+  different extension .INI). This means that if you choose to rename the
+  pex, you will have to rename the .INI file too.
+
+  This file is a standard ASCII text file. There is a sample MAILX.INI
+  which is included with the distribution. It is fully annotated, so please
+  refer to it for more information.
+
+  The keywords must begin in column 1 on each row. They are not case-
+  sensitive. The keyword is followed by an equal ('=') sign which can
+  be (optionally) surrounded by whitespace. The data for the keyword is
+  after the equal sign.
+
+  There are several boolean options. These you can set with the words
+  'True', 'False', with the numbers 0 (False) and 1 (True) or you can
+  set the keyword to False by simply commenting it out.
+
+  Colors are somewhat more complicated. Color attributes are specified
+  with decimal numbers. Use the table below to obtain the values:
+
+  Black = 0   Red     = 4   Dark Gray   = 8    Light Red     = 12
+  Blue  = 1   Magenta = 5   Light Blue  = 9    Light Magenta = 13
+  Green = 2   Brown   = 6   Light Green = 10   Yellow        = 14
+  Cyan  = 3   Gray    = 7   Light Cyan  = 11   White         = 15
+
+  To get a color, use the number for the color. To get a combination of a
+  foreground-background color, multiply the color you want for background
+  by 16 and then add the foreground to it. Note that you can use only colors
+  0-7 for background. The values above will cause blinking (you can use
+  that too if you like it :-) If you want to force blink, add 128 to the
+  attribute you have selected:
+
+        Yellow on Blue         = 14 + 1 * 16       = 30
+
+        Blinking Black on Cyan =  0 + 3 * 16 + 128 = 176
+
+        LightCyan on Dark Grey = 11 + 8 * 16       = 139
+           (note that the result is NOT what you expected. This is
+           because you cannot use colors greater than 7 for the
+           background attribute)
+
+
+  u s a g e   a n d   s a m p l e                                      /USAGE
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+  mail-x comes preconfigured with a sample MAILX.ANS file. The built-in
+  settings are tailored for this particular background screen. It is very
+  pretty and probably most Sysops will choose to stay with it. If not,
+  there are several things you need to be aware of.
+
+  First, the command-bar item strings are not definable. You can move the
+  location of the command bar, but you cannot modify the text in it. This
+  is a shortcoming that is easily rectified, but which (if implemented)
+  would slow mail-x down considerably. I have debated whether to make it
+  as configurable as it is now for the same reasons (not to mention bloating
+  of the executable).
+
+  Another feature (this is a nice one), is the background screen file. This
+  need not be limited to ANSi format. Since mail-x does not use ProBoard's
+  file display functions, it is not limited to the formats it can display.
+  The built-in interpreter can handle ANSi, Avatar, PCBoard and Widlcat!
+  format files. So, if you happend to have a picture you like in any of
+  these formats, simply use it, there is no need for conversions!
+
+  Here's the setup used at the Silicon Creations BBS. In the TOP menu,
+  there are two entries, both are autoexecutable:
+
+      MAILX /G OFF       ; for maximum user level 100 (new users)
+      ; entry which upgrades new users to security level 200
+      MAILX /G FORCED    ; for all users
+
+  Then, on the mail/message menu, there are two other items:
+
+      MAILX /D DOING     ; select mail areas for new mail scan (with Doing)
+      MAILX /C /D DOING  ; select combined boards (Doing suport)
+
+  As you can see, mail-x is pretty versatile and easy to use.
+
+
+  c a v e a t   e m p t o r                                       /DISCLAIMER
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+  mail-x (all executables, documentation, source, and sample files) are
+  Copyright (c) 1985-1997 Branislav L. Slantchev. A fine production of
+  Silicon Creations, Inc.
+
+  This program is free software; you can redistribute it and/or modify it
+  under the terms of the GNU General Public License as published by the Free
+  Software Foundation; either version 2 of the License, or any later version.
+
+  This program is distributed in the hope that it will be useful, but WITHOUT
+  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+  FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+  more details.
+
+  You should have received a copy of the GNU General Public License along
+  with this program (the COPYING.DOC file); if not, write to the Free
+  Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+
+
+  s o u r c e   c o d e                                               /SOURCE
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+  The complete C++ source code for mail-x is freely available. It is released
+  in a separate archive in order to conserve space and to avoid burdening
+  people with things they do not necessarily want. The name of the source
+  code package is formed as MAILXnnS.RAR where 'nn' is the revision number.
+  For example, for version 3.0, the file will be named MZILX30S.RAR.
+
+  Note that you will need PB-Lib v3.0 or later in order to compile the pex.
+
+  Since the source code uses PB-Lib exclusively, you can compile it to a
+  regular MS-DOS(tm) executable (this is exactly how it was initially
+  developed). The code has been tested with Borland C++ 3.1 and might not
+  (although it should) work with different compilers. A makefile is
+  provided for compiling the PEX version, and a project file for building
+  the regular standard executable.
+
+  The source code is subject to the terms and conditions outlined in the
+  file Copying.Doc distributed with it. It is basically free for any use
+  but it remains copyrighted by Branislav L. Slantchev.
+
+
+  p a c k i n g   s l i p                                            /PACKING
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+  The files in this archive has been compressed with RAR Version 2.0 with
+  a security envelope. The reason for this format is quite simple - it
+  compresses far better than ZIP (not as fast, though). When you unpack the
+  files, you should see the following message at startup:
+
+      Verifying authenticity information ... Ok
+
+  and then (when the process is complete, you should see the following):
+
+      Archive MAILX30X.RAR
+      created at hh:mm:ss	dd mmm yyyy
+      by Silicon Creations, Inc.
+
+  If you don't see these messages, the archive has most likely been tampered
+  with and you should obtain a fresh copy. Note that I have had problems with
+  people modifying the archives before and that is why I strongly suggest
+  you take every precaution possible to prevent malicious "hackers" from
+  wreaking havoc on your computer. For all those "hackers", I can feel
+  nothing but pity... maybe some day they will learn how to do something on
+  their own... something creative. Until that time, we must protect ourselves.
+
+
+  r e g i s t r a t i o n                                           /REGISTER
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+  Of course, no registration is necessary for this program. It is being
+  distributed as freeware (meaning that I retain the copyright but you
+  are allowed to use mail-x without paying me any money). Go figure. Since
+  some people have expressed desire to contribute to Silicon Creations,
+  I hereby officially notify everyone that donations are accepted. You can
+  also request custom programs for a nominal fee. I reserve the right to
+  refuse anything sent to me or any request made for programming. Priority
+  will be given to projects that bring $$$. Ah, if you strongly feel like
+  contributing but you are not able to afford sending money, it's ok. Send
+  me a post card of your home town, I would really appreciate it. If you
+  can't afford that... have a beer on my behalf :-)
+
+
+  g e t t i n g   i n   t o u c h                                    /CONTACT
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+  Due to the lengthy nature of the topic, it has been moved to a separate
+  file. Read Support.Doc for details on how to get in touch with me. Also,
+  read the file FAQ.Doc for some questions people frequently ask me and
+  the answers to them.
+
+
+  g r e e t i n g s                                                /GREETINGS
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+  Greetings go to the following: Philippe Leybaert (what a novel idea!),
+  Ruben Provoost (JMJ), Wim Jans, Olivier Debonne, Timothy Bryant,
+  Arthur Stark, Chuck King, Tiago Pascoal, and many others whose names
+  have slipped my mind while writing this document.
+
+  Of course, special thanks goes to the faithful support and distribution
+  sites all around the world. You have been great, guys and gals! We have
+  done it once again.
+
+
+  c o p y r i g h t s ,   t r a d e m a r k s ,    e t c .       /TRADEMARKS
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+         mail-x ............................. Branislav L. Slantchev
+         PB-Lib ............................. Branislav L. Slantchev
+         ProBoard ........................... Philippe Leybaert
+         UserDoes ........................... Eddie Van Loon
+         Doing .............................. Fe-line Software
+         Borland C++ ........................ Borland International
+
+  All other programs and products mentioned above are property of their
+  respective owners. Mentioning them in this manual does not constitute
+  endorsement. If you like them, good. If not, good. I don't care.
+

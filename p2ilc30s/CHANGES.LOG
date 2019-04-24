@@ -1,0 +1,53 @@
+     Changes to P2iLC Since its Conception and Incipient Development
+                         Current Version 3.0
+
+P2iLC 3.00 - January 19, 1996
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	- oh well, LASTCALL.FD was misspelled 'LASCTALL'. duh!
+	- now imports the last caller for the correct server (node)
+
+P2iLC 2.00.R3 - December 28, 1996
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	- all bugs fixed, this is the release version
+
+P2iLC 2.00.R1-2 - September 25, 1996
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	- finally, the time bug was squashed... no thanks to anyone :(
+	- the program still mysteriously crashes
+	- added support for FrontDoor environments
+	- added switch to force FD style if both IM and FD environments present
+	- revised structure and improved processing
+	- added switching of InterMail's site info and location (optional)
+
+P2iLC 1.0.R2 - August 26, 1996
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	- improved efficiency and fixed problems with time stamps
+	- removed auxiliary header files, updated for PB-Lib v3.0
+	- since the binlog is not updated properly by proboard, P2iLC now
+	  loads the user record from the userbase (for the last caller)
+	- new fields in the inbound history:
+		system name     - last caller's name
+		city            - last caller's city
+		date/time       - the date and time of the call
+		bytes received  - total bytes uploaded by the user
+		bytes sent      - total bytes downloaded today by the user
+		cost            - total time user today by the user
+		(net/node)      - number of downloads/number of uploads
+	- new fields in the WFC screen:
+		system name     - last caller's name
+		system location - last caller's city
+		date/time       - date and time of this call
+		zone:net/node   - time used today/total time used/times called
+	- P2iLC now reports the name and alias while updating the WFC/History
+
+
+P2iLC 1.0.R1 - December 11, 1995
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	- fixed a bug where the time displayed is off by 5 hours. Actually,
+	  this is a bug in InterMail incorrectly creating/parsing the UNIX
+	  style timestamp. I checked their own records with 'unixtodos' and
+	  got wrong results! Anyway, fixed now.
+
+	- added update to the inbound history file (see the manual).  This is
+	  thanks to a suggestion by Chris Hammond.
+

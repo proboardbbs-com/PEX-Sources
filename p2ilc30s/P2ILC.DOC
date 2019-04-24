@@ -1,0 +1,345 @@
+
+                      ÜÛÛÛÛÛÛÜ
+                     ŞÛÛÛÛÛŞÛÛÛ
+                     ŞÛÛÛÛÛŞÛÛÛİ       	Version 3.0
+              ²ÛÛÛßÛ       ŞÛÛÛ   ßßßß ²ÛÛÛ   ²ÛÛÛßÛ
+              ±ÛÛÛÜÛ    ÜÜÛÛÛÛİ   ÛÛÛ° ±ÛÛÛ   ±ÛÛÛ
+              ÛÛÛÛ    ÜÛÛÛÛÛß	  ÛÛÛ± ÛÛÛÛÜÛ ÛÛÛÛÜÛ
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄŞÛÛÛÛÛÛÛÛÛÛßÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+ßßßßßßßßßßßßßßßßßßßßß			 ßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßß
+
+              Copyright (c) 1995,1997 Branislav L. Slantchev
+                   A Product of Silicon Creations, Inc.
+
+          [Topic]                                      [Keyword]
+
+          Overview ................................... /OVERVIEW
+          Installation ............................... /INSTALL
+          Command Line Options ....................... /OPTIONS
+          Usage and Sample ........................... /USAGE
+          Screen Map ................................. /SCREEN
+          Source Code ................................ /SOURCE
+          Caveat Emptor .............................. /DISCLAIMER
+          Packing Slip ............................... /PACKING
+          Registration ............................... /REGISTER
+          Getting in Touch ........................... /CONTACT
+          Greetings and Thank You's .................. /GREETINGS
+          Copyrights, Trademarks, Etc. ............... /TRADEMARKS
+
+
+  o v e r v i e w                                                  /OVERVIEW
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+  This program is one of those so-called gadgets that are not particularly
+  vital to your BBS operation, but that make life easier and definitely fun
+  (this may be subjective). P2iLC (or ProBoard To InterMail Last Caller) is
+  a utility which will take the last BBS caller's information and post it
+  on your mailer (InterMail or FrontDoor) WFC (Wait For Caller) and IHS
+  (Inbound History Screen) screens. Unlike most other utilities which need
+  to be installed within ProBoard itself (i.e. pexen), this is a regular
+  command-line executable. Besides being easier to run and setup, it allows
+  for some additional functionality which is outlined below. A secondary
+  feature is the ability to change your mailer's site information (InterMail
+  systems only) on a random basis. That way you can have your system change
+  its name and location with every call. Some people find this annoying, but
+  I think that it's cool (unless you don't have a sense of humor, of course)
+
+
+  i n s t a l l a t i o n                                           /INSTALL
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+  You need to copy P2iLC.Exe and P2iLC.Ctl (optional) to a directory that is
+  in your PATH statement. This will allow you to call the program from any
+  directory without regard to its actual location. Since P2iLC uses the
+  environment variables that you have set up for your BBS already, it can
+  locate all its necessary files without additional help (no messy config or
+  .INI files here). You need to copy the .Ctl file only if you are running
+  InterMail and you want to use the Change Site Info feature of the program.
+
+  Next, make sure your PROBOARD environment variable is set to point to your
+  ProBoard system directory (as per the BBS manual). For example, if the
+  BBS is located in C:\PB, you must have a statement similar to this in
+  either your Autoexec.Bat file or the BBS startup batch file:
+
+                    set PROBOARD=C:\PB
+
+  If you are running InterMail, you should also have the IM environment set
+  to point to the directory where the FD.SYS file resides, for C:\IM, it
+  would look like this:
+
+                    set IM=C:\IM
+
+  For FrontDoor systems, your need to have the FD environment set up as per
+  the program manual.
+
+  This is all P2iLC needs in order to locate the files that will be used
+  during the operation. Note that if, for some reason, you have both IM
+  and FD environments set, P2iLC will default to using IM. This behavior
+  can be changed via one of the command line options (see the next section).
+
+
+  c o m m a n d   l i n e   o p t i o n s                           /OPTIONS
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+  Running the program with '-?' as parameter will give a brief list of all
+  options and explanation about each one of them. Here's the complete info:
+
+          Usage: p2ilc [server#] [-n] [-f] [-s] [-?]
+
+  All parameters are optional. They can be preceded either by a hyphen '-'
+  or a forward slash '/' (that is, '-s' and '/s' mean the same thing). They
+  can be interspersed in any order. Note that the first option, "server#"
+  is NOT preceded with a hyphen or a slash, instead it is simply a number.
+
+      server#
+          The mailer's server number. This defaults to 1 (for node 1) and
+          can be used to tell P2iLC which server's screens to updated. Note
+          that the program completely supports multiple server configurations
+          with a single FD.SYS or SETUP.FD files. You need to specify the
+          server number only (no hyphens or slashes). This is easily done
+          from the BBS batch file (see the examples below). The node number
+          is also used to extract the correct record from the binary log
+          file (i.e. the user logged will only be considered if (s)he was
+          logged on the node requested, it does not matter how many other
+          records exist in the binary log, P2iLC will scan it for the last
+          entry from the required node).
+
+      -?
+         Provide a brief help screen. This listing also shows some helpful
+         hints and notes about the usage. You will get it if you run P2iLC
+         with an incorrect option.
+
+      -n
+		 Prevents P2iLC from updating the WFC/IHS screens. This is often
+		 used in conjunction with the '-s' option which will basically
+		 tell the program to change the site information only (this does
+		 not work for FrontDoor systems).
+
+      -f
+         Force FrontDoor mode. This option is useful if you have both IM
+         and FD environments set up. By default, P2iLC will try to use the
+         IM environment. With this option, it will use FD instead.
+
+      -s
+         Switch the site information using the P2iLC.Ctl file (InterMail
+         systems only). Note that you will have to have a valid .Ctl file
+         in the same directory as the P2iLC.Exe (the .Ctl file MUST be
+         named the same as the executable except for the extension - this
+         means that if you change P2iLC.Exe to PB2IM.Exe, for example, the
+         .Ctl file must be called PB2IM.Ctl). See the sample control file
+         for the proper syntax of the entries there.
+
+      -v
+         Display program compilation date and revision number (useful if
+         you want to make sure you have the most recent copy).
+
+      -c
+         Display the standard disclaimer, some copyright information and
+         an excerpt from your license. For the full text, refer to the
+         file Copying.Doc
+
+
+  u s a g e   a n d   s a m p l e
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+  If you are running a single line BBS, nothing can be easier than setting
+  P2iLC up. You only need to modify your BBS batch file to run the program
+  immediately after the caller logs off. You need not specify any command
+  line parameters (except maybe for -s if you want to switch InterMail's
+  site info) as P2iLC will automatically use the first server of the mailer.
+
+  For multiline systems, the following is an example setup for InterMail's
+  EXEBBS.BAT file which runs ProBoard (this one is called by the mailer's
+  DOBBS.BAT automatically when a caller is detected):
+
+                @echo off
+
+                cd %PROBOARD%\node_%5
+                ..\proboard -b%1 -p%2 -n%5 -t%3
+                if errorlevel 99 goto End
+
+                rem ...
+                rem ... here go your errorlevels to process mail
+                rem ... the following is the end of the batch file
+                rem ...
+
+                :Recycle
+                p2ilc %5
+                imrun
+
+                :End
+
+  The EXEBBS.BAT receives the following parameters from the DOBBS.BAT file
+  (created automatically by the mailer):
+
+                %1: caller's baud rate
+                %2: com port number
+                %3: minutes till next mailer event
+                %4: (not used)
+                %5: server id number (node number)
+
+  As you can see, P2iLC uses the fifth parameter received by EXEBBS.BAT to
+  locate the correct WFC/IHS screens. Note that this setup will work fine
+  with one line systems because the server number will be 1 (default). If
+  you want to enable the site info switching, simply append the '-s' option
+  to the command line above.
+
+
+  s c r e e n   m a p                                                /SCREEN
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+  Ok, so what information does P2iLC post on the WFC/HIS screens and how to
+  interpret the various fields? Here's a map of all the numbers:
+
+      HIS (Inbound History)
+          System name     - Last caller's name
+          System city     - Last caller's city
+          Date/Time       - Date and time when the call was received
+          Bytes received  - Total bytes uploaded by the caller (all calls)
+          Bytes sent      - Bytes downloaded by the caller (today)
+          Cost            - Total time used by the caller (today)
+          Net/Node        - Total number of Downloads/Uploads by this caller
+
+     WFC (Wait for Caller)
+          System name     - Last caller's name
+          System location - Last caller's city
+          Date/Time       - Date and time when the call was received
+          Zone            - Time used today by the caller
+          Net             - Total time used by the caller (all calls)
+          Node            - Number of calls from this caller
+
+  P2iLC will report the name (and alias) of the user when updating the
+  screens and the lines chosen when updating the site information files.
+
+
+  s o u r c e   c o d e                                              /SOURCE
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+  The full source code to P2iLC is also available. The file name is formed
+  as follows: P2ILCxxS.RAR where 'xx' is the version number. For example,
+  for P2iLC Version 3.0, the source code will be in the archive P2ILC30S.RAR.
+  Note that some of the structures in P2iLC.H are copyrighted material of
+  Further Development, Inc. (Peter Stewart) and were distributed as part of
+  the InterMail's Developer Kit. I have included only those which are
+  necessary for the compilation of P2iLC.
+
+  The code is copyrighted under the GNU General Public License. For the
+  full text of this license (and your rights for using the sources), read
+  the file Copying.Doc in its entirety.
+
+  The file Changes.Log outlines the major changes that the code has gone
+  through. Note that you definitely need PB-Lib v3.0 or later if you want
+  to use the code. Most of the work is done behind the scenes by PB-Lib
+  itself. Before you say "Hey, this executable is BIG - 22K compressed!"
+  stop and think about what it actually does... (grin).
+
+  Since ProBoard does not update the BINLOG properly, P2iLC only reads it
+  to find out who the last caller was. Then locates the user record in the
+  userbase and extracts all the information from it.
+
+
+  c a v e a t   e m p t o r                                      /DISCLAIMER
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+  P2iLC has been successfully tested (and is still running) on a system with
+  InterMail v2.29k and ProBoard v2.16b3. It has NOT been tested in a Front-
+  Door environment, but it should work (hey, I did read the FD Dev.Kit!) but
+  if it does not, read the contacts section.
+
+  P2iLC will probably NOT work with the new (upcoming) InterMail v2.50 or
+  with ProBoard v3.0 (when it comes out). If I ever get the money to update
+  my InterMail to this version, there will definitely be a P2iLC that will
+  run on it. With ProBoard, things are easy - as long as I keep running this
+  BBS, P2iLC will support the latest version.
+
+
+  p a c k i n g   s l i p                                           /PACKING
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+  The files in this archive has been compressed with RAR Version 2.0 with
+  a security envelope. The reason for this format is quite simple - it
+  compresses far better than ZIP (not as fast, though). When you unpack the
+  files, you should see the following message at startup:
+
+      Verifying authenticity information ... Ok
+
+  and then (when the process is complete, you should see the following):
+
+      Archive P2iLC30X.RAR
+      created at hh:mm:ss	dd mmm yyyy
+      by Silicon Creations, Inc.
+
+  If you don't see these messages, the archive has most likely been tampered
+  with and you should obtain a fresh copy. Note that I have had problems with
+  people modifying the archives before and that is why I strongly suggest
+  you take every precaution possible to prevent malicious "hackers" from
+  wreaking havoc on your computer. For all those "hackers", I can feel
+  nothing but pity... maybe some day they will learn how to do something on
+  their own... something creative. Until that time, we must protect ourselves.
+
+
+  r e g i s t r a t i o n                                          /REGISTER
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+  Of course, no registration is necessary for this program. It is being
+  distributed as freeware (meaning that I retain the copyright but you
+  are allowed to use P2iLC without paying me any money). Go figure. Since
+  some people have expressed desire to contribute to Silicon Creations,
+  I hereby officially notify everyone that donations are accepted. You can
+  also request custom programs for a nominal fee. I reserve the right to
+  refuse anything sent to me or any request made for programming. Priority
+  will be given to projects that bring $$$. Ah, if you strongly feel like
+  contributing but you are not able to afford sending money, it's ok. Send
+  me a post card of your home town, I would really appreciate it. If you
+  can't afford that... have a beer on my behalf :-)
+
+
+  g e t t i n g   i n   t o u c h                                   /CONTACT
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+  Due to the lengthy nature of the topic, it has been moved to a separate
+  file. Read Support.Doc for details on how to get in touch with me. Also,
+  read the file FAQ.Doc for some questions people frequently ask me and
+  the answers to them.
+
+
+  g r e e t i n g s   a n d   t h a n k   y o u ' s               /GREETINGS
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+  Greetings go to Mike Ehlert for providing the FTP site, for the $$$ he
+  sent me (hey, who said you can't send your favorite programmer some cash),
+  for the suggestions for several programs and for being a nice guy overall;
+  Timothy Bryant for running Win95 (grin); Sarah and Faye Pearson for being
+  the nice ladies that they are (and running the best PB www site around:
+  Hey, when will we see MsgView???); Ruben Provoost [JMJ] for his relentless
+  freeware (the .INI files should go in the directory of the executable!);
+  Wim Jans for polling dutifully from Belgium (do you have e-mail yet?);
+  all the people that mention me in their docs: I am sorry I can't recall
+  all the names, but you have been noted. Thanks! Also, BIG BIG thank you
+  goes to Tiago Umm Pascoal for reading ALL the docs to PB-Lib, finding
+  some (lots!) of bugs, suggesting stupid SmallTalk-inspired improvements
+  (sorry, could not resist)... well, some of them have been implemented,
+  actually, for bugging me with 10+ e-mails a day, and for finding time for
+  doing all this. Thanks!
+
+  I would like to use this section to welcome our brand new Distribution
+  Site in Israel, Dark Hell BBS, Sysop: Boris Sokalsky. As you can see,
+  Silicon Creations, Inc. now has distribution points in several countries
+  around the world. Thanks to all my faithful beta team members, my distro
+  sites and every sysop that uses my programs. It's nice to feel needed!
+
+
+  c o p y r i g h t s ,   t r a d e m a r k s ,    e t c .       /TRADEMARKS
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+         P2iLC...............................Branislav L. Slantchev
+         PB-Lib..............................Branislav L. Slantchev
+         ProBoard............................Philippe Leybaert
+         InterMail...........................Further Development, Inc.
+         FrontDoor...........................Joaquim Homrighausen
+         Borland C++.........................Borland International
+         Windows95...........................Microsoft Corporation.
+
+  All other programs and products mentioned above are property of their
+  respective owners. Mentioning them in this manual does not constitute
+  endorsement. If you like them, good. If not, good. I don't care.
